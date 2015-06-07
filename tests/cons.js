@@ -1,7 +1,9 @@
 var cons = require('../src/cons/cons.js');
 var car = require('../src/cons/car.js');
 var cdr = require('../src/cons/cdr.js');
+var pair = require('../src/cons/pair.js');
 var print = require('../src/cons/print.js');
+var equal = require('../src/cons/equal.js');
 var assert = require('assert');
 
 suite('cons', function(){
@@ -39,14 +41,29 @@ suite('cons', function(){
             assert.equal(doubleCons.cdr.cdr, 4);
         });
     });
+    suite('pair', function(){
+        test('pair', function(){
+            assert.ok(pair(simpleCons));
+            assert.ok(pair(doubleCons));
+            assert.ok(pair(car(doubleCons)));
+            assert.ok(pair(cdr(doubleCons)));
+            assert.ok(pair(linkedList));
+            assert.ok(pair(tree));
+            assert.ok(!pair(1));
+            assert.ok(!pair('foo'));
+            assert.ok(!pair(car(simpleCons)));
+        });
+    });
+    test('equal', function(){
+        assert.ok(equal(simpleCons, cons(1, 2)));
+        assert.ok(equal(doubleCons, cons(cons(1, 2), cons(3, 4))));
+    });
     suite('car/cdr', function(){
         test('car/cdr', function(){
             assert.equal(linkedList.car, 1);
             assert.equal(linkedList.cdar, 2);
             assert.equal(linkedList.cddar, 3);
             assert.equal(linkedList.cdddar, 4);
-            assert.equal(linkedList.cddddar, 5);
-            assert.equal(linkedList.cdddddr, null);
             assert.ok(linkedList.cdr instanceof cons);
 
             assert.equal(tree.caaar, 1);

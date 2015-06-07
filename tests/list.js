@@ -2,45 +2,55 @@ var cons = require('../src/cons/cons.js');
 var car = require('../src/cons/car.js');
 var cdr = require('../src/cons/cdr.js');
 var print = require('../src/cons/print.js');
+var equal = require('../src/cons/equal.js');
 
 var list = require('../src/list/list.js');
 var map = require('../src/list/map.js');
 var reduce = require('../src/list/reduce.js');
 var filter = require('../src/list/filter.js');
+var filter = require('../src/list/filter.js');
 var peek = require('../src/list/peek.js');
 var push = require('../src/list/push.js');
 var pop = require('../src/list/pop.js');
+var zip = require('../src/list/zip.js');
 var enqueue = require('../src/list/enqueue.js');
 var dequeue = require('../src/list/dequeue.js');
 
 var assert = require('assert');
 
-function equalList(a, b){
-    if (a === b){
-        return true;
-    }
-    if (a===null && b!==null || b===null && a!==null){
-        return false;
-    }
-    else if (car(a) !== car(b)){
-        return false;
-    } else if (cdr(a) instanceof cons && cdr(b) instanceof cons){
-        return equalList(cdr(a), cdr(b));
-    } else {
-        return cdr(b) === cdr(b);
-    }
-}
+// function equalList(a, b){
+//     if (a === b){
+//         return true;
+//     }
+//     if (a===null && b!==null || b===null && a!==null){
+//         return false;
+//     }
+//     else if (car(a) !== car(b)){
+//         return false;
+//     } else if (cdr(a) instanceof cons && cdr(b) instanceof cons){
+//         return equalList(cdr(a), cdr(b));
+//     } else {
+//         return cdr(b) === cdr(b);
+//     }
+// }
 
 suite('list', function(){
     var linkedList, filtered, emptyFiltered, addMapped, mulMapped, reduceAdd, reduceMul,
         consList, filteredCons, emptyFilteredCons, addMappedCons, mulMappedCons,
-        pushed, popped;
+        pushed, popped, zip1, zip2, zip3, zip4, enqueue1, enqueue2, dequeue1, dequeue2;
     setup(function(){
         linkedList = list(1,2,3,4,5);
+        linkedList2 = list(6,7,8,9,10);
+        linkedList3 = list(6,7,8,9,10,11,12,13,14);
+        linkedList4 = list(11,22,33,44,55);
+        linkedList5 = list(11,22,33,44,55,66,77,88,99);
+        zipped1 = list(cons(6,11),cons(7,22),cons(8,33),cons(9,44),cons(10,55));
+        zipped2 = list(cons(11,6),cons(22,7),cons(33,8),cons(44,9),cons(55,10),
+            cons(66,11),cons(77,12),cons(88,13),cons(99,14));
         linkedListP1 = list(1,2,3,4,5,6);
         linkedListP2 = list(1,2,3,4,5,6,7);
-        linkedListE1 = list(8,1,2,3,4,5,6);
-        linkedListE2 = list(9,8,1,2,3,4,5,6,7);
+        linkedListE1 = list(8,1,2,3,4,5);
+        linkedListE2 = list(9,8,1,2,3,4,5);
         pushed1 = push(linkedList, 6);
         pushed2 = push(pushed1, 7);
         popped1 = pop(pushed2);
@@ -49,6 +59,10 @@ suite('list', function(){
         enqueue2 = enqueue(enqueue1, 9);
         dequeue1 = dequeue(enqueue2);
         dequeue2 = dequeue(dequeue1);
+        zip1 = zip(linkedList2, linkedList5);
+        zip2 = zip(linkedList3, linkedList4);
+        zip3 = zip(linkedList5,linkedList3);
+        zip4 = 1;
         popped1 = pop(pushed2);
         popped2 = pop(popped1);
         filtered = filter(linkedList, function(n){return n % 2 === 0;});
@@ -78,14 +92,14 @@ suite('list', function(){
     });
     suite('list', function(){
         test('list', function(){
-            assert.ok(equalList(consList, linkedList));
+            assert.ok(equal(consList, linkedList));
         });
         test('map', function(){
-            assert.ok(equalList(addMapped, addMappedCons));
-            assert.ok(equalList(mulMapped, mulMappedCons));
+            assert.ok(equal(addMapped, addMappedCons));
+            assert.ok(equal(mulMapped, mulMappedCons));
         });
         test('filter', function(){
-            assert.ok(equalList(filtered, filteredCons));
+            assert.ok(equal(filtered, filteredCons));
             assert.equal(emptyFiltered, null);
         });
         test('reduce', function(){
@@ -98,20 +112,20 @@ suite('list', function(){
             assert.equal(peek(linkedListP2), 7);
         });
         test('push', function(){
-            assert.ok(equalList(linkedListP1, pushed1));
-            assert.ok(equalList(linkedListP2, pushed2));
+            assert.ok(equal(linkedListP1, pushed1));
+            assert.ok(equal(linkedListP2, pushed2));
         });
         test('pop', function(){
-            assert.ok(equalList(linkedListP1, popped1));
-            assert.ok(equalList(linkedList, popped2));
+            assert.ok(equal(linkedListP1, popped1));
+            assert.ok(equal(linkedList, popped2));
         });
         test('enqueue', function(){
-            assert.ok(equalList(linkedListE1, enqueue1));
-            assert.ok(equalList(linkedListE2, enqueue2));
+            assert.ok(equal(linkedListE1, enqueue1));
+            assert.ok(equal(linkedListE2, enqueue2));
         });
         test('dequeue', function(){
-            assert.ok(equalList(linkedListE1, dequeue1));
-            assert.ok(equalList(linkedList, dequeue2));
+            assert.ok(equal(linkedListE1, dequeue1));
+            assert.ok(equal(linkedList, dequeue2));
         });
     });
 });
