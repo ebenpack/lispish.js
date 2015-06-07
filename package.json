@@ -1,0 +1,18 @@
+{
+  "name": "lispish.js",
+  "version": "0.0.1",
+  "description": "Some lisp-like noodlings in JS, by someone who doesn't really know lisp.",
+  "author": "ebenpack",
+  "main": "src/main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ebenpack/lispish.js"
+  },
+  "devDependencies": {
+    "browserify": "^10.2.4",
+    "gulp": "^3.9.0",
+    "gulp-mocha": "^2.1.1",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "license": "MIT"
+}
