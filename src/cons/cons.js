@@ -54,7 +54,7 @@ for (var i=0; i<5; i++){
         var permutations = permute(As + Ds);
         for (var p=0, len=permutations.length; p <len; p++){
             var perm = permutations[p];
-            if (perm !== 'a' && perm !== 'd' && !cons.prototype.hasOwnProperty('c' + perm + 'r')){
+            if (perm !== 'a' && perm !== 'd' && perm.length < 5 && !cons.prototype.hasOwnProperty('c' + perm + 'r')){
                 Object.defineProperty(cons.prototype, 'c' + perm + 'r', {
                     get: (function(perm){
                         return function(){
