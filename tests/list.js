@@ -18,26 +18,13 @@ var dequeue = require('../src/list/dequeue.js');
 
 var assert = require('assert');
 
-// function equalList(a, b){
-//     if (a === b){
-//         return true;
-//     }
-//     if (a===null && b!==null || b===null && a!==null){
-//         return false;
-//     }
-//     else if (car(a) !== car(b)){
-//         return false;
-//     } else if (cdr(a) instanceof cons && cdr(b) instanceof cons){
-//         return equalList(cdr(a), cdr(b));
-//     } else {
-//         return cdr(b) === cdr(b);
-//     }
-// }
-
 suite('list', function(){
-    var linkedList, filtered, emptyFiltered, addMapped, mulMapped, reduceAdd, reduceMul,
+    var linkedList, linkedList2, linkedList3, linkedList4, linkedList5,
+        filtered, emptyFiltered, addMapped, mulMapped, reduceAdd, reduceMul,
+        zipped1, zipped2, linkedListP1, linkedListP2, linkedListE1, linkedListE2,
         consList, filteredCons, emptyFilteredCons, addMappedCons, mulMappedCons,
-        pushed, popped, zip1, zip2, zip3, zip4, enqueue1, enqueue2, dequeue1, dequeue2;
+        zip1, zip2, zip3, enqueue1, enqueue2, dequeue1, dequeue2,
+        pushed1, pushed2, popped1, popped2;
     setup(function(){
         linkedList = list(1,2,3,4,5);
         linkedList2 = list(6,7,8,9,10);
@@ -62,11 +49,10 @@ suite('list', function(){
         zip1 = zip(linkedList2, linkedList5);
         zip2 = zip(linkedList3, linkedList4);
         zip3 = zip(linkedList5,linkedList3);
-        zip4 = 1;
         popped1 = pop(pushed2);
         popped2 = pop(popped1);
         filtered = filter(linkedList, function(n){return n % 2 === 0;});
-        emptyFiltered = filter(linkedList, function(n){return false;});
+        emptyFiltered = filter(linkedList, function(){return false;});
         addMapped = map(linkedList, function(n){return n + 10;});
         mulMapped = map(linkedList, function(n){return n * 10;});
         reduceAdd = reduce(linkedList, function(a, b){return a + b;}, 0);

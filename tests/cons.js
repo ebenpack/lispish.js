@@ -7,7 +7,7 @@ var equal = require('../src/cons/equal.js');
 var assert = require('assert');
 
 suite('cons', function(){
-    var linkedList, tree, simpleCons, doubleCons;
+    var simpleCons, doubleCons, linkedList, tree;
     setup(function(){
         simpleCons = cons(1, 2);
         doubleCons = cons(cons(1, 2), cons(3, 4));
