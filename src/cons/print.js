@@ -1,6 +1,7 @@
 var cons = require('./cons.js');
 var car = require('./car.js');
 var cdr = require('./cdr.js');
+var pair = require('./pair.js');
 
 /**
  * Returns a string representation of a cons.
@@ -21,12 +22,12 @@ function print(c, options) {
         var carL = car(c);
         var cdrResult = '';
         var carResult = '';
-        if (carL instanceof cons) {
+        if (pair(carL)) {
             carResult = printHelper(carL, separator);
         } else if (carL !== null) {
             carResult = carL.toString();
         }
-        if (cdrL instanceof cons) {
+        if (pair(cdrL)) {
             cdrResult = printHelper(cdrL, separator);
         } else if (cdrL !== null) {
             cdrResult = cdrL.toString();
