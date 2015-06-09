@@ -30,12 +30,12 @@ suite('cons', function(){
     });
     suite('cons', function(){
         test('cons', function(){
-            assert.ok(simpleCons instanceof cons);
-            assert.ok(doubleCons instanceof cons);
+            assert.ok(pair(simpleCons));
+            assert.ok(pair(doubleCons));
             assert.equal(simpleCons.car, 1);
             assert.equal(simpleCons.cdr, 2);
-            assert.ok(doubleCons.car instanceof cons);
-            assert.ok(doubleCons.cdr instanceof cons);
+            assert.ok(pair(doubleCons.car));
+            assert.ok(pair(doubleCons.cdr));
             assert.equal(doubleCons.car.car, 1);
             assert.equal(doubleCons.car.cdr, 2);
             assert.equal(doubleCons.cdr.car, 3);
@@ -65,7 +65,7 @@ suite('cons', function(){
             assert.equal(c.cdar(linkedList), 2);
             assert.equal(c.cddar(linkedList), 3);
             assert.equal(c.cdddar(linkedList), 4);
-            assert.ok(linkedList.cdr instanceof cons);
+            assert.ok(pair(linkedList.cdr));
 
             assert.equal(c.caaar(tree), 1);
             assert.equal(c.cadar(tree), 2);
