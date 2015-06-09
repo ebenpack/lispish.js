@@ -56,6 +56,8 @@ for (var i=0; i<5; i++){
             var perm = permutations[p];
             if (perm !== 'a' && perm !== 'd' && perm.length < 5 && !cons.prototype.hasOwnProperty('c' + perm + 'r')){
                 Object.defineProperty(cons.prototype, 'c' + perm + 'r', {
+                    enumerable: false,
+                    configurable: false,
                     get: (function(perm){
                         return function(){
                             function helper(that, perm){
