@@ -5,6 +5,8 @@ var print = require('../src/cons/print.js');
 var equal = require('../src/cons/equal.js');
 
 var list = require('../src/list/list.js');
+var length = require('../src/list/length.js');
+var range = require('../src/list/range.js');
 var map = require('../src/list/map.js');
 var reduce = require('../src/list/reduce.js');
 var filter = require('../src/list/filter.js');
@@ -24,13 +26,20 @@ suite('list', function(){
         zipped1, zipped2, linkedListP1, linkedListP2, linkedListE1, linkedListE2,
         consList, filteredCons, emptyFilteredCons, addMappedCons, mulMappedCons,
         zip1, zip2, zip3, enqueue1, enqueue2, dequeue1, dequeue2,
-        pushed1, pushed2, popped1, popped2;
+        pushed1, pushed2, popped1, popped2,
+        range1, range2, range3, range4, badrange, steprange;
     setup(function(){
         linkedList = list(1,2,3,4,5);
         linkedList2 = list(6,7,8,9,10);
         linkedList3 = list(6,7,8,9,10,11,12,13,14);
         linkedList4 = list(11,22,33,44,55);
         linkedList5 = list(11,22,33,44,55,66,77,88,99);
+        range1 = range(1,6);
+        range2 = range(6,15);
+        range3 = range(1,8);
+        range4 = range(30);
+        steprange = range(11, 100, 11);
+        badrange = range(0, 10, -1);
         zipped1 = list(cons(6,11),cons(7,22),cons(8,33),cons(9,44),cons(10,55));
         zipped2 = list(cons(11,6),cons(22,7),cons(33,8),cons(44,9),cons(55,10),
             cons(66,11),cons(77,12),cons(88,13),cons(99,14));
@@ -80,6 +89,35 @@ suite('list', function(){
         test('list', function(){
             assert.ok(equal(consList, linkedList));
         });
+        test('length', function(){
+            assert.equal(length(linkedList), 5);
+            assert.equal(length(linkedList2), 5);
+            assert.equal(length(linkedList3), 9);
+            assert.equal(length(linkedList4), 5);
+            assert.equal(length(linkedList5), 9);
+            assert.equal(length(zipped1), 5);
+            assert.equal(length(zipped2), 9);
+            assert.equal(length(linkedListP1), 6);
+            assert.equal(length(linkedListP2), 7);
+            assert.equal(length(linkedListE1), 6);
+            assert.equal(length(linkedListE2), 7);
+        });
+        test('range', function(){
+            assert.ok(equal(range1, linkedList));
+            assert.ok(equal(range2, linkedList3));
+            assert.ok(equal(range3, linkedListP2));
+            assert.ok(equal(steprange, linkedList5));
+
+            assert.equal(badrange, null);
+            assert.equal(length(range1), 5);
+            assert.equal(length(range2), 9);
+            assert.equal(length(range3), 7);
+            assert.equal(length(range4), 30);
+            assert.equal(length(steprange), 9);
+        });
+
+
+
         test('map', function(){
             assert.ok(equal(addMapped, addMappedCons));
             assert.ok(equal(mulMapped, mulMappedCons));
