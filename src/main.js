@@ -8,6 +8,8 @@ exports.pair = require('./cons/pair.js');
 
 // list
 exports.list = require('./list/list.js');
+exports.length = require('./list/length.js');
+exports.range = require('./list/range.js');
 exports.map = require('./list/map.js');
 exports.reduce = require('./list/reduce.js');
 exports.filter = require('./list/filter.js');
