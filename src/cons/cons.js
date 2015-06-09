@@ -6,12 +6,17 @@
  * @return {cons}
  */
 function cons(a, b) {
-    if (!(this instanceof cons)) {
-        return new cons(a, b);
-    }
-    this.car = a;
-    this.cdr = b;
-    Object.freeze(this);
+    return Object.freeze(
+        Object.defineProperty(
+            Object.defineProperty(
+                Object.create(null), 'car', {
+                    value: a
+                }
+            ), 'cdr', {
+                value: b
+            }
+        )
+    );
 }
 
 module.exports = cons;
