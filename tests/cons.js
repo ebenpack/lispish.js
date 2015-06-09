@@ -1,6 +1,7 @@
 var cons = require('../src/cons/cons.js');
 var car = require('../src/cons/car.js');
 var cdr = require('../src/cons/cdr.js');
+var c = require('../src/cons/compositions.js');
 var pair = require('../src/cons/pair.js');
 var print = require('../src/cons/print.js');
 var equal = require('../src/cons/equal.js');
@@ -60,21 +61,21 @@ suite('cons', function(){
     });
     suite('car/cdr', function(){
         test('car/cdr', function(){
-            assert.equal(linkedList.car, 1);
-            assert.equal(linkedList.cdar, 2);
-            assert.equal(linkedList.cddar, 3);
-            assert.equal(linkedList.cdddar, 4);
+            assert.equal(car(linkedList), 1);
+            assert.equal(c.cdar(linkedList), 2);
+            assert.equal(c.cddar(linkedList), 3);
+            assert.equal(c.cdddar(linkedList), 4);
             assert.ok(linkedList.cdr instanceof cons);
 
-            assert.equal(tree.caaar, 1);
-            assert.equal(tree.cadar, 2);
-            assert.equal(tree.cdaar, 3);
-            assert.equal(tree.cddar, 4);
+            assert.equal(c.caaar(tree), 1);
+            assert.equal(c.cadar(tree), 2);
+            assert.equal(c.cdaar(tree), 3);
+            assert.equal(c.cddar(tree), 4);
 
-            assert.equal(tree.caaar, car(car(car(tree))));
-            assert.equal(tree.cadar, car(cdr(car(tree))));
-            assert.equal(tree.cdaar, car(car(cdr(tree))));
-            assert.equal(tree.cddar, car(cdr(cdr(tree))));
+            assert.equal(c.caaar(tree), car(car(car(tree))));
+            assert.equal(c.cadar(tree), car(cdr(car(tree))));
+            assert.equal(c.cdaar(tree), car(car(cdr(tree))));
+            assert.equal(c.cddar(tree), car(cdr(cdr(tree))));
         });
     });
     suite('print', function(){
