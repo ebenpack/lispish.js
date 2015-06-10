@@ -1,0 +1,16 @@
+call
+apply
+curry
+with?
+pluck?
+compose
+maybe
+tap?
+fluent?
+once
+slice
+take?
+trampoline
+find
+some
+all/every
