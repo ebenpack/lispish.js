@@ -4,7 +4,6 @@ function pair(c){
     } catch(e) {
         return false;
     }
-        
 }
 
 module.exports = pair;
