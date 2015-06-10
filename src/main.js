@@ -6,6 +6,12 @@ exports.print = require('./cons/print.js');
 exports.equal = require('./cons/equal.js');
 exports.pair = require('./cons/pair.js');
 
+var compositions = require('./cons/compositions.js');
+Object.keys(compositions).forEach(function(key) {
+    exports[key] = compositions[key];
+});
+
+
 // list
 exports.list = require('./list/list.js');
 exports.length = require('./list/length.js');
