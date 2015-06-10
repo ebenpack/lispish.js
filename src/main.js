@@ -25,3 +25,6 @@ exports.pop = require('./list/pop.js');
 exports.zip = require('./list/zip.js');
 exports.enqueue = require('./list/enqueue.js');
 exports.dequeue = require('./list/dequeue.js');
+
+// fun
+exports.compose = require('./fun/compose.js');

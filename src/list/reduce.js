@@ -2,6 +2,15 @@ var cons = require('../cons/cons.js');
 var car = require('../cons/car.js');
 var cdr = require('../cons/cdr.js');
 
+/**
+ * Applies the given callback function against an accumulator
+ * and each value of the cons list (from left-to-right) in order
+ * to reduce it to a single value.
+ * @param  {cons}   L
+ * @param  {Function} fn
+ * @param  {*}   acc
+ * @return {cons}
+ */
 function reduce(L, fn, acc){
     function reduceHelper(L, fn, acc){
         if (cdr(L) === null){

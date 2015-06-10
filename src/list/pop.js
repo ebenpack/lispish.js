@@ -3,6 +3,11 @@ var car = require('../cons/car.js');
 var cdr = require('../cons/cdr.js');
 var list = require('./list.js');
 
+/**
+ * Given a cons list, returns a new list with the last item removed.
+ * @param  {cons} L
+ * @return {(cons|null)}
+ */
 function pop(L){
     if (cdr(L) === null){
         return null;

@@ -20,7 +20,7 @@ function range(n, m, step){
         }
     }
     function goodStep(start, stop, step){
-        return (abs(stop - start) > abs(stop - (start + step)))
+        return (abs(stop - start) > abs(stop - (start + step)));
     }
     function stepHelper(n, m, step){
         if (typeof m === 'undefined'){

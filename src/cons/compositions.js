@@ -1,6 +1,7 @@
 var cdr = require('./cdr.js');
 var car = require('./car.js');
 var range = require('../list/range.js');
+var compose = require('../fun/compose.js');
 
 function permute(S) {
 
@@ -62,11 +63,5 @@ for (var i = 0; i < 5; i++) {
                 })(perm);
             }
         }
-    }
-}
-
-function compose(a, b) {
-    return function(c) {
-        return a(b(c))
     }
 }

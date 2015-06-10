@@ -2,6 +2,11 @@ var cons = require('../cons/cons.js');
 var car = require('../cons/car.js');
 var cdr = require('../cons/cdr.js');
 
+/**
+ * Returns the value of the last item in a cons list.
+ * @param  {cons} L
+ * @return {*}
+ */
 function peek(L){
     if (cdr(L) === null){
         return car(L);

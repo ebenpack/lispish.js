@@ -1,5 +1,9 @@
 var cons = require('../cons/cons.js');
 
+/**
+ * Returns a cons list constructed from the given parameters.
+ * @return {cons}
+ */
 function list(){
     var args = new Array(arguments.length);
     for(var i = 0, len = args.length; i < len; ++i) {
