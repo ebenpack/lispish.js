@@ -1,10 +1,10 @@
-var cons = require('./cons.js');
-
 function pair(c){
-    return typeof c !== 'undefined' &&
-        c !== null &&
-        Object.hasOwnProperty.call(c, 'car') &&
-        Object.hasOwnProperty.call(c, 'cdr');
+    try {
+        'car' in c && 'cdr' in c;
+    } catch(e) {
+        return false;
+    }
+        
 }
 
 module.exports = pair;
