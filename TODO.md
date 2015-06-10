@@ -3,7 +3,6 @@ apply
 curry
 with?
 pluck?
-compose
 maybe
 tap?
 fluent?
