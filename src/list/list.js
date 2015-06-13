@@ -13,7 +13,12 @@ function list(){
             return cons(args[0], helper(args.slice(1)));
         }
     }
-    return helper(argsHelper(arguments));
+    if (arguments.length === 1 && Array.isArray(arguments[0])){
+        return helper(arguments[0]);
+    } else {
+        return helper(argsHelper(arguments));
+    }
+    
 }
 
 module.exports = list;
