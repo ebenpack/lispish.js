@@ -15,6 +15,7 @@ var peek = require('../src/list/peek.js');
 var push = require('../src/list/push.js');
 var pop = require('../src/list/pop.js');
 var zip = require('../src/list/zip.js');
+var reverse = require('../src/list/reverse.js');
 var enqueue = require('../src/list/enqueue.js');
 var dequeue = require('../src/list/dequeue.js');
 
@@ -115,9 +116,25 @@ suite('list', function(){
             assert.equal(length(range4), 30);
             assert.equal(length(steprange), 9);
         });
+        test('reverse', function(){
+            assert.ok(equal(reverse(linkedList), range(5,0,-1)));
+            assert.ok(equal(reverse(linkedList2), range(10,5,-1)));
+            assert.ok(equal(reverse(linkedList3), range(14,5,-1)));
+            assert.ok(equal(reverse(linkedList4), range(55,10,-11)));
+            assert.ok(equal(reverse(linkedList5), range(99,10,-11)));
+            assert.ok(equal(reverse(linkedList), list(5,4,3,2,1)));
+            assert.ok(equal(reverse(linkedList2), list(10,9,8,7,6)));
+            assert.ok(equal(reverse(linkedList3), list(14,13,12,11,10,9,8,7,6)));
+            assert.ok(equal(reverse(linkedList4), list(55,44,33,22,11)));
+            assert.ok(equal(reverse(linkedList5), list(99,88,77,66,55,44,33,22,11)));
 
-
-
+            assert.ok(equal(reverse(zipped1),list(cons(10,55),cons(9,44),cons(8,33),cons(7,22), cons(6,11))));
+            assert.ok(equal(reverse(zipped2),list(
+                cons(99,14),cons(88,13),cons(77,12),cons(66,11),
+                cons(55,10),cons(44,9),cons(33,8),cons(22,7),cons(11,6)
+                )
+            ));
+        });
         test('map', function(){
             assert.ok(equal(addMapped, addMappedCons));
             assert.ok(equal(mulMapped, mulMappedCons));
@@ -142,6 +159,18 @@ suite('list', function(){
         test('pop', function(){
             assert.ok(equal(linkedListP1, popped1));
             assert.ok(equal(linkedList, popped2));
+        });
+        test('reverse', function(){
+            assert.ok(equal(reverse(linkedList), range(5,0,-1)));
+            assert.ok(equal(reverse(linkedList2), range(10,5,-1)));
+            assert.ok(equal(reverse(linkedList3), range(14,5,-1)));
+            assert.ok(equal(reverse(linkedList4), range(55,10,-11)));
+            assert.ok(equal(reverse(linkedList5), range(99,10,-11)));
+            assert.ok(equal(reverse(linkedList), list(5,4,3,2,1)));
+            assert.ok(equal(reverse(linkedList2), list(10,9,8,7,6)));
+            assert.ok(equal(reverse(linkedList3), list(14,13,12,11,10,9,8,7,6)));
+            assert.ok(equal(reverse(linkedList4), list(55,44,33,22,11)));
+            assert.ok(equal(reverse(linkedList5), list(99,88,77,66,55,44,33,22,11)));
         });
         test('enqueue', function(){
             assert.ok(equal(linkedListE1, enqueue1));
