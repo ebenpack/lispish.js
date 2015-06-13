@@ -1,4 +1,5 @@
 var cdr = require('../cons/cdr.js');
+var reduce = require('./reduce.js');
 
 /**
  * Returns the length of the given list
@@ -6,14 +7,7 @@ var cdr = require('../cons/cdr.js');
  * @return {integer}   length of the given list.
  */
 function length(l){
-    function lengthHelper(l, len){
-        if (l === null){
-            return len;
-        } else {
-            return lengthHelper(cdr(l), len + 1);
-        }
-    }
-    return lengthHelper(l, 0);
+    return reduce(l, function(curr, acc){return acc + 1;}, 0);
 }
 
 module.exports = length;
