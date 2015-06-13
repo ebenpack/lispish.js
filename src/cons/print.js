@@ -11,6 +11,7 @@ var pair = require('./pair.js');
  * @param  {(Object|undefined)} options Optional options object
  * @return {string}      String representation of the given cons
  */
+// TODO: Make more functional
 function print(c, options) {
     var opts = options || {};
     prefix = typeof opts.prefix !== 'undefined' ? opts.prefix : '(';
