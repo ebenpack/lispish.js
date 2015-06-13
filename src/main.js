@@ -25,6 +25,7 @@ exports.peek = require('./list/peek.js');
 exports.push = require('./list/push.js');
 exports.pop = require('./list/pop.js');
 exports.zip = require('./list/zip.js');
+exports.reverse = require('./list/reverse.js');
 exports.enqueue = require('./list/enqueue.js');
 exports.dequeue = require('./list/dequeue.js');
 
