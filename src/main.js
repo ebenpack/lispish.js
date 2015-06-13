@@ -28,3 +28,7 @@ exports.dequeue = require('./list/dequeue.js');
 
 // fun
 exports.compose = require('./fun/compose.js');
+exports.apply = require('./fun/apply.js');
+exports.curry = require('./fun/curry.js');
+
+// math
