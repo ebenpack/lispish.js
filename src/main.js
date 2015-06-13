@@ -11,6 +11,8 @@ Object.keys(compositions).forEach(function(key) {
     exports[key] = compositions[key];
 });
 
+// helpers
+exports.args = require('./helpers/args.js');
 
 // list
 exports.list = require('./list/list.js');
