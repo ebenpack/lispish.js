@@ -2,8 +2,6 @@ var cons = require('../cons/cons.js');
 var car = require('../cons/car.js');
 var cdr = require('../cons/cdr.js');
 
-var length = require('../list/length.js');
-
 /**
  * Returns a new list that is the result
  * of concatenating L2 onto the end of L1;
