@@ -16,6 +16,7 @@ var push = require('../src/list/push.js');
 var pop = require('../src/list/pop.js');
 var zip = require('../src/list/zip.js');
 var reverse = require('../src/list/reverse.js');
+var slice = require('../src/list/slice.js');
 var enqueue = require('../src/list/enqueue.js');
 var dequeue = require('../src/list/dequeue.js');
 
@@ -135,6 +136,28 @@ suite('list', function(){
                 )
             ));
         });
+        test('slice', function(){
+            assert.ok(equal(slice(linkedList3, 0, 3), list(6,7,8)));
+            assert.ok(equal(slice(linkedList3, 6), list(12,13,14)));
+            assert.ok(equal(slice(zipped1, 2, 3), list(cons(8,33))));
+            assert.ok(equal(slice(steprange, 8), list(99)));
+        });
+
+
+        // linkedList3 = list(6,7,8,9,10,11,12,13,14);
+        // linkedList4 = list(11,22,33,44,55);
+        // linkedList5 = list(11,22,33,44,55,66,77,88,99);
+        // range1 = range(1,6);
+        // range2 = range(6,15);
+        // range3 = range(1,8);
+        // range4 = range(30);
+        // steprange = range(11, 100, 11);
+        // badrange = range(0, 10, -1);
+        // zipped1 = list(cons(6,11),cons(7,22),cons(8,33),cons(9,44),cons(10,55));
+        // zipped2 = list(cons(11,6),cons(22,7),cons(33,8),cons(44,9),cons(55,10),
+        //     cons(66,11),cons(77,12),cons(88,13),cons(99,14));
+        // linkedListP1 = list(1,2,3,4,5,6);
+
         test('map', function(){
             assert.ok(equal(addMapped, addMappedCons));
             assert.ok(equal(mulMapped, mulMappedCons));
