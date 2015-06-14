@@ -28,6 +28,7 @@ exports.zip = require('./list/zip.js');
 exports.reverse = require('./list/reverse.js');
 exports.enqueue = require('./list/enqueue.js');
 exports.dequeue = require('./list/dequeue.js');
+exports.slice = require('./list/slice.js');
 
 // fun
 exports.compose = require('./fun/compose.js');
