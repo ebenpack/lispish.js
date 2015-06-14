@@ -15,6 +15,8 @@ var peek = require('../src/list/peek.js');
 var push = require('../src/list/push.js');
 var pop = require('../src/list/pop.js');
 var zip = require('../src/list/zip.js');
+var some = require('../src/list/some.js');
+var every = require('../src/list/every.js');
 var reverse = require('../src/list/reverse.js');
 var slice = require('../src/list/slice.js');
 var concat = require('../src/list/concat.js');
@@ -150,9 +152,19 @@ suite('list', function(){
             assert.ok(equal(concat(range(11,56,11), null), linkedList4));
             assert.ok(equal(concat(null, range(11,100,11)), linkedList5));
         });
-        // linkedList3 = list(6,7,8,9,10,11,12,13,14);
-        // linkedList4 = list(11,22,33,44,55);
-        // linkedList5 = list(11,22,33,44,55,66,77,88,99);
+        test('some', function(){
+            assert.ok(some(linkedList4, function(curr, idx){return curr % 2 === 0}));
+            assert.ok(!some(null, function(curr, idx){return curr % 2 ===0}));
+            assert.ok(some(range(1,12,2), function(curr, idx){return curr % 2 !== 0}));
+            assert.ok(!some(range(-20,0), function(curr, idx){return curr >= 0}));
+            assert.ok(some(range(-20,1), function(curr, idx){return curr >= 0}));
+        });
+        test('every', function(){
+            assert.ok(every(range(2,20,2), function(curr, idx){return curr % 2 === 0}));
+            assert.ok(every(null, function(curr, idx){return curr % 2 ===0}));
+            assert.ok(every(range(-20,0), function(curr, idx){return curr < 0}));
+            assert.ok(!every(range(-20,1), function(curr, idx){return curr < 0}));
+        });
         test('map', function(){
             assert.ok(equal(addMapped, addMappedCons));
             assert.ok(equal(mulMapped, mulMappedCons));
