@@ -3,19 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <title>lisp-ish.js</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.9/ace.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.9/ext-language_tools.js"></script>
     <script src="./build/bundle.js"></script>
+    <style type="text/css">
+        #input, #output, #ref {
+            border:1px solid gray;
+            width:600px;
+            height:500px;
+            overflow-y: auto;
+            margin: 1em;
+        }
+    </style>
 </head>
 <body>
-    <div id="console"></div>
-    <script>
-    var consoleElement = document.getElementById('console');
-    function consoleLog(s){
-        consoleElement.innerText += s + '\n';
+    <div style="font-size:16px;">
+        <pre style="float:left" id="input" contentEditable="true">reduce(
+    range(10),
+    function(a,b){return a+b}
+);
+//=>
+reduce(
+    range(1,10),
+    function(a,b){return a*b},
+    1
+);
+//=>
+print(
+    sort(
+        list(7,89,5,8,43,2,6,1)
+    ),
+    {
+        prefix: '',
+        suffix: '',
+        separator: ',',
     }
-    </script>
+);
+//=>
+</pre><div style="float:left;-webkit-columns: 3 auto;-moz-columns: 3 auto;columns: 3 auto;" id="ref"></div>
+    </div>
     <script>
-        (function(){
-        })();
+(function() {
+
+    function addTrie(T, str){
+        var current = T;
+        for (var i = 0, len = str.length; i < len; i++){
+            var c = str[i];
+            if (!(current.hasOwnProperty(c))){
+                current[c] = {};
+            }
+            current = current[c];
+        }
+        current._value = str;
+    }
+    function countProperties (obj) {
+    var count = 0;
+
+    for (var property in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, property)) {
+        count++;
+    }
+    }
+
+    return count;
+    }
+    function getTrie(T, str){
+        function getLeaves(T, word){
+            var results = [];
+            for (var n in T){
+                if (T.hasOwnProperty(n)){
+                    if (n === '_value'){
+                        results.push(T._value);
+                    } else {
+                        results = results.concat(getLeaves(T[n]));
+                    }
+                }
+            }
+            return results;
+        }
+        var current = T;
+        var cont = true;
+        // Descend to node
+        for (var i = 0, len = str.length; i < len; i++){
+            var c = str[i];
+            if (current.hasOwnProperty(c)){
+                current = current[c];
+            } else {
+                cont = false;
+                break;
+            }
+        }
+        // Collect leaves
+        if (cont){
+            return getLeaves(current, str);
+        } else {
+            return [];
+        }
+    }
+    // Throw everything into the global namespace
+    var autocomplete = {};
+    for (var p in lispish){
+        if (lispish.hasOwnProperty(p)){
+            window[p] = lispish[p];
+            addTrie(autocomplete, p);
+        }
+    }
+    var lispishCompleter = {
+        getCompletions: function(editor, session, pos, prefix, callback) {
+            if (prefix.length === 0) {
+                callback(null, []);
+                return;
+            }
+            else {
+                var completions = getTrie(autocomplete, prefix);
+                completions.forEach(function(curr, idx, arr){
+                    arr[idx] = {caption: curr, snippet: curr + '($1)', meta: "lispish" }
+                });
+                callback(null, completions);
+                return;
+            }
+        }
+    };
+
+    var editor = ace.edit("input");
+    var langTools = ace.require("ace/ext/language_tools");
+    langTools.setCompleters([lispishCompleter]);
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/javascript");
+    editor.setOptions({
+        enableSnippets: true,
+        enableBasicAutocompletion: true,
+        enableLiveAutocompletion: true
+    });
+    
+    var ref = document.getElementById('ref');
+    var docu = [];
+    for (var p in lispish) {
+        if (lispish.hasOwnProperty(p)) {
+            if (!(p[0] === 'c' && p[p.length - 1] === 'r' && p.length > 3)) {
+                docu.push(p);
+            }
+        }
+    }
+    editor.commands.addCommand({
+        name: 'evaluate',
+        bindKey: {
+            win: 'Ctrl-Return',
+            mac: 'Command-Return'
+        },
+        exec: recalculate,
+        readOnly: true // false if this command should not apply in readOnly mode
+    });
+
+    function recalculate(editor) {
+        var code = editor.getValue(),
+            lines = code.split("\n"),
+            chunks,
+            lastChunk;
+
+        while (lines[lines.length - 1].match(/^\s*$/)) {
+            lines.pop();
+        }
+
+        if (lines.length === 0) {
+            return;
+        }
+
+        chunks = lines.reduce(
+            function(acc, line, index) {
+                if (line.match(/^\s*$/)) {
+                    // do nothing
+                } else if (line.match(/\/\/=>/)) {
+                    acc[acc.length - 1].push("//=> " + index);
+                    acc.push(acc[acc.length - 1].slice(0));
+                } else acc[acc.length - 1].push(line);
+
+                return acc;
+            }, [
+                []
+            ]);
+
+        chunks = chunks.filter(function(item) {
+            return item.length > 0;
+        });
+
+        if (chunks.length === 0) {
+            return;
+        }
+
+        chunks = chunks.map(function(chunk) {
+            var wantsResult = chunk[chunk.length - 1].match(/\/\/=>/),
+                resultPosition = wantsResult ? parseInt(chunk.pop().split(' ')[1]) : lines.length,
+                result;
+
+            try {
+                result = JSON.stringify(eval(chunk.join('\n')));
+                if (wantsResult) {
+                    lines[resultPosition] = '//=> ' + result;
+                }
+            } catch (error) {
+                lines[resultPosition] = '//=> ' + error.name + ': ' + error.message;
+            }
+        });
+
+        code = lines.join('\n');
+
+        editor.setValue(code);
+
+        editor.gotoLine(editor.session.getLength(), editor.session.getLine(editor.session.getLength() - 1).length);
+
+    }
+    var input = document.getElementById('input');
+    var output = document.getElementById('output');
+    docu.sort();
+    docu.push('//=>');
+    docu.forEach(function(elmt) {
+        var outer = document.createElement('div');
+        var lnk = document.createElement('a');
+        lnk.href = '#';
+        lnk.textContent = elmt;
+        lnk.addEventListener('click', function(e) {
+            e.preventDefault();
+            elmt === '//=>' ? editor.insert(elmt) : editor.insert(elmt + '()');
+            // input.textContent = txt.slice(0, posish.anchorOffset) + 'lispish.' + elmt +
+            //   txt.slice(posish.extentOffset);
+        });
+        outer.appendChild(lnk);
+
+        ref.appendChild(outer);
+    });
+
+})();
     </script>
 </body>
 </html>
