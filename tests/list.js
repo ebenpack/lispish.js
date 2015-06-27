@@ -22,6 +22,7 @@ var slice = require('../src/list/slice.js');
 var concat = require('../src/list/concat.js');
 var enqueue = require('../src/list/enqueue.js');
 var dequeue = require('../src/list/dequeue.js');
+var sort = require('../src/list/sort.js');
 
 var assert = require('assert');
 
@@ -153,17 +154,17 @@ suite('list', function(){
             assert.ok(equal(concat(null, range(11,100,11)), linkedList5));
         });
         test('some', function(){
-            assert.ok(some(linkedList4, function(curr, idx){return curr % 2 === 0}));
-            assert.ok(!some(null, function(curr, idx){return curr % 2 ===0}));
-            assert.ok(some(range(1,12,2), function(curr, idx){return curr % 2 !== 0}));
-            assert.ok(!some(range(-20,0), function(curr, idx){return curr >= 0}));
-            assert.ok(some(range(-20,1), function(curr, idx){return curr >= 0}));
+            assert.ok(some(linkedList4, function(curr, idx){return curr % 2 === 0;}));
+            assert.ok(!some(null, function(curr, idx){return curr % 2 === 0;}));
+            assert.ok(some(range(1,12,2), function(curr, idx){return curr % 2 !== 0;}));
+            assert.ok(!some(range(-20,0), function(curr, idx){return curr >= 0;}));
+            assert.ok(some(range(-20,1), function(curr, idx){return curr >= 0;}));
         });
         test('every', function(){
-            assert.ok(every(range(2,20,2), function(curr, idx){return curr % 2 === 0}));
-            assert.ok(every(null, function(curr, idx){return curr % 2 ===0}));
-            assert.ok(every(range(-20,0), function(curr, idx){return curr < 0}));
-            assert.ok(!every(range(-20,1), function(curr, idx){return curr < 0}));
+            assert.ok(every(range(2,20,2), function(curr, idx){return curr % 2 === 0;}));
+            assert.ok(every(null, function(curr, idx){return curr % 2 === 0;}));
+            assert.ok(every(range(-20,0), function(curr, idx){return curr < 0;}));
+            assert.ok(!every(range(-20,1), function(curr, idx){return curr < 0;}));
         });
         test('map', function(){
             assert.ok(equal(addMapped, addMappedCons));
@@ -209,6 +210,11 @@ suite('list', function(){
         test('dequeue', function(){
             assert.ok(equal(linkedListE1, dequeue1));
             assert.ok(equal(linkedList, dequeue2));
+        });
+        test('sort', function(){
+            assert.ok(equal(sort(list(9,8,7,6,5,4,3)), sort(list(6,8,4,7,5,9,3))));
+            assert.ok(equal(sort(list(9,8,7,6,5,4,3)), range(3, 10)));
+            assert.ok(equal(sort(list(3,4,5,6,7,8,9), function(a,b){return a > b;}), range(9, 2, -1)));
         });
     });
 });
