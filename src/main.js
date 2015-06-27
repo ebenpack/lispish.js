@@ -32,6 +32,7 @@ exports.concat = require('./list/concat.js');
 exports.enqueue = require('./list/enqueue.js');
 exports.dequeue = require('./list/dequeue.js');
 exports.slice = require('./list/slice.js');
+exports.sort = require('./list/sort.js');
 
 // fun
 exports.compose = require('./fun/compose.js');
