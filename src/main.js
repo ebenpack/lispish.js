@@ -43,5 +43,3 @@ exports.fun.compose = require('./fun/compose.js');
 exports.fun.apply = require('./fun/apply.js');
 exports.fun.curry = require('./fun/curry.js');
 exports.fun.Y = require('./fun/Y.js');
-
-// math
