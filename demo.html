@@ -22,28 +22,30 @@
 <body>
     <div style="font-size:16px;">
         <pre style="float:left" id="input" contentEditable="true">reduce(
-    range(10),
+    map(
+        filter(
+            range(10),
+            function(curr){return curr % 2 === 0}
+        ),
+        function(curr){return curr * 2}
+    ),
     function(a,b){return a+b}
 );
 //=>
-reduce(
-    range(1,10),
-    function(a,b){return a*b},
-    1
-);
-//=>
 print(
-    sort(
-        list(7,89,5,8,43,2,6,1)
+    reverse(
+        sort(list(7,89,5,8,43,2,6,1))
     ),
-    {
-        prefix: '',
-        suffix: '',
-        separator: ',',
-    }
+    {prefix: '',suffix: '',separator: ','}
 );
 //=>
-</pre><div style="float:left;-webkit-columns: 3 auto;-moz-columns: 3 auto;columns: 3 auto;" id="ref"></div>
+function add(){
+    return Array.prototype.slice.call(arguments).reduce(
+        function(prev,cur){return cur+prev;}, 0
+    );
+}
+curry(add, 5)(1)(2)(3)(4)(7);
+//=></pre><div style="float:left;-webkit-columns: 3 auto;-moz-columns: 3 auto;columns: 3 auto;" id="ref"></div>
 <div style="clear:both; margin:1em;"><p>Ctrl-Enter / Cmd-Enter will print results to the special comment //=>. This comment will print the results of the prior statement.</p></div>
     </div>
     <script>
