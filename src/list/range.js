@@ -9,38 +9,38 @@ var cons = require('../cons/cons.js');
  * Defaults to 1.
  * @return {cons}   List from n to m.
  */
-function range(n, m, step){
-    function rangeHelper(n, m, step){
-        if (n === m){
+function range(m, n, step){
+    function rangeHelper(m, n, step){
+        if (m === n){
             return null;
-        } else if (goodStep(n, m, step)) {
-            return cons(n, rangeHelper(n+step, m, step));
+        } else if (goodStep(m, n, step)) {
+            return cons(m, rangeHelper(m+step, n, step));
         } else {
-            return cons(n, null);
+            return cons(m, null);
         }
     }
     function goodStep(start, stop, step){
         return (abs(stop - start) > abs(stop - (start + step)));
     }
-    function stepHelper(n, m, step){
-        if (typeof m === 'undefined'){
-            if (goodStep(0, n, step)) {
-                return rangeHelper(0, n, step);
+    function stepHelper(m, n, step){
+        if (typeof n === 'undefined'){
+            if (goodStep(0, m, step)) {
+                return rangeHelper(0, m, step);
             } else {
                 return null;
             }
         } else {
-            if (goodStep(n, m, step)) {
-                return rangeHelper(n, m, step);
+            if (goodStep(m, n, step)) {
+                return rangeHelper(m, n, step);
             } else {
                 return null;
             }
         }
     }
     if (typeof step === 'undefined'){
-        return stepHelper(n, m, 1);
+        return stepHelper(m, n, 1);
     } else {
-        return stepHelper(n, m, step);
+        return stepHelper(m, n, step);
     }
 }
 
