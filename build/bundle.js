@@ -298,15 +298,11 @@ module.exports = curry;
  * @param  {Array-like} args
  * @return {Arrau}
  */
-function argsHelper(args){
-    var newArgs = new Array(args.length);
-    for(var i = 0, len = newArgs.length; i < len; ++i) {
-        newArgs[i] = args[i];
-    }
-    return newArgs;
+function args(args){
+    return Array.prototype.slice.call(args);;
 }
 
-module.exports = argsHelper;
+module.exports = args;
 },{}],13:[function(require,module,exports){
 var cons = require('../cons/cons.js');
 var car = require('../cons/car.js');
@@ -438,7 +434,7 @@ function length(L){
 module.exports = length;
 },{"../cons/cdr.js":2,"./reduce.js":25}],19:[function(require,module,exports){
 var cons = require('../cons/cons.js');
-var argsHelper = require('../helpers/args.js');
+var args = require('../helpers/args.js');
 
 /**
  * Returns a cons list constructed from the given parameters.
@@ -459,7 +455,7 @@ function list(){
     if (arguments.length === 1 && Array.isArray(arguments[0])){
         return helper(arguments[0]);
     } else {
-        return helper(argsHelper(arguments));
+        return helper(args(arguments));
     }
     
 }
@@ -865,7 +861,5 @@ exports.fun.compose = require('./fun/compose.js');
 exports.fun.apply = require('./fun/apply.js');
 exports.fun.curry = require('./fun/curry.js');
 exports.fun.Y = require('./fun/Y.js');
-
-// math
 },{"./cons/car.js":1,"./cons/cdr.js":2,"./cons/compositions.js":3,"./cons/cons.js":4,"./cons/equal.js":5,"./cons/pair.js":6,"./cons/print.js":7,"./fun/Y.js":8,"./fun/apply.js":9,"./fun/compose.js":10,"./fun/curry.js":11,"./helpers/args.js":12,"./list/concat.js":13,"./list/dequeue.js":14,"./list/enqueue.js":15,"./list/every.js":16,"./list/filter.js":17,"./list/length.js":18,"./list/list.js":19,"./list/map.js":20,"./list/peek.js":21,"./list/pop.js":22,"./list/push.js":23,"./list/range.js":24,"./list/reduce.js":25,"./list/reverse.js":26,"./list/slice.js":27,"./list/some.js":28,"./list/sort.js":29,"./list/zip.js":30}]},{},[31])(31)
 });
