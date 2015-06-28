@@ -94,6 +94,9 @@ suite('list', function(){
     suite('list', function(){
         test('list', function(){
             assert.ok(equal(consList, linkedList));
+            assert.ok(equal( list([[1],[2],[3]]),
+                cons(cons(1,null),cons(cons(2,null),cons(cons(3,null),null))))
+            );
         });
         test('length', function(){
             assert.equal(length(linkedList), 5);
