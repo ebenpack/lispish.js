@@ -32,7 +32,7 @@ function permute(S) {
 }
 
 // In order to provide car/cdr composition shorthand
-// (e.g. caaar, cadadadr, etc.), we define properties
+// (e.g. caaar, cadadr, etc.), we define properties
 // on the cons prototype for many of these permutions.
 // This is a bit of a hack, as default getters aren't
 // supported in ES5. Proxies would allow us to achieve
