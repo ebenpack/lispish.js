@@ -1,6 +1,6 @@
 /**
  * Returns an immutable cons pair consisting
- * of a, b
+ * of a and b
  * @param  {*} a car value
  * @param  {*} b cdr value
  * @return {cons}

@@ -12,16 +12,24 @@ var car = require('./car.js');
  * @return {boolean}
  */
 function equal(a, b){
+    // If a is a pair and b is not (or vice versa),
+    // these cannot be equal.
     if (pair(a) !== pair(b)){
         return false;
     }
+    // If car(a) is a pair and car(b) is not (or vice versa),
+    // these cannot be equal.
     if (pair(a) && pair(car(a)) !== pair(b) && pair(car(b))){
         return false;
     }
+    // If cdr(a) is a pair and cdr(b) is not (or vice versa),
+    // these cannot be equal.
     if (pair(a) && pair(cdr(a)) !== pair(b) && pair(cdr(b))){
         return false;
     }
-
+    // If a is a pair (which, if we have reached this point,
+    // means that b must also be a pair), recurse.
+    // Otherwise, test the equality of a and b directly.
     if (pair(a)){
         return equal(car(a), car(b)) && equal(cdr(a), cdr(b));
     } else {
