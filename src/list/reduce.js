@@ -13,7 +13,9 @@ var cdr = require('../cons/cdr.js');
  */
 function reduce(L, fn, acc){
     function reduceHelper(L, fn, acc){
-        if (cdr(L) === null){
+        if (L === null){
+            return acc;
+        } else if (cdr(L) === null){
             return fn(car(L), acc);
         } else {
             return reduce(cdr(L), fn, fn(car(L), acc));
