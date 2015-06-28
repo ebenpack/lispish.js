@@ -791,45 +791,49 @@ module.exports = zip;
 
 },{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],30:[function(require,module,exports){
 // cons
-exports.cons = require('./cons/cons.js');
-exports.car = require('./cons/car.js');
-exports.cdr = require('./cons/cdr.js');
-exports.print = require('./cons/print.js');
-exports.equal = require('./cons/equal.js');
-exports.pair = require('./cons/pair.js');
+exports.cons = Object.create(null);
+exports.cons.cons = require('./cons/cons.js');
+exports.cons.car = require('./cons/car.js');
+exports.cons.cdr = require('./cons/cdr.js');
+exports.cons.print = require('./cons/print.js');
+exports.cons.equal = require('./cons/equal.js');
+exports.cons.pair = require('./cons/pair.js');
 
 var compositions = require('./cons/compositions.js');
 Object.keys(compositions).forEach(function(key) {
-    exports[key] = compositions[key];
+    exports.cons[key] = compositions[key];
 });
 
 // helpers
-exports.args = require('./helpers/args.js');
+exports.helpers = Object.create(null);
+exports.helpers.args = require('./helpers/args.js');
 
 // list
-exports.list = require('./list/list.js');
-exports.length = require('./list/length.js');
-exports.range = require('./list/range.js');
-exports.map = require('./list/map.js');
-exports.reduce = require('./list/reduce.js');
-exports.filter = require('./list/filter.js');
-exports.peek = require('./list/peek.js');
-exports.push = require('./list/push.js');
-exports.pop = require('./list/pop.js');
-exports.zip = require('./list/zip.js');
-exports.some = require('./list/some.js');
-exports.every = require('./list/every.js');
-exports.reverse = require('./list/reverse.js');
-exports.concat = require('./list/concat.js');
-exports.enqueue = require('./list/enqueue.js');
-exports.dequeue = require('./list/dequeue.js');
-exports.slice = require('./list/slice.js');
-exports.sort = require('./list/sort.js');
+exports.list = Object.create(null);
+exports.list.list = require('./list/list.js');
+exports.list.length = require('./list/length.js');
+exports.list.range = require('./list/range.js');
+exports.list.map = require('./list/map.js');
+exports.list.reduce = require('./list/reduce.js');
+exports.list.filter = require('./list/filter.js');
+exports.list.peek = require('./list/peek.js');
+exports.list.push = require('./list/push.js');
+exports.list.pop = require('./list/pop.js');
+exports.list.zip = require('./list/zip.js');
+exports.list.some = require('./list/some.js');
+exports.list.every = require('./list/every.js');
+exports.list.reverse = require('./list/reverse.js');
+exports.list.concat = require('./list/concat.js');
+exports.list.enqueue = require('./list/enqueue.js');
+exports.list.dequeue = require('./list/dequeue.js');
+exports.list.slice = require('./list/slice.js');
+exports.list.sort = require('./list/sort.js');
 
 // fun
-exports.compose = require('./fun/compose.js');
-exports.apply = require('./fun/apply.js');
-exports.curry = require('./fun/curry.js');
+exports.fun = Object.create(null);
+exports.fun.compose = require('./fun/compose.js');
+exports.fun.apply = require('./fun/apply.js');
+exports.fun.curry = require('./fun/curry.js');
 
 // math
 },{"./cons/car.js":1,"./cons/cdr.js":2,"./cons/compositions.js":3,"./cons/cons.js":4,"./cons/equal.js":5,"./cons/pair.js":6,"./cons/print.js":7,"./fun/apply.js":8,"./fun/compose.js":9,"./fun/curry.js":10,"./helpers/args.js":11,"./list/concat.js":12,"./list/dequeue.js":13,"./list/enqueue.js":14,"./list/every.js":15,"./list/filter.js":16,"./list/length.js":17,"./list/list.js":18,"./list/map.js":19,"./list/peek.js":20,"./list/pop.js":21,"./list/push.js":22,"./list/range.js":23,"./list/reduce.js":24,"./list/reverse.js":25,"./list/slice.js":26,"./list/some.js":27,"./list/sort.js":28,"./list/zip.js":29}]},{},[30])(30)
