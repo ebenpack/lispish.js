@@ -4,6 +4,14 @@ var cdr = require('../cons/cdr.js');
 
 var length = require('../list/length.js');
 
+/**
+ * Given a list, returns a new, sorted list.
+ * Optionally, a custom comparison function can be passed.
+ * By default, ascending sort if performed.
+ * @param  {(cons|null)}   L
+ * @param  {Function} fn
+ * @return {(cons|null)}
+ */
 function sort(L, fn){
     function merge(L1, L2, fn){
         if (L1 === null){
