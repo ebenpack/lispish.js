@@ -55,7 +55,7 @@ function permute(S) {
 }
 
 // In order to provide car/cdr composition shorthand
-// (e.g. caaar, cadadadr, etc.), we define properties
+// (e.g. caaar, cadadr, etc.), we define properties
 // on the cons prototype for many of these permutions.
 // This is a bit of a hack, as default getters aren't
 // supported in ES5. Proxies would allow us to achieve
@@ -88,10 +88,10 @@ for (var i = 0; i < 5; i++) {
         }
     }
 }
-},{"../fun/compose.js":9,"../list/range.js":23,"./car.js":1,"./cdr.js":2}],4:[function(require,module,exports){
+},{"../fun/compose.js":10,"../list/range.js":24,"./car.js":1,"./cdr.js":2}],4:[function(require,module,exports){
 /**
  * Returns an immutable cons pair consisting
- * of a, b
+ * of a and b
  * @param  {*} a car value
  * @param  {*} b cdr value
  * @return {cons}
@@ -126,16 +126,24 @@ var car = require('./car.js');
  * @return {boolean}
  */
 function equal(a, b){
+    // If a is a pair and b is not (or vice versa),
+    // these cannot be equal.
     if (pair(a) !== pair(b)){
         return false;
     }
+    // If car(a) is a pair and car(b) is not (or vice versa),
+    // these cannot be equal.
     if (pair(a) && pair(car(a)) !== pair(b) && pair(car(b))){
         return false;
     }
+    // If cdr(a) is a pair and cdr(b) is not (or vice versa),
+    // these cannot be equal.
     if (pair(a) && pair(cdr(a)) !== pair(b) && pair(cdr(b))){
         return false;
     }
-
+    // If a is a pair (which, if we have reached this point,
+    // means that b must also be a pair), recurse.
+    // Otherwise, test the equality of a and b directly.
     if (pair(a)){
         return equal(car(a), car(b)) && equal(cdr(a), cdr(b));
     } else {
@@ -202,6 +210,24 @@ function print(c, options) {
 
 module.exports = print;
 },{"./car.js":1,"./cdr.js":2,"./cons.js":4,"./pair.js":6}],8:[function(require,module,exports){
+var apply = require('./apply.js');
+var args = require('../helpers/args.js');
+var list = require('../list/list.js');
+
+function Y(f) {
+    return f((function(h) {
+        return function() {
+            return apply(f(h(h)), list(args(arguments)));
+        }
+    })(function(h) {
+        return function() {
+            return apply(f(h(h)), list(args(arguments)));
+        }
+    }));
+}
+
+module.exports = Y;
+},{"../helpers/args.js":12,"../list/list.js":19,"./apply.js":9}],9:[function(require,module,exports){
 var cdr = require('../cons/cdr.js');
 var car = require('../cons/car.js');
 
@@ -223,7 +249,7 @@ function apply(fn, args){
 }
 
 module.exports = apply;
-},{"../cons/car.js":1,"../cons/cdr.js":2}],9:[function(require,module,exports){
+},{"../cons/car.js":1,"../cons/cdr.js":2}],10:[function(require,module,exports){
 /**
  * Compose functions a and b
  * @param  {Function} a Outer function
@@ -237,7 +263,7 @@ function compose(a, b) {
 }
 
 module.exports = compose;
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 var cons = require('../cons/cons.js');
 var apply = require('./apply.js');
 
@@ -266,7 +292,7 @@ function curry(fn, arity){
     }
 }
 module.exports = curry;
-},{"../cons/cons.js":4,"./apply.js":8}],11:[function(require,module,exports){
+},{"../cons/cons.js":4,"./apply.js":9}],12:[function(require,module,exports){
 /**
  * Given an array-like, returns a real array.
  * @param  {Array-like} args
@@ -281,7 +307,7 @@ function argsHelper(args){
 }
 
 module.exports = argsHelper;
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 var cons = require('../cons/cons.js');
 var car = require('../cons/car.js');
 var cdr = require('../cons/cdr.js');
@@ -302,7 +328,7 @@ function concat(L1, L2){
 }
 
 module.exports = concat;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],13:[function(require,module,exports){
+},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],14:[function(require,module,exports){
 var cons = require('../cons/cons.js');
 var car = require('../cons/car.js');
 var cdr = require('../cons/cdr.js');
@@ -318,7 +344,7 @@ function dequeue (L) {
 }
 
 module.exports = dequeue;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],14:[function(require,module,exports){
+},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],15:[function(require,module,exports){
 var cons = require('../cons/cons.js');
 
 /**
@@ -333,7 +359,7 @@ function enqueue (L, val) {
 }
 
 module.exports = enqueue;
-},{"../cons/cons.js":4}],15:[function(require,module,exports){
+},{"../cons/cons.js":4}],16:[function(require,module,exports){
 var cons = require('../cons/cons.js');
 var car = require('../cons/car.js');
 var cdr = require('../cons/cdr.js');
@@ -363,7 +389,7 @@ function every(L, fn){
 }
 
 module.exports = every;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],16:[function(require,module,exports){
+},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],17:[function(require,module,exports){
 var cons = require('../cons/cons.js');
 var car = require('../cons/car.js');
 var cdr = require('../cons/cdr.js');
@@ -396,7 +422,7 @@ function filter(L, fn){
 }
 
 module.exports = filter;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],17:[function(require,module,exports){
+},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],18:[function(require,module,exports){
 var cdr = require('../cons/cdr.js');
 var reduce = require('./reduce.js');
 
@@ -410,7 +436,7 @@ function length(L){
 }
 
 module.exports = length;
-},{"../cons/cdr.js":2,"./reduce.js":24}],18:[function(require,module,exports){
+},{"../cons/cdr.js":2,"./reduce.js":25}],19:[function(require,module,exports){
 var cons = require('../cons/cons.js');
 var argsHelper = require('../helpers/args.js');
 
@@ -423,7 +449,11 @@ function list(){
         if (args.length === 0){
             return null;
         } else {
-            return cons(args[0], helper(args.slice(1)));
+            if (Array.isArray(args[0])){
+                return cons(helper(args[0]), helper(args.slice(1)));
+            } else {
+                return cons(args[0], helper(args.slice(1)));
+            }
         }
     }
     if (arguments.length === 1 && Array.isArray(arguments[0])){
@@ -435,7 +465,7 @@ function list(){
 }
 
 module.exports = list;
-},{"../cons/cons.js":4,"../helpers/args.js":11}],19:[function(require,module,exports){
+},{"../cons/cons.js":4,"../helpers/args.js":12}],20:[function(require,module,exports){
 var cons = require('../cons/cons.js');
 var car = require('../cons/car.js');
 var cdr = require('../cons/cdr.js');
@@ -459,7 +489,7 @@ function map(L, fn){
 
 module.exports = map;
 
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],20:[function(require,module,exports){
+},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],21:[function(require,module,exports){
 var cons = require('../cons/cons.js');
 var car = require('../cons/car.js');
 var cdr = require('../cons/cdr.js');
@@ -480,7 +510,7 @@ function peek(L){
 }
 
 module.exports = peek;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],21:[function(require,module,exports){
+},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],22:[function(require,module,exports){
 var cons = require('../cons/cons.js');
 var car = require('../cons/car.js');
 var cdr = require('../cons/cdr.js');
@@ -500,7 +530,7 @@ function pop(L){
 }
 
 module.exports = pop;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4,"./list.js":18}],22:[function(require,module,exports){
+},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4,"./list.js":19}],23:[function(require,module,exports){
 var cons = require('../cons/cons.js');
 var car = require('../cons/car.js');
 var cdr = require('../cons/cdr.js');
@@ -524,7 +554,7 @@ function push(L, val){
 }
 
 module.exports = push;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4,"./list.js":18}],23:[function(require,module,exports){
+},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4,"./list.js":19}],24:[function(require,module,exports){
 var cons = require('../cons/cons.js');
 
 /**
@@ -536,38 +566,38 @@ var cons = require('../cons/cons.js');
  * Defaults to 1.
  * @return {cons}   List from n to m.
  */
-function range(n, m, step){
-    function rangeHelper(n, m, step){
-        if (n === m){
+function range(m, n, step){
+    function rangeHelper(m, n, step){
+        if (m === n){
             return null;
-        } else if (goodStep(n, m, step)) {
-            return cons(n, rangeHelper(n+step, m, step));
+        } else if (goodStep(m, n, step)) {
+            return cons(m, rangeHelper(m+step, n, step));
         } else {
-            return cons(n, null);
+            return cons(m, null);
         }
     }
     function goodStep(start, stop, step){
         return (abs(stop - start) > abs(stop - (start + step)));
     }
-    function stepHelper(n, m, step){
-        if (typeof m === 'undefined'){
-            if (goodStep(0, n, step)) {
-                return rangeHelper(0, n, step);
+    function stepHelper(m, n, step){
+        if (typeof n === 'undefined'){
+            if (goodStep(0, m, step)) {
+                return rangeHelper(0, m, step);
             } else {
                 return null;
             }
         } else {
-            if (goodStep(n, m, step)) {
-                return rangeHelper(n, m, step);
+            if (goodStep(m, n, step)) {
+                return rangeHelper(m, n, step);
             } else {
                 return null;
             }
         }
     }
     if (typeof step === 'undefined'){
-        return stepHelper(n, m, 1);
+        return stepHelper(m, n, 1);
     } else {
-        return stepHelper(n, m, step);
+        return stepHelper(m, n, step);
     }
 }
 
@@ -580,7 +610,7 @@ function abs(n){
 }
 
 module.exports = range;
-},{"../cons/cons.js":4}],24:[function(require,module,exports){
+},{"../cons/cons.js":4}],25:[function(require,module,exports){
 var cons = require('../cons/cons.js');
 var car = require('../cons/car.js');
 var cdr = require('../cons/cdr.js');
@@ -612,7 +642,7 @@ function reduce(L, fn, acc){
 }
 
 module.exports = reduce;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],25:[function(require,module,exports){
+},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],26:[function(require,module,exports){
 var cons = require('../cons/cons.js');
 var car = require('../cons/car.js');
 var cdr = require('../cons/cdr.js');
@@ -635,7 +665,7 @@ function reverse(L){
 }
 
 module.exports = reverse;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],26:[function(require,module,exports){
+},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],27:[function(require,module,exports){
 var cons = require('../cons/cons.js');
 var car = require('../cons/car.js');
 var cdr = require('../cons/cdr.js');
@@ -671,7 +701,7 @@ function slice(L, m, n){
 }
 
 module.exports = slice;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4,"../list/length.js":17}],27:[function(require,module,exports){
+},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4,"../list/length.js":18}],28:[function(require,module,exports){
 var cons = require('../cons/cons.js');
 var car = require('../cons/car.js');
 var cdr = require('../cons/cdr.js');
@@ -701,7 +731,7 @@ function some(L, fn){
 }
 
 module.exports = some;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],28:[function(require,module,exports){
+},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],29:[function(require,module,exports){
 var cons = require('../cons/cons.js');
 var car = require('../cons/car.js');
 var cdr = require('../cons/cdr.js');
@@ -763,7 +793,7 @@ function sort(L, fn){
 }
 
 module.exports = sort;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4,"../list/length.js":17}],29:[function(require,module,exports){
+},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4,"../list/length.js":18}],30:[function(require,module,exports){
 var cons = require('../cons/cons.js');
 var car = require('../cons/car.js');
 var cdr = require('../cons/cdr.js');
@@ -789,7 +819,7 @@ function zip(L1, L2){
 
 module.exports = zip;
 
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],30:[function(require,module,exports){
+},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],31:[function(require,module,exports){
 // cons
 exports.cons = Object.create(null);
 exports.cons.cons = require('./cons/cons.js');
@@ -834,7 +864,8 @@ exports.fun = Object.create(null);
 exports.fun.compose = require('./fun/compose.js');
 exports.fun.apply = require('./fun/apply.js');
 exports.fun.curry = require('./fun/curry.js');
+exports.fun.Y = require('./fun/Y.js');
 
 // math
-},{"./cons/car.js":1,"./cons/cdr.js":2,"./cons/compositions.js":3,"./cons/cons.js":4,"./cons/equal.js":5,"./cons/pair.js":6,"./cons/print.js":7,"./fun/apply.js":8,"./fun/compose.js":9,"./fun/curry.js":10,"./helpers/args.js":11,"./list/concat.js":12,"./list/dequeue.js":13,"./list/enqueue.js":14,"./list/every.js":15,"./list/filter.js":16,"./list/length.js":17,"./list/list.js":18,"./list/map.js":19,"./list/peek.js":20,"./list/pop.js":21,"./list/push.js":22,"./list/range.js":23,"./list/reduce.js":24,"./list/reverse.js":25,"./list/slice.js":26,"./list/some.js":27,"./list/sort.js":28,"./list/zip.js":29}]},{},[30])(30)
+},{"./cons/car.js":1,"./cons/cdr.js":2,"./cons/compositions.js":3,"./cons/cons.js":4,"./cons/equal.js":5,"./cons/pair.js":6,"./cons/print.js":7,"./fun/Y.js":8,"./fun/apply.js":9,"./fun/compose.js":10,"./fun/curry.js":11,"./helpers/args.js":12,"./list/concat.js":13,"./list/dequeue.js":14,"./list/enqueue.js":15,"./list/every.js":16,"./list/filter.js":17,"./list/length.js":18,"./list/list.js":19,"./list/map.js":20,"./list/peek.js":21,"./list/pop.js":22,"./list/push.js":23,"./list/range.js":24,"./list/reduce.js":25,"./list/reverse.js":26,"./list/slice.js":27,"./list/some.js":28,"./list/sort.js":29,"./list/zip.js":30}]},{},[31])(31)
 });
