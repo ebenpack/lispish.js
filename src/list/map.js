@@ -10,7 +10,9 @@ var cdr = require('../cons/cdr.js');
  * @return {cons}
  */
 function map(L, fn){
-    if (cdr(L) === null){
+    if (L === null){
+        return L;
+    } else if (cdr(L) === null){
         return cons(fn(car(L)), null);
     } else {
         return cons(fn(car(L)), map(cdr(L), fn));

@@ -12,7 +12,9 @@ var cdr = require('../cons/cdr.js');
  * @return {(cons|null)}
  */
 function filter(L, fn){
-    if (cdr(L) === null){
+    if (L === null){
+        return L;
+    } if (cdr(L) === null){
         if (fn(car(L))){
             return cons(car(L), null);
         } else {
