@@ -3,12 +3,8 @@
  * @param  {Array-like} args
  * @return {Arrau}
  */
-function argsHelper(args){
-    var newArgs = new Array(args.length);
-    for(var i = 0, len = newArgs.length; i < len; ++i) {
-        newArgs[i] = args[i];
-    }
-    return newArgs;
+function args(args){
+    return Array.prototype.slice.call(args);;
 }
 
-module.exports = argsHelper;
+module.exports = args;

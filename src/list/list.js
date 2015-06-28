@@ -1,5 +1,5 @@
 var cons = require('../cons/cons.js');
-var argsHelper = require('../helpers/args.js');
+var args = require('../helpers/args.js');
 
 /**
  * Returns a cons list constructed from the given parameters.
@@ -20,7 +20,7 @@ function list(){
     if (arguments.length === 1 && Array.isArray(arguments[0])){
         return helper(arguments[0]);
     } else {
-        return helper(argsHelper(arguments));
+        return helper(args(arguments));
     }
     
 }
