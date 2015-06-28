@@ -11,13 +11,14 @@ var reduce = require('../src/list/reduce.js');
 var compose = require('../src/fun/compose.js');
 var apply = require('../src/fun/apply.js');
 var curry = require('../src/fun/curry.js');
+var Y = require('../src/fun/Y.js');
 
 var argsHelper = require('../src/helpers/args.js');
 
 var assert = require('assert');
 
 suite('fun', function(){
-    var fiveAdd, sixAdd, fourMul, sixMin, variadicAdd;
+    var fiveAdd, sixAdd, fourMul, sixMin, variadicAdd, fact, fib;
     setup(function(){
         addOne = function(a){
             return a+1;
@@ -35,6 +36,16 @@ suite('fun', function(){
                 0
             );
         };
+        fact = Y(function (fac) {
+            return function (n) {
+                return n <= 2 ? n : n * fac(n - 1);
+            };
+        });
+        fib = Y(function(fibo){
+            return function(n){
+                return n <= 1 ? n : fibo(n-1) + fibo(n-2);
+            }
+        });
     });
     suite('fun', function(){
         test('curry', function(){
@@ -62,6 +73,16 @@ suite('fun', function(){
             assert.equal(apply(variadicAdd, range(-10, 11)), 0);
             assert.equal(apply(variadicAdd, range(0,21,2)), 110);
         });
-
+        test('Y', function(){
+            assert.equal(fact(5), 120);
+            assert.equal(fact(4), 24);
+            assert.equal(fact(3), 6);
+            assert.equal(fib(4), 3);
+            assert.equal(fib(5), 5);
+            assert.equal(fib(6), 8);
+            assert.equal(fib(7), 13);
+            assert.equal(fib(8), 21);
+            assert.equal(fib(9), 34);
+        });
     });
 });
