@@ -169,14 +169,17 @@ suite('list', function(){
         test('map', function(){
             assert.ok(equal(addMapped, addMappedCons));
             assert.ok(equal(mulMapped, mulMappedCons));
+            assert.equal(map(list(), function(curr){return curr*2}), null)
         });
         test('filter', function(){
             assert.ok(equal(filtered, filteredCons));
             assert.equal(emptyFiltered, null);
+            assert.equal(map(list(), function(curr){return curr % 2 === 0}), null)
         });
         test('reduce', function(){
             assert.equal(reduceAdd, 15);
             assert.equal(reduceMul, 120);
+            assert.equal(reduce(list(), function(prev,curr){return a+b}, 0), 0);
         });
         test('peek', function(){
             assert.equal(peek(linkedList), 5);
@@ -215,6 +218,7 @@ suite('list', function(){
             assert.ok(equal(sort(list(9,8,7,6,5,4,3)), sort(list(6,8,4,7,5,9,3))));
             assert.ok(equal(sort(list(9,8,7,6,5,4,3)), range(3, 10)));
             assert.ok(equal(sort(list(3,4,5,6,7,8,9), function(a,b){return a > b;}), range(9, 2, -1)));
+            assert.ok(equal(sort(list()), null));
         });
     });
 });
