@@ -6,7 +6,7 @@ var list = require('./list.js');
 /**
  * Given a cons list, returns a new list with the last item removed.
  * @param  {cons} L
- * @return {(cons|null)}
+ * @return {cons}
  */
 function pop(L){
     if (cdr(L) === null){

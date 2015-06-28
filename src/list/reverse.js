@@ -5,8 +5,8 @@ var cdr = require('../cons/cdr.js');
 /**
  * Returns a new list, which is a
  * reversed copy of the list passed in.
- * @param  {(cons|null)} L
- * @return {(cons|null)}
+ * @param  {cons} L
+ * @return {cons}
  */
 function reverse(L){
     function helper(L, rev){

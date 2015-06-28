@@ -10,10 +10,10 @@ var length = require('../list/length.js');
  * the end of the original list. If n is passed in,
  * then the slice will be from m to n. Invalid slices 
  * (e.g. where m is larger than n) will return null.
- * @param  {(cons|null)} L
+ * @param  {cons} L
  * @param  {integer} m
  * @param  {(integer|undefined)} n
- * @return {(cons|null)}
+ * @return {cons}
  */
 function slice(L, m, n){
     function sliceHelper(L, m, n, current){

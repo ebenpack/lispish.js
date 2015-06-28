@@ -12,7 +12,9 @@ var cdr = require('../cons/cdr.js');
  * @return {cons}
  */
 function zip(L1, L2){
-    if (cdr(L1) === null || cdr(L2) === null){
+    if (L1 === null || L2 === null){
+        return null;
+    } else if (cdr(L1) === null || cdr(L2) === null){
         return null;
     } else {
         return cons(cons(car(L1), car(L2)), zip(cdr(L1), cdr(L2)));

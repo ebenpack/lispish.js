@@ -9,7 +9,7 @@ var cdr = require('../cons/cdr.js');
  * evaluated to true.
  * @param  {cons}   L
  * @param  {Function} fn
- * @return {(cons|null)}
+ * @return {cons}
  */
 function filter(L, fn){
     if (L === null){

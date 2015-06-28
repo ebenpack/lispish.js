@@ -8,7 +8,9 @@ var cdr = require('../cons/cdr.js');
  * @return {*}
  */
 function peek(L){
-    if (cdr(L) === null){
+    if (L === null){
+        return L;
+    } if (cdr(L) === null){
         return car(L);
     } else {
         return peek(cdr(L));

@@ -6,8 +6,8 @@ var reduce = require('./reduce.js');
  * @param  {cons} l list
  * @return {integer}   length of the given list.
  */
-function length(l){
-    return reduce(l, function(curr, acc){return acc + 1;}, 0);
+function length(L){
+    return reduce(L, function(curr, acc){return acc + 1;}, 0);
 }
 
 module.exports = length;

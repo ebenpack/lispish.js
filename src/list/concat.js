@@ -5,9 +5,9 @@ var cdr = require('../cons/cdr.js');
 /**
  * Returns a new list that is the result
  * of concatenating L2 onto the end of L1;
- * @param  {(cons|null)} L1
- * @param  {(cons|null)} L2
- * @return {(cons|null)}
+ * @param  {cons} L1
+ * @param  {cons} L2
+ * @return {cons}
  */
 function concat(L1, L2){
     if (L1 === null){

@@ -8,9 +8,9 @@ var length = require('../list/length.js');
  * Given a list, returns a new, sorted list.
  * Optionally, a custom comparison function can be passed.
  * By default, ascending sort if performed.
- * @param  {(cons|null)}   L
+ * @param  {cons}   L
  * @param  {Function} fn
- * @return {(cons|null)}
+ * @return {cons}
  */
 function sort(L, fn){
     function merge(L1, L2, fn){

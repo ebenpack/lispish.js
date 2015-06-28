@@ -6,7 +6,7 @@ var cdr = require('../cons/cdr.js');
  * Given a cons list, returns a new cons list
  * with the first item removed
  * @param  {cons} L
- * @return {(cons|null)}
+ * @return {cons}
  */
 function dequeue (L) {
     return cdr(L);

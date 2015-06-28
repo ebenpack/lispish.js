@@ -7,7 +7,7 @@ var cdr = require('../cons/cdr.js');
  * test implemented by the provided callback function.
  * The callback function is passed the current value
  * and the current index in the list.
- * @param  {(cons|null)}   L
+ * @param  {cons}   L
  * @param  {Function} fn
  * @return {boolean}
  */
