@@ -7,6 +7,9 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.9/ext-language_tools.js"></script>
     <script src="./build/bundle.js"></script>
     <style type="text/css">
+        html {
+            font-size:16px;
+        }
         #input, #output, #ref {
             border:1px solid gray;
             width:600px;
@@ -41,10 +44,12 @@ print(
 );
 //=>
 </pre><div style="float:left;-webkit-columns: 3 auto;-moz-columns: 3 auto;columns: 3 auto;" id="ref"></div>
+<div style="clear:both; margin:1em;"><p>Ctrl-Enter / Cmd-Enter will print results to the special comment //=>. This comment will print the results of the prior statement.</p></div>
     </div>
     <script>
 (function() {
 
+    // Use a trie for autocompletion.
     function addTrie(T, str){
         var current = T;
         for (var i = 0, len = str.length; i < len; i++){
@@ -55,17 +60,6 @@ print(
             current = current[c];
         }
         current._value = str;
-    }
-    function countProperties (obj) {
-    var count = 0;
-
-    for (var property in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, property)) {
-        count++;
-    }
-    }
-
-    return count;
     }
     function getTrie(T, str){
         function getLeaves(T, word){
@@ -101,11 +95,18 @@ print(
         }
     }
     // Throw everything into the global namespace
+    // and collect function names for autocompletion
+    // and for sidebar.
     var autocomplete = {};
+    var docu = [];
     for (var p in lispish){
         if (lispish.hasOwnProperty(p)){
             window[p] = lispish[p];
-            addTrie(autocomplete, p);
+            if (!(p[0] === 'c' && p[p.length - 1] === 'r' && p.length > 3)) {
+                addTrie(autocomplete, p);
+                docu.push(p);
+            }
+            
         }
     }
     var lispishCompleter = {
@@ -116,6 +117,7 @@ print(
             }
             else {
                 var completions = getTrie(autocomplete, prefix);
+                completions.sort();
                 completions.forEach(function(curr, idx, arr){
                     arr[idx] = {caption: curr, snippet: curr + '($1)', meta: "lispish" }
                 });
@@ -131,20 +133,13 @@ print(
     editor.setTheme("ace/theme/monokai");
     editor.getSession().setMode("ace/mode/javascript");
     editor.setOptions({
+        fontSize: "16px",
         enableSnippets: true,
         enableBasicAutocompletion: true,
         enableLiveAutocompletion: true
     });
     
     var ref = document.getElementById('ref');
-    var docu = [];
-    for (var p in lispish) {
-        if (lispish.hasOwnProperty(p)) {
-            if (!(p[0] === 'c' && p[p.length - 1] === 'r' && p.length > 3)) {
-                docu.push(p);
-            }
-        }
-    }
     editor.commands.addCommand({
         name: 'evaluate',
         bindKey: {
@@ -225,8 +220,6 @@ print(
         lnk.addEventListener('click', function(e) {
             e.preventDefault();
             elmt === '//=>' ? editor.insert(elmt) : editor.insert(elmt + '()');
-            // input.textContent = txt.slice(0, posish.anchorOffset) + 'lispish.' + elmt +
-            //   txt.slice(posish.extentOffset);
         });
         outer.appendChild(lnk);
 
