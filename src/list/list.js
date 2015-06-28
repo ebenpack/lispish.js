@@ -10,7 +10,11 @@ function list(){
         if (args.length === 0){
             return null;
         } else {
-            return cons(args[0], helper(args.slice(1)));
+            if (Array.isArray(args[0])){
+                return cons(helper(args[0]), helper(args.slice(1)));
+            } else {
+                return cons(args[0], helper(args.slice(1)));
+            }
         }
     }
     if (arguments.length === 1 && Array.isArray(arguments[0])){
