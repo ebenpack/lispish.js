@@ -56,7 +56,7 @@ curry(add, 5)(1)(2)(3)(4)(5);
     function addTrie(T, str){
         var current = T;
         for (var i = 0, len = str.length; i < len; i++){
-            var c = str[i];
+            var c = str[i].toLowerCase();
             if (!(current.hasOwnProperty(c))){
                 current[c] = {};
             }
@@ -78,6 +78,7 @@ curry(add, 5)(1)(2)(3)(4)(5);
             }
             return results;
         }
+        str = str.toLowerCase();
         var current = T;
         var cont = true;
         // Descend to node
@@ -119,7 +120,7 @@ curry(add, 5)(1)(2)(3)(4)(5);
                 return;
             }
             else {
-                var completions = getTrie(autocomplete, prefix);
+                var completions = getTrie(autocomplete, prefix.toLowerCase());
                 completions.sort();
                 completions.forEach(function(curr, idx, arr){
                     arr[idx] = {caption: curr, snippet: curr + '($1)', meta: "lispish" }
