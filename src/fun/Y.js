@@ -6,11 +6,11 @@ function Y(f) {
     return f((function(h) {
         return function() {
             return apply(f(h(h)), list(args(arguments)));
-        }
+        };
     })(function(h) {
         return function() {
             return apply(f(h(h)), list(args(arguments)));
-        }
+        };
     }));
 }
 

@@ -4,7 +4,7 @@
  * @return {Arrau}
  */
 function args(args){
-    return Array.prototype.slice.call(args);;
+    return Array.prototype.slice.call(args);
 }
 
 module.exports = args;
