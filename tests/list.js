@@ -23,6 +23,7 @@ var concat = require('../src/list/concat.js');
 var enqueue = require('../src/list/enqueue.js');
 var dequeue = require('../src/list/dequeue.js');
 var sort = require('../src/list/sort.js');
+var contains = require('../src/list/contains.js');
 
 var assert = require('assert');
 
@@ -222,6 +223,13 @@ suite('list', function(){
             assert.ok(equal(sort(list(9,8,7,6,5,4,3)), range(3, 10)));
             assert.ok(equal(sort(list(3,4,5,6,7,8,9), function(a,b){return a > b;}), range(9, 2, -1)));
             assert.ok(equal(sort(list()), null));
+        });
+        test('contains', function(){
+            assert.ok(contains(linkedList, 5));
+            assert.ok(!contains(linkedList, 6));
+            assert.ok(contains(zipped1, cons(10,55)));
+            assert.ok(contains(list(1, 2, 3, list(list(1, 2), 5), 4), list(list(1, 2), 5)));
+            assert.ok(!contains(list(1, 2, 3, list(list(1, 2), 5), 4), list(list(1, 3), 5)));
         });
     });
 });
