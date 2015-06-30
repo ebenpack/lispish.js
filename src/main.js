@@ -36,6 +36,7 @@ exports.list.enqueue = require('./list/enqueue.js');
 exports.list.dequeue = require('./list/dequeue.js');
 exports.list.slice = require('./list/slice.js');
 exports.list.sort = require('./list/sort.js');
+exports.list.contains = require('./list/contains.js');
 
 // fun
 exports.fun = Object.create(null);
