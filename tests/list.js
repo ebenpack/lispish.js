@@ -1,29 +1,29 @@
-var cons = require('../src/cons/cons.js');
-var car = require('../src/cons/car.js');
-var cdr = require('../src/cons/cdr.js');
-var print = require('../src/cons/print.js');
-var equal = require('../src/cons/equal.js');
+var cons = require('../src/cons/cons');
+var car = require('../src/cons/car');
+var cdr = require('../src/cons/cdr');
+var print = require('../src/cons/print');
+var equal = require('../src/cons/equal');
 
-var list = require('../src/list/list.js');
-var length = require('../src/list/length.js');
-var range = require('../src/list/range.js');
-var map = require('../src/list/map.js');
-var reduce = require('../src/list/reduce.js');
-var filter = require('../src/list/filter.js');
-var filter = require('../src/list/filter.js');
-var peek = require('../src/list/peek.js');
-var push = require('../src/list/push.js');
-var pop = require('../src/list/pop.js');
-var zip = require('../src/list/zip.js');
-var some = require('../src/list/some.js');
-var every = require('../src/list/every.js');
-var reverse = require('../src/list/reverse.js');
-var slice = require('../src/list/slice.js');
-var concat = require('../src/list/concat.js');
-var enqueue = require('../src/list/enqueue.js');
-var dequeue = require('../src/list/dequeue.js');
-var sort = require('../src/list/sort.js');
-var contains = require('../src/list/contains.js');
+var list = require('../src/list/list');
+var length = require('../src/list/length');
+var range = require('../src/list/range');
+var map = require('../src/list/map');
+var reduce = require('../src/list/reduce');
+var filter = require('../src/list/filter');
+var filter = require('../src/list/filter');
+var peek = require('../src/list/peek');
+var push = require('../src/list/push');
+var pop = require('../src/list/pop');
+var zip = require('../src/list/zip');
+var some = require('../src/list/some');
+var every = require('../src/list/every');
+var reverse = require('../src/list/reverse');
+var slice = require('../src/list/slice');
+var concat = require('../src/list/concat');
+var enqueue = require('../src/list/enqueue');
+var dequeue = require('../src/list/dequeue');
+var sort = require('../src/list/sort');
+var contains = require('../src/list/contains');
 
 var assert = require('assert');
 
@@ -173,17 +173,17 @@ suite('list', function(){
         test('map', function(){
             assert.ok(equal(addMapped, addMappedCons));
             assert.ok(equal(mulMapped, mulMappedCons));
-            assert.equal(map(list(), function(curr){return curr*2}), null)
+            assert.equal(map(list(), function(curr){return curr*2;}), null);
         });
         test('filter', function(){
             assert.ok(equal(filtered, filteredCons));
             assert.equal(emptyFiltered, null);
-            assert.equal(map(list(), function(curr){return curr % 2 === 0}), null)
+            assert.equal(map(list(), function(curr){return curr % 2 === 0;}), null);
         });
         test('reduce', function(){
             assert.equal(reduceAdd, 15);
             assert.equal(reduceMul, 120);
-            assert.equal(reduce(list(), function(prev,curr){return a+b}, 0), 0);
+            assert.equal(reduce(list(), function(prev,curr){return a+b;}, 0), 0);
         });
         test('peek', function(){
             assert.equal(peek(linkedList), 5);

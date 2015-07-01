@@ -1,46 +1,46 @@
 // cons
 exports.cons = Object.create(null);
-exports.cons.cons = require('./cons/cons.js');
-exports.cons.car = require('./cons/car.js');
-exports.cons.cdr = require('./cons/cdr.js');
-exports.cons.print = require('./cons/print.js');
-exports.cons.equal = require('./cons/equal.js');
-exports.cons.pair = require('./cons/pair.js');
+exports.cons.cons = require('./cons/cons');
+exports.cons.car = require('./cons/car');
+exports.cons.cdr = require('./cons/cdr');
+exports.cons.print = require('./cons/print');
+exports.cons.equal = require('./cons/equal');
+exports.cons.pair = require('./cons/pair');
 
-var compositions = require('./cons/compositions.js');
+var compositions = require('./cons/compositions');
 Object.keys(compositions).forEach(function(key) {
     exports.cons[key] = compositions[key];
 });
 
 // helpers
 exports.helpers = Object.create(null);
-exports.helpers.args = require('./helpers/args.js');
+exports.helpers.args = require('./helpers/args');
 
 // list
 exports.list = Object.create(null);
-exports.list.list = require('./list/list.js');
-exports.list.length = require('./list/length.js');
-exports.list.range = require('./list/range.js');
-exports.list.map = require('./list/map.js');
-exports.list.reduce = require('./list/reduce.js');
-exports.list.filter = require('./list/filter.js');
-exports.list.peek = require('./list/peek.js');
-exports.list.push = require('./list/push.js');
-exports.list.pop = require('./list/pop.js');
-exports.list.zip = require('./list/zip.js');
-exports.list.some = require('./list/some.js');
-exports.list.every = require('./list/every.js');
-exports.list.reverse = require('./list/reverse.js');
-exports.list.concat = require('./list/concat.js');
-exports.list.enqueue = require('./list/enqueue.js');
-exports.list.dequeue = require('./list/dequeue.js');
-exports.list.slice = require('./list/slice.js');
-exports.list.sort = require('./list/sort.js');
-exports.list.contains = require('./list/contains.js');
+exports.list.list = require('./list/list');
+exports.list.length = require('./list/length');
+exports.list.range = require('./list/range');
+exports.list.map = require('./list/map');
+exports.list.reduce = require('./list/reduce');
+exports.list.filter = require('./list/filter');
+exports.list.peek = require('./list/peek');
+exports.list.push = require('./list/push');
+exports.list.pop = require('./list/pop');
+exports.list.zip = require('./list/zip');
+exports.list.some = require('./list/some');
+exports.list.every = require('./list/every');
+exports.list.reverse = require('./list/reverse');
+exports.list.concat = require('./list/concat');
+exports.list.enqueue = require('./list/enqueue');
+exports.list.dequeue = require('./list/dequeue');
+exports.list.slice = require('./list/slice');
+exports.list.sort = require('./list/sort');
+exports.list.contains = require('./list/contains');
 
 // fun
 exports.fun = Object.create(null);
-exports.fun.compose = require('./fun/compose.js');
-exports.fun.apply = require('./fun/apply.js');
-exports.fun.curry = require('./fun/curry.js');
-exports.fun.Y = require('./fun/Y.js');
+exports.fun.compose = require('./fun/compose');
+exports.fun.apply = require('./fun/apply');
+exports.fun.curry = require('./fun/curry');
+exports.fun.Y = require('./fun/Y');

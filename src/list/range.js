@@ -1,4 +1,4 @@
-var cons = require('../cons/cons.js');
+var cons = require('../cons/cons');
 
 /**
  * Returns a range list from n to m.

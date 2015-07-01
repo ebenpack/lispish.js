@@ -1,10 +1,10 @@
-var cons = require('../src/cons/cons.js');
-var car = require('../src/cons/car.js');
-var cdr = require('../src/cons/cdr.js');
-var c = require('../src/cons/compositions.js');
-var pair = require('../src/cons/pair.js');
-var print = require('../src/cons/print.js');
-var equal = require('../src/cons/equal.js');
+var cons = require('../src/cons/cons');
+var car = require('../src/cons/car');
+var cdr = require('../src/cons/cdr');
+var c = require('../src/cons/compositions');
+var pair = require('../src/cons/pair');
+var print = require('../src/cons/print');
+var equal = require('../src/cons/equal');
 var assert = require('assert');
 
 suite('cons', function(){

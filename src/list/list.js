@@ -1,5 +1,5 @@
-var cons = require('../cons/cons.js');
-var args = require('../helpers/args.js');
+var cons = require('../cons/cons');
+var args = require('../helpers/args');
 
 /**
  * Returns a cons list constructed from the given parameters.

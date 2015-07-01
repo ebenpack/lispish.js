@@ -1,7 +1,7 @@
-var cons = require('./cons.js');
-var car = require('./car.js');
-var cdr = require('./cdr.js');
-var pair = require('./pair.js');
+var cons = require('./cons');
+var car = require('./car');
+var cdr = require('./cdr');
+var pair = require('./pair');
 
 /**
  * Returns a string representation of a cons.

@@ -1,19 +1,19 @@
-var cons = require('../src/cons/cons.js');
-var car = require('../src/cons/car.js');
-var cdr = require('../src/cons/cdr.js');
-var print = require('../src/cons/print.js');
-var equal = require('../src/cons/equal.js');
+var cons = require('../src/cons/cons');
+var car = require('../src/cons/car');
+var cdr = require('../src/cons/cdr');
+var print = require('../src/cons/print');
+var equal = require('../src/cons/equal');
 
-var list = require('../src/list/list.js');
-var range = require('../src/list/range.js');
-var reduce = require('../src/list/reduce.js');
+var list = require('../src/list/list');
+var range = require('../src/list/range');
+var reduce = require('../src/list/reduce');
 
-var compose = require('../src/fun/compose.js');
-var apply = require('../src/fun/apply.js');
-var curry = require('../src/fun/curry.js');
-var Y = require('../src/fun/Y.js');
+var compose = require('../src/fun/compose');
+var apply = require('../src/fun/apply');
+var curry = require('../src/fun/curry');
+var Y = require('../src/fun/Y');
 
-var argsHelper = require('../src/helpers/args.js');
+var argsHelper = require('../src/helpers/args');
 
 var assert = require('assert');
 

@@ -1,5 +1,5 @@
-var cdr = require('../cons/cdr.js');
-var reduce = require('./reduce.js');
+var cdr = require('../cons/cdr');
+var reduce = require('./reduce');
 
 /**
  * Returns the length of the given list

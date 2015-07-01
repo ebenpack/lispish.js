@@ -1,4 +1,4 @@
-var cons = require('../cons/cons.js');
+var cons = require('../cons/cons');
 
 /**
  * Given a cons list and a value, returns a new cons list

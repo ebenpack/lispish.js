@@ -1,7 +1,7 @@
-var cons = require('./cons.js');
-var pair = require('./pair.js');
-var cdr = require('./cdr.js');
-var car = require('./car.js');
+var cons = require('./cons');
+var pair = require('./pair');
+var cdr = require('./cdr');
+var car = require('./car');
 
 /**
  * Returns a boolean indicating whether to two given parameters

@@ -1,5 +1,5 @@
-var cdr = require('../cons/cdr.js');
-var car = require('../cons/car.js');
+var cdr = require('../cons/cdr');
+var car = require('../cons/car');
 
 /**
  * Call the given function with the list of arguments supplied.

@@ -1,7 +1,7 @@
-var cdr = require('./cdr.js');
-var car = require('./car.js');
-var range = require('../list/range.js');
-var compose = require('../fun/compose.js');
+var cdr = require('./cdr');
+var car = require('./car');
+var range = require('../list/range');
+var compose = require('../fun/compose');
 
 function permute(S) {
 

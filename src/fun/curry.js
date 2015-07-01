@@ -1,5 +1,5 @@
-var cons = require('../cons/cons.js');
-var apply = require('./apply.js');
+var cons = require('../cons/cons');
+var apply = require('./apply');
 
 /**
  * Curry the given function. If the number of expected parameters

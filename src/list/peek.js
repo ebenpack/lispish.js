@@ -1,6 +1,6 @@
-var cons = require('../cons/cons.js');
-var car = require('../cons/car.js');
-var cdr = require('../cons/cdr.js');
+var cons = require('../cons/cons');
+var car = require('../cons/car');
+var cdr = require('../cons/cdr');
 
 /**
  * Returns the value of the last item in a cons list.

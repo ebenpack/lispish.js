@@ -1,6 +1,6 @@
-var equal = require('../cons/equal.js');
-var car = require('../cons/car.js');
-var cdr = require('../cons/cdr.js');
+var equal = require('../cons/equal');
+var car = require('../cons/car');
+var cdr = require('../cons/cdr');
 
 /**
  * Returns true if the specified value is equal to at least one element of the given list.
