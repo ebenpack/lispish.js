@@ -21,10 +21,10 @@ function cdr(cons) {
 
 module.exports = cdr;
 },{}],3:[function(require,module,exports){
-var cdr = require('./cdr.js');
-var car = require('./car.js');
-var range = require('../list/range.js');
-var compose = require('../fun/compose.js');
+var cdr = require('./cdr');
+var car = require('./car');
+var range = require('../list/range');
+var compose = require('../fun/compose');
 
 function permute(S) {
 
@@ -88,7 +88,7 @@ for (var i = 0; i < 5; i++) {
         }
     }
 }
-},{"../fun/compose.js":10,"../list/range.js":24,"./car.js":1,"./cdr.js":2}],4:[function(require,module,exports){
+},{"../fun/compose":10,"../list/range":25,"./car":1,"./cdr":2}],4:[function(require,module,exports){
 /**
  * Returns an immutable cons pair consisting
  * of a and b
@@ -112,10 +112,10 @@ function cons(a, b) {
 
 module.exports = cons;
 },{}],5:[function(require,module,exports){
-var cons = require('./cons.js');
-var pair = require('./pair.js');
-var cdr = require('./cdr.js');
-var car = require('./car.js');
+var cons = require('./cons');
+var pair = require('./pair');
+var cdr = require('./cdr');
+var car = require('./car');
 
 /**
  * Returns a boolean indicating whether to two given parameters
@@ -152,7 +152,7 @@ function equal(a, b){
 }
 
 module.exports = equal;
-},{"./car.js":1,"./cdr.js":2,"./cons.js":4,"./pair.js":6}],6:[function(require,module,exports){
+},{"./car":1,"./cdr":2,"./cons":4,"./pair":6}],6:[function(require,module,exports){
 /**
  * Returns a boolean indicating whether the given parameter is a cons pair.
  * @param  {*} c
@@ -165,10 +165,10 @@ function pair(c){
 module.exports = pair;
 
 },{}],7:[function(require,module,exports){
-var cons = require('./cons.js');
-var car = require('./car.js');
-var cdr = require('./cdr.js');
-var pair = require('./pair.js');
+var cons = require('./cons');
+var car = require('./car');
+var cdr = require('./cdr');
+var pair = require('./pair');
 
 /**
  * Returns a string representation of a cons.
@@ -209,27 +209,27 @@ function print(c, options) {
 }
 
 module.exports = print;
-},{"./car.js":1,"./cdr.js":2,"./cons.js":4,"./pair.js":6}],8:[function(require,module,exports){
-var apply = require('./apply.js');
-var args = require('../helpers/args.js');
-var list = require('../list/list.js');
+},{"./car":1,"./cdr":2,"./cons":4,"./pair":6}],8:[function(require,module,exports){
+var apply = require('./apply');
+var args = require('../helpers/args');
+var list = require('../list/list');
 
 function Y(f) {
     return f((function(h) {
         return function() {
             return apply(f(h(h)), list(args(arguments)));
-        }
+        };
     })(function(h) {
         return function() {
             return apply(f(h(h)), list(args(arguments)));
-        }
+        };
     }));
 }
 
 module.exports = Y;
-},{"../helpers/args.js":12,"../list/list.js":19,"./apply.js":9}],9:[function(require,module,exports){
-var cdr = require('../cons/cdr.js');
-var car = require('../cons/car.js');
+},{"../helpers/args":12,"../list/list":20,"./apply":9}],9:[function(require,module,exports){
+var cdr = require('../cons/cdr');
+var car = require('../cons/car');
 
 /**
  * Call the given function with the list of arguments supplied.
@@ -249,7 +249,7 @@ function apply(fn, args){
 }
 
 module.exports = apply;
-},{"../cons/car.js":1,"../cons/cdr.js":2}],10:[function(require,module,exports){
+},{"../cons/car":1,"../cons/cdr":2}],10:[function(require,module,exports){
 /**
  * Compose functions a and b
  * @param  {Function} a Outer function
@@ -264,8 +264,8 @@ function compose(a, b) {
 
 module.exports = compose;
 },{}],11:[function(require,module,exports){
-var cons = require('../cons/cons.js');
-var apply = require('./apply.js');
+var cons = require('../cons/cons');
+var apply = require('./apply');
 
 /**
  * Curry the given function. If the number of expected parameters
@@ -292,21 +292,21 @@ function curry(fn, arity){
     }
 }
 module.exports = curry;
-},{"../cons/cons.js":4,"./apply.js":9}],12:[function(require,module,exports){
+},{"../cons/cons":4,"./apply":9}],12:[function(require,module,exports){
 /**
  * Given an array-like, returns a real array.
  * @param  {Array-like} args
  * @return {Arrau}
  */
 function args(args){
-    return Array.prototype.slice.call(args);;
+    return Array.prototype.slice.call(args);
 }
 
 module.exports = args;
 },{}],13:[function(require,module,exports){
-var cons = require('../cons/cons.js');
-var car = require('../cons/car.js');
-var cdr = require('../cons/cdr.js');
+var cons = require('../cons/cons');
+var car = require('../cons/car');
+var cdr = require('../cons/cdr');
 
 /**
  * Returns a new list that is the result
@@ -324,10 +324,34 @@ function concat(L1, L2){
 }
 
 module.exports = concat;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],14:[function(require,module,exports){
-var cons = require('../cons/cons.js');
-var car = require('../cons/car.js');
-var cdr = require('../cons/cdr.js');
+},{"../cons/car":1,"../cons/cdr":2,"../cons/cons":4}],14:[function(require,module,exports){
+var equal = require('../cons/equal');
+var car = require('../cons/car');
+var cdr = require('../cons/cdr');
+
+/**
+ * Returns true if the specified value is equal to at least one element of the given list.
+ * @param  {cons} L
+ * @param  {*} a
+ * @return {Boolean}
+ */
+function contains(L, a){
+    if (L === null){
+        return false;
+    } else {
+        if (equal(car(L), a)){
+            return true;
+        } else {
+            return contains(cdr(L), a);
+        }
+    }
+}
+
+module.exports = contains;
+},{"../cons/car":1,"../cons/cdr":2,"../cons/equal":5}],15:[function(require,module,exports){
+var cons = require('../cons/cons');
+var car = require('../cons/car');
+var cdr = require('../cons/cdr');
 
 /**
  * Given a cons list, returns a new cons list
@@ -340,8 +364,8 @@ function dequeue (L) {
 }
 
 module.exports = dequeue;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],15:[function(require,module,exports){
-var cons = require('../cons/cons.js');
+},{"../cons/car":1,"../cons/cdr":2,"../cons/cons":4}],16:[function(require,module,exports){
+var cons = require('../cons/cons');
 
 /**
  * Given a cons list and a value, returns a new cons list
@@ -355,10 +379,10 @@ function enqueue (L, val) {
 }
 
 module.exports = enqueue;
-},{"../cons/cons.js":4}],16:[function(require,module,exports){
-var cons = require('../cons/cons.js');
-var car = require('../cons/car.js');
-var cdr = require('../cons/cdr.js');
+},{"../cons/cons":4}],17:[function(require,module,exports){
+var cons = require('../cons/cons');
+var car = require('../cons/car');
+var cdr = require('../cons/cdr');
 
 /**
  * Returns true if every element in the list passes the
@@ -385,10 +409,10 @@ function every(L, fn){
 }
 
 module.exports = every;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],17:[function(require,module,exports){
-var cons = require('../cons/cons.js');
-var car = require('../cons/car.js');
-var cdr = require('../cons/cdr.js');
+},{"../cons/car":1,"../cons/cdr":2,"../cons/cons":4}],18:[function(require,module,exports){
+var cons = require('../cons/cons');
+var car = require('../cons/car');
+var cdr = require('../cons/cdr');
 
 /**
  * Returns a new cons list consisting of the values
@@ -418,9 +442,9 @@ function filter(L, fn){
 }
 
 module.exports = filter;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],18:[function(require,module,exports){
-var cdr = require('../cons/cdr.js');
-var reduce = require('./reduce.js');
+},{"../cons/car":1,"../cons/cdr":2,"../cons/cons":4}],19:[function(require,module,exports){
+var cdr = require('../cons/cdr');
+var reduce = require('./reduce');
 
 /**
  * Returns the length of the given list
@@ -432,9 +456,9 @@ function length(L){
 }
 
 module.exports = length;
-},{"../cons/cdr.js":2,"./reduce.js":25}],19:[function(require,module,exports){
-var cons = require('../cons/cons.js');
-var args = require('../helpers/args.js');
+},{"../cons/cdr":2,"./reduce":26}],20:[function(require,module,exports){
+var cons = require('../cons/cons');
+var args = require('../helpers/args');
 
 /**
  * Returns a cons list constructed from the given parameters.
@@ -461,10 +485,10 @@ function list(){
 }
 
 module.exports = list;
-},{"../cons/cons.js":4,"../helpers/args.js":12}],20:[function(require,module,exports){
-var cons = require('../cons/cons.js');
-var car = require('../cons/car.js');
-var cdr = require('../cons/cdr.js');
+},{"../cons/cons":4,"../helpers/args":12}],21:[function(require,module,exports){
+var cons = require('../cons/cons');
+var car = require('../cons/car');
+var cdr = require('../cons/cdr');
 
 /**
  * Returns a new cons list with the results of calling the provided
@@ -485,10 +509,10 @@ function map(L, fn){
 
 module.exports = map;
 
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],21:[function(require,module,exports){
-var cons = require('../cons/cons.js');
-var car = require('../cons/car.js');
-var cdr = require('../cons/cdr.js');
+},{"../cons/car":1,"../cons/cdr":2,"../cons/cons":4}],22:[function(require,module,exports){
+var cons = require('../cons/cons');
+var car = require('../cons/car');
+var cdr = require('../cons/cdr');
 
 /**
  * Returns the value of the last item in a cons list.
@@ -506,11 +530,11 @@ function peek(L){
 }
 
 module.exports = peek;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],22:[function(require,module,exports){
-var cons = require('../cons/cons.js');
-var car = require('../cons/car.js');
-var cdr = require('../cons/cdr.js');
-var list = require('./list.js');
+},{"../cons/car":1,"../cons/cdr":2,"../cons/cons":4}],23:[function(require,module,exports){
+var cons = require('../cons/cons');
+var car = require('../cons/car');
+var cdr = require('../cons/cdr');
+var list = require('./list');
 
 /**
  * Given a cons list, returns a new list with the last item removed.
@@ -526,11 +550,11 @@ function pop(L){
 }
 
 module.exports = pop;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4,"./list.js":19}],23:[function(require,module,exports){
-var cons = require('../cons/cons.js');
-var car = require('../cons/car.js');
-var cdr = require('../cons/cdr.js');
-var list = require('./list.js');
+},{"../cons/car":1,"../cons/cdr":2,"../cons/cons":4,"./list":20}],24:[function(require,module,exports){
+var cons = require('../cons/cons');
+var car = require('../cons/car');
+var cdr = require('../cons/cdr');
+var list = require('./list');
 
 /**
  * Given a cons list and a value, returns a new cons list
@@ -550,8 +574,8 @@ function push(L, val){
 }
 
 module.exports = push;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4,"./list.js":19}],24:[function(require,module,exports){
-var cons = require('../cons/cons.js');
+},{"../cons/car":1,"../cons/cdr":2,"../cons/cons":4,"./list":20}],25:[function(require,module,exports){
+var cons = require('../cons/cons');
 
 /**
  * Returns a range list from n to m.
@@ -606,10 +630,10 @@ function abs(n){
 }
 
 module.exports = range;
-},{"../cons/cons.js":4}],25:[function(require,module,exports){
-var cons = require('../cons/cons.js');
-var car = require('../cons/car.js');
-var cdr = require('../cons/cdr.js');
+},{"../cons/cons":4}],26:[function(require,module,exports){
+var cons = require('../cons/cons');
+var car = require('../cons/car');
+var cdr = require('../cons/cdr');
 
 /**
  * Applies the given callback function against an accumulator
@@ -638,10 +662,10 @@ function reduce(L, fn, acc){
 }
 
 module.exports = reduce;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],26:[function(require,module,exports){
-var cons = require('../cons/cons.js');
-var car = require('../cons/car.js');
-var cdr = require('../cons/cdr.js');
+},{"../cons/car":1,"../cons/cdr":2,"../cons/cons":4}],27:[function(require,module,exports){
+var cons = require('../cons/cons');
+var car = require('../cons/car');
+var cdr = require('../cons/cdr');
 
 /**
  * Returns a new list, which is a
@@ -661,12 +685,12 @@ function reverse(L){
 }
 
 module.exports = reverse;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],27:[function(require,module,exports){
-var cons = require('../cons/cons.js');
-var car = require('../cons/car.js');
-var cdr = require('../cons/cdr.js');
+},{"../cons/car":1,"../cons/cdr":2,"../cons/cons":4}],28:[function(require,module,exports){
+var cons = require('../cons/cons');
+var car = require('../cons/car');
+var cdr = require('../cons/cdr');
 
-var length = require('../list/length.js');
+var length = require('../list/length');
 
 /**
  * Given a list, returns a new list 'slice'.
@@ -697,10 +721,10 @@ function slice(L, m, n){
 }
 
 module.exports = slice;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4,"../list/length.js":18}],28:[function(require,module,exports){
-var cons = require('../cons/cons.js');
-var car = require('../cons/car.js');
-var cdr = require('../cons/cdr.js');
+},{"../cons/car":1,"../cons/cdr":2,"../cons/cons":4,"../list/length":19}],29:[function(require,module,exports){
+var cons = require('../cons/cons');
+var car = require('../cons/car');
+var cdr = require('../cons/cdr');
 
 /**
  * Returns true if some element in the list passes the
@@ -727,12 +751,12 @@ function some(L, fn){
 }
 
 module.exports = some;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],29:[function(require,module,exports){
-var cons = require('../cons/cons.js');
-var car = require('../cons/car.js');
-var cdr = require('../cons/cdr.js');
+},{"../cons/car":1,"../cons/cdr":2,"../cons/cons":4}],30:[function(require,module,exports){
+var cons = require('../cons/cons');
+var car = require('../cons/car');
+var cdr = require('../cons/cdr');
 
-var length = require('../list/length.js');
+var length = require('../list/length');
 
 /**
  * Given a list, returns a new, sorted list.
@@ -789,10 +813,10 @@ function sort(L, fn){
 }
 
 module.exports = sort;
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4,"../list/length.js":18}],30:[function(require,module,exports){
-var cons = require('../cons/cons.js');
-var car = require('../cons/car.js');
-var cdr = require('../cons/cdr.js');
+},{"../cons/car":1,"../cons/cdr":2,"../cons/cons":4,"../list/length":19}],31:[function(require,module,exports){
+var cons = require('../cons/cons');
+var car = require('../cons/car');
+var cdr = require('../cons/cdr');
 
 /**
  * Given two cons lists, returns a new cons list composed of
@@ -815,51 +839,52 @@ function zip(L1, L2){
 
 module.exports = zip;
 
-},{"../cons/car.js":1,"../cons/cdr.js":2,"../cons/cons.js":4}],31:[function(require,module,exports){
+},{"../cons/car":1,"../cons/cdr":2,"../cons/cons":4}],32:[function(require,module,exports){
 // cons
 exports.cons = Object.create(null);
-exports.cons.cons = require('./cons/cons.js');
-exports.cons.car = require('./cons/car.js');
-exports.cons.cdr = require('./cons/cdr.js');
-exports.cons.print = require('./cons/print.js');
-exports.cons.equal = require('./cons/equal.js');
-exports.cons.pair = require('./cons/pair.js');
+exports.cons.cons = require('./cons/cons');
+exports.cons.car = require('./cons/car');
+exports.cons.cdr = require('./cons/cdr');
+exports.cons.print = require('./cons/print');
+exports.cons.equal = require('./cons/equal');
+exports.cons.pair = require('./cons/pair');
 
-var compositions = require('./cons/compositions.js');
+var compositions = require('./cons/compositions');
 Object.keys(compositions).forEach(function(key) {
     exports.cons[key] = compositions[key];
 });
 
 // helpers
 exports.helpers = Object.create(null);
-exports.helpers.args = require('./helpers/args.js');
+exports.helpers.args = require('./helpers/args');
 
 // list
 exports.list = Object.create(null);
-exports.list.list = require('./list/list.js');
-exports.list.length = require('./list/length.js');
-exports.list.range = require('./list/range.js');
-exports.list.map = require('./list/map.js');
-exports.list.reduce = require('./list/reduce.js');
-exports.list.filter = require('./list/filter.js');
-exports.list.peek = require('./list/peek.js');
-exports.list.push = require('./list/push.js');
-exports.list.pop = require('./list/pop.js');
-exports.list.zip = require('./list/zip.js');
-exports.list.some = require('./list/some.js');
-exports.list.every = require('./list/every.js');
-exports.list.reverse = require('./list/reverse.js');
-exports.list.concat = require('./list/concat.js');
-exports.list.enqueue = require('./list/enqueue.js');
-exports.list.dequeue = require('./list/dequeue.js');
-exports.list.slice = require('./list/slice.js');
-exports.list.sort = require('./list/sort.js');
+exports.list.list = require('./list/list');
+exports.list.length = require('./list/length');
+exports.list.range = require('./list/range');
+exports.list.map = require('./list/map');
+exports.list.reduce = require('./list/reduce');
+exports.list.filter = require('./list/filter');
+exports.list.peek = require('./list/peek');
+exports.list.push = require('./list/push');
+exports.list.pop = require('./list/pop');
+exports.list.zip = require('./list/zip');
+exports.list.some = require('./list/some');
+exports.list.every = require('./list/every');
+exports.list.reverse = require('./list/reverse');
+exports.list.concat = require('./list/concat');
+exports.list.enqueue = require('./list/enqueue');
+exports.list.dequeue = require('./list/dequeue');
+exports.list.slice = require('./list/slice');
+exports.list.sort = require('./list/sort');
+exports.list.contains = require('./list/contains');
 
 // fun
 exports.fun = Object.create(null);
-exports.fun.compose = require('./fun/compose.js');
-exports.fun.apply = require('./fun/apply.js');
-exports.fun.curry = require('./fun/curry.js');
-exports.fun.Y = require('./fun/Y.js');
-},{"./cons/car.js":1,"./cons/cdr.js":2,"./cons/compositions.js":3,"./cons/cons.js":4,"./cons/equal.js":5,"./cons/pair.js":6,"./cons/print.js":7,"./fun/Y.js":8,"./fun/apply.js":9,"./fun/compose.js":10,"./fun/curry.js":11,"./helpers/args.js":12,"./list/concat.js":13,"./list/dequeue.js":14,"./list/enqueue.js":15,"./list/every.js":16,"./list/filter.js":17,"./list/length.js":18,"./list/list.js":19,"./list/map.js":20,"./list/peek.js":21,"./list/pop.js":22,"./list/push.js":23,"./list/range.js":24,"./list/reduce.js":25,"./list/reverse.js":26,"./list/slice.js":27,"./list/some.js":28,"./list/sort.js":29,"./list/zip.js":30}]},{},[31])(31)
+exports.fun.compose = require('./fun/compose');
+exports.fun.apply = require('./fun/apply');
+exports.fun.curry = require('./fun/curry');
+exports.fun.Y = require('./fun/Y');
+},{"./cons/car":1,"./cons/cdr":2,"./cons/compositions":3,"./cons/cons":4,"./cons/equal":5,"./cons/pair":6,"./cons/print":7,"./fun/Y":8,"./fun/apply":9,"./fun/compose":10,"./fun/curry":11,"./helpers/args":12,"./list/concat":13,"./list/contains":14,"./list/dequeue":15,"./list/enqueue":16,"./list/every":17,"./list/filter":18,"./list/length":19,"./list/list":20,"./list/map":21,"./list/peek":22,"./list/pop":23,"./list/push":24,"./list/range":25,"./list/reduce":26,"./list/reverse":27,"./list/slice":28,"./list/some":29,"./list/sort":30,"./list/zip":31}]},{},[32])(32)
 });
