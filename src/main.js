@@ -38,6 +38,12 @@ exports.list.slice = require('./list/slice');
 exports.list.sort = require('./list/sort');
 exports.list.contains = require('./list/contains');
 
+// alist
+exports.alist = Object.create(null);
+exports.alist.alist = require('./alist/alist');
+exports.alist.add = require('./alist/add');
+exports.alist.find = require('./alist/find');
+
 // fun
 exports.fun = Object.create(null);
 exports.fun.compose = require('./fun/compose');
