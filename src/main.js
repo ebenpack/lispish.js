@@ -41,8 +41,9 @@ exports.list.contains = require('./list/contains');
 // alist
 exports.alist = Object.create(null);
 exports.alist.alist = require('./alist/alist');
-exports.alist.add = require('./alist/add');
-exports.alist.find = require('./alist/find');
+exports.alist.put = require('./alist/put');
+exports.alist.get = require('./alist/get');
+exports.alist.print = require('./alist/print');
 
 // fun
 exports.fun = Object.create(null);
