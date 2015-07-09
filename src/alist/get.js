@@ -11,16 +11,16 @@ var equal = require('../cons/equal');
  * @param  {*} key
  * @return {(cons|false)}
  */
-function find(L, key){
+function get(L, key){
     if (L === null){
-        return false;
+        return null;
     } else {
         if (equal(car(car(L)), key)){
-            return car(L);
+            return car(car(L));
         } else {
-            return find(cdr(L), key);
+            return get(cdr(L), key);
         }
     }
 }
 
-module.exports = find;
+module.exports = get;
