@@ -18,7 +18,7 @@ function reduce(L, fn, acc){
         } else if (cdr(L) === null){
             return fn(car(L), acc);
         } else {
-            return reduce(cdr(L), fn, fn(car(L), acc));
+            return reduceHelper(cdr(L), fn, fn(car(L), acc));
         }
     }
     if (typeof acc === 'undefined'){
