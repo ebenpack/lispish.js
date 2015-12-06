@@ -37,6 +37,7 @@ exports.list.dequeue = require('./list/dequeue');
 exports.list.slice = require('./list/slice');
 exports.list.sort = require('./list/sort');
 exports.list.contains = require('./list/contains');
+exports.list.flatten = require('./list/flatten');
 
 // alist
 exports.alist = Object.create(null);
@@ -44,6 +45,7 @@ exports.alist.alist = require('./alist/alist');
 exports.alist.put = require('./alist/put');
 exports.alist.get = require('./alist/get');
 exports.alist.print = require('./alist/print');
+exports.alist.map = require('./alist/map');
 
 // fun
 exports.fun = Object.create(null);
