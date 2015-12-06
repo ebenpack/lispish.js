@@ -9,13 +9,17 @@
     <style type="text/css">
         html {
             font-size:16px;
+            box-sizing: border-box;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
         }
         #input, #output, #ref {
             border:1px solid gray;
-            width:600px;
+            width: 48%;
             height:500px;
             overflow-y: auto;
-            margin: 1em;
+            margin: 1%;
         }
     </style>
 </head>
@@ -40,10 +44,10 @@ cons.print(
 );
 //=>
 function add(){
-        return list.reduce(
-            list.list(helpers.args(arguments)),
-            function(prev, curr){return curr + prev;}
-        );
+    return list.reduce(
+        list.list(helpers.args(arguments)),
+        function(prev, curr){return curr + prev;}
+    );
 }
 fun.curry(add, 5)(1)(2)(3)(4)(5);
 //=></pre><div style="float:left;-webkit-columns: 3 auto;-moz-columns: 3 auto;columns: 3 auto;" id="ref"></div>
@@ -64,56 +68,152 @@ R(function (require, module, exports) {
     <script>
 function init(){
     // Use a trie for autocompletion.
-    function addTrie(T, str){
-        var current = T;
-        for (var i = 0, len = str.length; i < len; i++){
-            var c = str[i].toLowerCase();
-            if (!(current.hasOwnProperty(c))){
-                current[c] = {};
-            }
-            current = current[c];
+    function addTrie(T, name, namespace){
+        function stringifyName(name, namespace) {
+            return lispish.cons.print(
+                lispish.list.concat(
+                    lispish.list.concat(
+                        namespace,
+                        lispish.list.list('.')
+                    ), name
+                ),
+                {prefix:'',suffix:'',separator:''}
+            );
         }
-        current._value = str;
-    }
-    function getTrie(T, str){
-        function getLeaves(T, word){
-            var results = [];
-            for (var n in T){
-                if (T.hasOwnProperty(n)){
-                    if (n === '_value'){
-                        results.push(T._value);
+        function helper(T, name, namespace, fullName){
+            if (lispish.cons.cdr(name) === null) {
+                if (T === null) {
+                    return lispish.alist.alist(
+                        lispish.cons.car(name),
+                        lispish.alist.alist(
+                            '_value',
+                            lispish.list.list(
+                                stringifyName(fullName, namespace)
+                            )
+                        )
+                    );
+                } else {
+                    if (lispish.alist.get(T, lispish.cons.car(name)) === null) {
+                        return lispish.alist.put(
+                            T,
+                            lispish.cons.car(name),
+                            lispish.alist.alist(
+                                '_value',
+                                lispish.list.list(
+                                    stringifyName(fullName, namespace)
+                                )
+                            )
+                        );
                     } else {
-                        results = results.concat(getLeaves(T[n]));
+                        return lispish.alist.put(
+                            T,
+                            lispish.cons.car(name),
+                            lispish.alist.put(
+                                lispish.alist.get(
+                                    T,
+                                    lispish.cons.car(name)
+                                ),
+                                '_value',
+                                lispish.list.push(
+                                    lispish.alist.get(
+                                        lispish.alist.get(
+                                            T,
+                                            lispish.cons.car(name)
+                                        ),
+                                        '_value'
+                                    ),
+                                    stringifyName(fullName, namespace)
+                                )
+                            )
+                        );
+                    }
+                }
+            } else {
+                if (T === null) {
+                    if (lispish.alist.get(T, lispish.cons.car(name)) === null) {
+                        return lispish.alist.alist(
+                            lispish.cons.car(name),
+                            helper(
+                                null,
+                                lispish.cons.cdr(name),
+                                namespace,
+                                fullName
+                            )
+                        );
+                    } else {
+                        return lispish.alist.alist(
+                            lispish.cons.car(name),
+                            helper(
+                                lispish.alist.get(T, lispish.cons.car(name)),
+                                lispish.cons.cdr(name),
+                                 namespace,
+                                 fullName
+                            )
+                        );
+                    }
+                } else {
+                    if (lispish.alist.get(T, lispish.cons.car(name)) === null) {
+                        return lispish.alist.put(
+                            T,
+                            lispish.cons.car(name),
+                            helper(
+                                null,
+                                lispish.cons.cdr(name),
+                                namespace,
+                                fullName
+                            )
+                        );
+                    } else {
+                        return lispish.alist.put(
+                            T,
+                            lispish.cons.car(name),
+                            helper(
+                                lispish.alist.get(T, lispish.cons.car(name)),
+                                lispish.cons.cdr(name),
+                                 namespace,
+                                 fullName
+                            )
+                        );
                     }
                 }
             }
-            return results;
         }
-        str = str.toLowerCase();
-        var current = T;
-        var cont = true;
-        // Descend to node
-        for (var i = 0, len = str.length; i < len; i++){
-            var c = str[i];
-            if (current.hasOwnProperty(c)){
-                current = current[c];
+        return helper(T, name, namespace, name);
+    }
+    function getTrie(T, str){
+        function getLeaves(T, list){
+            if (T === null) {
+                return list;
             } else {
-                cont = false;
-                break;
+                return lispish.alist.map(T, function(key, val){
+                    if (key === '_value') {
+                        return val;
+                    } else {
+                        return getLeaves(val, list);
+                    }
+                });
             }
         }
-        // Collect leaves
-        if (cont){
-            return getLeaves(current, str);
-        } else {
-            return [];
+        function descendToNode(T, word){
+            if (T === null) {
+                return null;
+            } else if (lispish.cons.cdr(word) === null) {
+                return lispish.alist.get(T, lispish.cons.car(word));
+            } else {
+                return descendToNode(
+                    lispish.alist.get(T, lispish.cons.car(word)),
+                    lispish.cons.cdr(word)
+                );
+            }
         }
+        var f = getLeaves(descendToNode(T, str), null);
+        return lispish.list.flatten(f);
     }
     // Throw everything into the global namespace
     // and collect function names for autocompletion
     // and for sidebar.
-    var autocomplete = {};
     var docu = {};
+    var autocomplete = null;
     for (var namespace in lispish){
         docu[namespace] = [];
         window[namespace] = {};
@@ -121,9 +221,27 @@ function init(){
             window[namespace][p] = lispish[namespace][p];
             if (!(p[0] === 'c' && p[p.length - 1] === 'r' && p.length > 3)) {
                 docu[namespace].push(p);
-                addTrie(autocomplete, p);   
+                autocomplete = addTrie(
+                    autocomplete, 
+                    lispish.list.list(p.split('')),
+                    lispish.list.list(namespace.split(''))
+                );
             }
         }
+    }
+    function getCompletions(T, text){
+        return list.reduce(
+            list.sort(
+                getTrie(
+                    T,
+                    lispish.list.list(text.toLowerCase().split(''))
+                )
+            ),
+            function(curr, prev){
+                return prev.concat(curr);
+            },
+            []
+        );
     }
     var lispishCompleter = {
         getCompletions: function(editor, session, pos, prefix, callback) {
@@ -132,10 +250,10 @@ function init(){
                 return;
             }
             else {
-                var completions = getTrie(autocomplete, prefix.toLowerCase());
+                var completions = getCompletions(autocomplete, prefix.toLowerCase());
                 completions.sort();
                 completions.forEach(function(curr, idx, arr){
-                    arr[idx] = {caption: curr, snippet: curr + '($1)', meta: "lispish" }
+                    arr[idx] = {caption: curr, snippet: curr + '($1)', meta: "lispish" };
                 });
                 callback(null, completions);
                 return;
