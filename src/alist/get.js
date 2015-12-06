@@ -16,7 +16,7 @@ function get(L, key){
         return null;
     } else {
         if (equal(car(car(L)), key)){
-            return car(car(L));
+            return cdr(car(L));
         } else {
             return get(cdr(L), key);
         }
