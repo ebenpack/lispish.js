@@ -19,22 +19,25 @@ function print(c, options) {
     separator = typeof opts.separator !== 'undefined' ? opts.separator : ',';
 
     function printHelper(c, separator) {
-        var cdrL = cdr(c);
-        var carL = car(c);
         var cdrResult = '';
         var carResult = '';
-        if (pair(carL)) {
-            carResult = printHelper(carL, separator);
-        } else if (carL !== null) {
-            carResult = carL.toString();
-        }
-        if (pair(cdrL)) {
-            cdrResult = printHelper(cdrL, separator);
-        } else if (cdrL !== null) {
-            cdrResult = cdrL.toString();
-        }
-        if (carResult === '' || cdrResult === '') {
-            separator = '';
+        if (c !== null) {
+            var cdrL = cdr(c);
+            var carL = car(c);
+
+            if (pair(carL)) {
+                carResult = printHelper(carL, separator);
+            } else if (carL !== null) {
+                carResult = carL.toString();
+            }
+            if (pair(cdrL)) {
+                cdrResult = printHelper(cdrL, separator);
+            } else if (cdrL !== null) {
+                cdrResult = cdrL.toString();
+            }
+            if (carResult === '' || cdrResult === '') {
+                separator = '';
+            }
         }
         return prefix + carResult + separator + cdrResult + suffix;
     }
