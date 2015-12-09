@@ -4,15 +4,17 @@
   "description": "Some lisp-like noodlings in JS, by someone who doesn't really know lisp.",
   "author": "ebenpack",
   "main": "src/main.js",
+  "scripts": {
+    "test": "mocha --ui tdd --reporter min tests/tests.js",
+    "test:watch": "npm run test -- --watch ",
+    "install": "tsc src/main.ts --module commonjs --outDir build"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ebenpack/lispish.js"
   },
   "devDependencies": {
-    "browserify": "^10.2.4",
-    "gulp": "^3.9.0",
-    "gulp-mocha": "^2.1.1",
-    "vinyl-source-stream": "^1.1.0"
+    "mocha": "^2.3.4"
   },
   "license": "MIT"
 }
