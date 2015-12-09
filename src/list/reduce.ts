@@ -1,8 +1,9 @@
 /// <reference path="../typings/node/node.d.ts" />
+/// <reference path="../cons.d.ts" />
 
-var cons = require('../cons/cons');
-var car = require('../cons/car');
-var cdr = require('../cons/cdr');
+import cons = require('../cons/cons');
+import car = require('../cons/car');
+import cdr = require('../cons/cdr');
 
 /**
  * Applies the given callback function against an accumulator
@@ -13,21 +14,19 @@ var cdr = require('../cons/cdr');
  * @param  {*}   acc
  * @return {cons}
  */
-function reduce(L: cons, fn: function, acc: any){
-    function reduceHelper(L: cons, fn: function, acc: any){
-        if (L === null){
+export = function reduce(L: cons, fn: (current : any, prev: any)=>any, acc: any) {
+    function reduceHelper(L: cons, fn: (current: any, prev: any) => any, acc: any) {
+        if (L === null) {
             return acc;
-        } else if (cdr(L) === null){
+        } else if (cdr(L) === null) {
             return fn(car(L), acc);
         } else {
             return reduceHelper(cdr(L), fn, fn(car(L), acc));
         }
     }
-    if (typeof acc === 'undefined'){
+    if (typeof acc === 'undefined') {
         return reduceHelper(L, fn, 0);
     } else {
         return reduceHelper(L, fn, acc);
     }
 }
-
-module.exports = reduce;

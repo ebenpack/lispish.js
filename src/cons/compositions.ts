@@ -1,15 +1,14 @@
 /// <reference path="../typings/node/node.d.ts" />
 /// <reference path="../cons.d.ts" />
 
-import pair = require('./pair');
-import cdr = require('./cdr');
 import car = require('./car');
-
+import cdr = require('./cdr');
 import range = require('../list/range');
 import compose = require('../fun/compose');
 
-function permute(S : string) : any[] {
-    function swap(s : any[], x : number, y : number) {
+function permute(S) {
+
+    function swap(s, x, y) {
         var min = Math.min(x, y);
         var max = Math.max(x, y);
         return s.slice(0, min) + s[max] + s.slice(min + 1, max) + s[min] + s.slice(max + 1);
@@ -43,6 +42,7 @@ function permute(S : string) : any[] {
 // this much more elegantly, but unfortunately they are
 // not well supported.
 // TODO: Make more functional
+var exportObj = {};
 for (var i = 0; i < 5; i++) {
     for (var j = 0; j < 5; j++) {
         var Ds = (new Array(i + 1).join('d'));
@@ -50,8 +50,8 @@ for (var i = 0; i < 5; i++) {
         var permutations = permute(As + Ds);
         for (var p = 0, len = permutations.length; p < len; p++) {
             var perm = permutations[p];
-            if (perm !== 'a' && perm !== 'd' && perm.length < 5 && !exports.hasOwnProperty('c' + perm + 'r')) {
-                exports[('c' + perm + 'r')] = (function(perm) {
+            if (perm !== 'a' && perm !== 'd' && perm.length < 5 && !exportObj.hasOwnProperty('c' + perm + 'r')) {
+                exportObj[('c' + perm + 'r')] = (function(perm) {
                     function helper(perm) {
                         if (perm.length === 0) {
                             return function(i){return i;};
@@ -69,3 +69,5 @@ for (var i = 0; i < 5; i++) {
         }
     }
 }
+
+export = exportObj;
