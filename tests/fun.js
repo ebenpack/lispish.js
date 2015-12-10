@@ -1,19 +1,19 @@
-var cons = require('../src/cons/cons');
-var car = require('../src/cons/car');
-var cdr = require('../src/cons/cdr');
-var print = require('../src/cons/print');
-var equal = require('../src/cons/equal');
+var cons = require('../build/cons/cons');
+var car = require('../build/cons/car');
+var cdr = require('../build/cons/cdr');
+var print = require('../build/cons/print');
+var equal = require('../build/cons/equal');
 
-var list = require('../src/list/list');
-var range = require('../src/list/range');
-var reduce = require('../src/list/reduce');
+var list = require('../build/list/list');
+var range = require('../build/list/range');
+var reduce = require('../build/list/reduce');
 
-var compose = require('../src/fun/compose');
-var apply = require('../src/fun/apply');
-var curry = require('../src/fun/curry');
-var Y = require('../src/fun/Y');
+var compose = require('../build/fun/compose');
+var apply = require('../build/fun/apply');
+var curry = require('../build/fun/curry');
+var Y = require('../build/fun/Y');
 
-var argsHelper = require('../src/helpers/args');
+var argsHelper = require('../build/helpers/args');
 
 var assert = require('assert');
 
