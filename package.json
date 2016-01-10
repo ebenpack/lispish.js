@@ -7,7 +7,7 @@
   "scripts": {
     "test": "mocha --ui tdd --reporter min tests/tests.js",
     "test:watch": "npm run test -- --watch ",
-    "install": "tsc src/main.ts --module commonjs --outDir build"
+    "install": "tsc src/main.ts --module commonjs --outDir src"
   },
   "repository": {
     "type": "git",
