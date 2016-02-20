@@ -8,12 +8,12 @@ import equal = require('./cons/equal');
 import pair = require('./cons/pair');
 
 exports.cons = Object.create(null);
-exports.cons = cons;
-exports.car = car;
-exports.cdr = cdr;
-exports.print = print;
-exports.equal = equal;
-exports.pair = pair;
+exports.cons.cons = cons;
+exports.cons.car = car;
+exports.cons.cdr = cdr;
+exports.cons.print = print;
+exports.cons.equal = equal;
+exports.cons.pair = pair;
 
 // compositions (caar caadr, etc.)
 import compositions = require('./cons/compositions');

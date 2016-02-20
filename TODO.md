@@ -1,15 +1,355 @@
 call
-apply
-curry
 with?
 pluck?
 maybe
 tap?
 fluent?
 once
-slice
 take?
 trampoline
 find
-some
-all/every
+
+Table of Contents
+
+boolean
+    and
+    equals
+    not
+    or
+    xor
+
+function
+    partial
+
+iterable
+    aggregate
+    convolve
+    count
+    difference
+    drop
+    dropWhile
+    find
+    first
+    fork
+    head
+    intersection
+    last
+    tail
+    take
+    takeWhile
+    to
+    union
+    uniq
+
+number
+    abs
+    acos
+    add
+    asin
+    atan
+    cos
+    div
+    max
+    mod
+    mul
+    pow
+    sign
+    sin
+    sub
+    tan
+
+value
+    prop
+    toFunction
+
+https://github.com/fogus/lemonad
+http://osteele.com/sources/javascript/functional/
+
+ALLONG.ES
+[
+  "curryWithLeftAndRight",
+  "variadic",
+  "unvariadic",
+  "unary",
+  "binary",
+  "ternary",
+  "quaternary",
+  "compose",
+  "callFlipped",
+  "flip",
+  "sequence",
+  "applyNow",
+  "apply",
+  "callNow",
+  "call",
+  "callLeft",
+  "callRight",
+  "applyNowFlipped",
+  "applyLeftNow",
+  "callLeftNow",
+  "applyLeftNowWith",
+  "applyRightNow",
+  "callRightNow",
+  "applyRightNowWith",
+  "callFirst",
+  "callLast",
+  "callFirstWith",
+  "callLastWith",
+  "bound",
+  "defaults",
+  "args",
+  "mapWith",
+  "filterWith",
+  "deepMap",
+  "deepMapWith",
+  "maybe",
+  "tap",
+  "fluent",
+  "returnFirst",
+  "tee",
+  "once",
+  "memoized",
+  "mixin",
+  "classDecorator",
+  "bind",
+  "unbind",
+  "invoke",
+  "get",
+  "getWith",
+  "send",
+  "pluckWith",
+  "pluck",
+  "trampoline",
+  "tailCall",
+  "Thunk",
+  "iterators"
+]
+
+
+RAMDA
+http://ramdajs.com/docs/
+[
+  "F",
+  "T",
+  "__",
+  "add",
+  "addIndex",
+  "adjust",
+  "all",
+  "allPass",
+  "always",
+  "and",
+  "any",
+  "anyPass",
+  "ap",
+  "aperture",
+  "append",
+  "apply",
+  "arity",
+  "assoc",
+  "assocPath",
+  "binary",
+  "bind",
+  "both",
+  "call",
+  "chain",
+  "clone",
+  "commute",
+  "commuteMap",
+  "comparator",
+  "complement",
+  "compose",
+  "composeL",
+  "composeP",
+  "concat",
+  "cond",
+  "construct",
+  "constructN",
+  "contains",
+  "containsWith",
+  "converge",
+  "countBy",
+  "createMapEntry",
+  "curry",
+  "curryN",
+  "dec",
+  "defaultTo",
+  "difference",
+  "differenceWith",
+  "dissoc",
+  "dissocPath",
+  "divide",
+  "drop",
+  "dropRepeats",
+  "dropRepeatsWith",
+  "dropWhile",
+  "either",
+  "empty",
+  "eq",
+  "eqDeep",
+  "eqProps",
+  "equals",
+  "evolve",
+  "filter",
+  "filterIndexed",
+  "find",
+  "findIndex",
+  "findLast",
+  "findLastIndex",
+  "flatten",
+  "flip",
+  "forEach",
+  "forEachIndexed",
+  "fromPairs",
+  "functions",
+  "functionsIn",
+  "groupBy",
+  "gt",
+  "gte",
+  "has",
+  "hasIn",
+  "head",
+  "identical",
+  "identity",
+  "ifElse",
+  "inc",
+  "indexOf",
+  "init",
+  "insert",
+  "insertAll",
+  "intersection",
+  "intersectionWith",
+  "intersperse",
+  "into",
+  "invert",
+  "invertObj",
+  "invoke",
+  "invoker",
+  "is",
+  "isArrayLike",
+  "isEmpty",
+  "isNil",
+  "isSet",
+  "join",
+  "keys",
+  "keysIn",
+  "last",
+  "lastIndexOf",
+  "length",
+  "lens",
+  "lensIndex",
+  "lensOn",
+  "lensProp",
+  "lift",
+  "liftN",
+  "lt",
+  "lte",
+  "map",
+  "mapAccum",
+  "mapAccumRight",
+  "mapIndexed",
+  "mapObj",
+  "mapObjIndexed",
+  "match",
+  "mathMod",
+  "max",
+  "maxBy",
+  "mean",
+  "median",
+  "memoize",
+  "merge",
+  "mergeAll",
+  "min",
+  "minBy",
+  "modulo",
+  "multiply",
+  "nAry",
+  "negate",
+  "none",
+  "not",
+  "nth",
+  "nthArg",
+  "nthChar",
+  "nthCharCode",
+  "of",
+  "omit",
+  "once",
+  "or",
+  "partial",
+  "partialRight",
+  "partition",
+  "path",
+  "pathEq",
+  "pick",
+  "pickAll",
+  "pickBy",
+  "pipe",
+  "pipeL",
+  "pipeP",
+  "pluck",
+  "prepend",
+  "product",
+  "project",
+  "prop",
+  "propEq",
+  "propOr",
+  "props",
+  "range",
+  "reduce",
+  "reduceIndexed",
+  "reduceRight",
+  "reduceRightIndexed",
+  "reduced",
+  "reject",
+  "rejectIndexed",
+  "remove",
+  "repeat",
+  "replace",
+  "reverse",
+  "scan",
+  "slice",
+  "sort",
+  "sortBy",
+  "split",
+  "strIndexOf",
+  "strLastIndexOf",
+  "substring",
+  "substringFrom",
+  "substringTo",
+  "subtract",
+  "sum",
+  "tail",
+  "take",
+  "takeWhile",
+  "tap",
+  "test",
+  "times",
+  "toLower",
+  "toPairs",
+  "toPairsIn",
+  "toString",
+  "toUpper",
+  "transduce",
+  "trim",
+  "type",
+  "unapply",
+  "unary",
+  "uncurryN",
+  "unfold",
+  "union",
+  "unionWith",
+  "uniq",
+  "uniqWith",
+  "unnest",
+  "update",
+  "useWith",
+  "values",
+  "valuesIn",
+  "where",
+  "whereEq",
+  "wrap",
+  "xprod",
+  "zip",
+  "zipObj",
+  "zipWith"
+]
