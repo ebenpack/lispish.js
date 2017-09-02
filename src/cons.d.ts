@@ -1,4 +1,1 @@
-interface cons {
-    car: any,
-    cdr: any,
-}
+type Cons = (pick: number) => any;

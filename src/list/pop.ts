@@ -1,17 +1,17 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import cons = require('../cons/cons');
-import car = require('../cons/car');
-import cdr = require('../cons/cdr');
-import list = require('./list');
+import cons from '../cons/cons';
+import car from '../cons/car';
+import cdr from '../cons/cdr';
+import list from './list';
 
 /**
  * Given a cons list, returns a new list with the last item removed.
  * @param  {cons} L
  * @return {cons}
  */
-export = function pop(L : cons) : cons {
+export default function pop(L : Cons) : Cons {
     if (cdr(L) === null){
         return null;
     } else {

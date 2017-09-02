@@ -1,17 +1,17 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import cons = require('../cons/cons');
-import car = require('../cons/car');
-import cdr = require('../cons/cdr');
-import pair = require('../cons/pair');
-import concat = require('./concat');
+import cons from '../cons/cons';
+import car from '../cons/car';
+import cdr from '../cons/cdr';
+import pair from '../cons/pair';
+import concat from './concat';
 
 /**
  * Flatten a list.
  * @return {cons}
  */
-export = function flatten(L : cons) : cons {
+export default function flatten(L : Cons) : Cons {
     if (L === null) {
         return null;
     } else if (!pair(car(L))) {

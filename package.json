@@ -5,16 +5,26 @@
   "author": "ebenpack",
   "main": "src/main.js",
   "scripts": {
-    "test": "mocha --ui tdd --reporter min tests/tests.js",
-    "test:watch": "npm run test -- --watch ",
-    "install": "tsc src/main.ts --module commonjs --outDir src"
+    "pretest": "tsc --lib ES6 --module commonjs tests/*.ts",
+    "test": "mocha --ui tdd --reporter min tests",
+    "start": "webpack --config webpack.config.js",
+    "compile": "tsc --lib ES6 --module commonjs src/main.ts"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/ebenpack/lispish.js"
   },
   "devDependencies": {
-    "mocha": "^2.3.4"
+    "@types/chai": "^4.0.4",
+    "@types/mocha": "^2.2.42",
+    "chai": "^4.1.2",
+    "mocha": "^3.5.0",
+    "ts-loader": "^2.3.4",
+    "typescript": "^2.5.2",
+    "webpack": "^3.5.5"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^8.0.26"
+  }
 }

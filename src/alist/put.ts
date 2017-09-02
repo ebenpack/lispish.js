@@ -1,10 +1,10 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import cons = require('../cons/cons');
-import car = require('../cons/car');
-import cdr = require('../cons/cdr');
-import get = require('./get');
+import cons from '../cons/cons';
+import car from '../cons/car';
+import cdr from '../cons/cdr';
+import get from './get';
 
 
 /**
@@ -17,8 +17,8 @@ import get = require('./get');
  * @param  {*} value
  * @return {cons}
  */
-export = function put(L : cons, key : any, value : any) : cons{
-    function helper(L: cons, key: any, value: any) : cons {
+export default function put(L : Cons, key : any, value : any) : Cons{
+    function helper(L: Cons, key: any, value: any) : Cons {
         if (car(car(L)) === key){
             return cons(cons(key, value), cdr(L));
         } else {

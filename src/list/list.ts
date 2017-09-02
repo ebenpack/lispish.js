@@ -1,15 +1,15 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import cons = require('../cons/cons');
-import args = require('../helpers/args');
+import cons from '../cons/cons';
+import args from '../helpers/args';
 
 /**
  * Returns a cons list constructed from the given parameters.
  * @return {cons}
  */
-export = function list(...outerArgs: any[]) : cons{
-    function helper(args : any[]) : cons {
+export default function list(...outerArgs: any[]) : Cons{
+    function helper(args : any[]) : Cons {
         if (args.length === 0){
             return null;
         } else {

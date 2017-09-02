@@ -1,10 +1,10 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import cons = require('../cons/cons');
-import car = require('../cons/car');
-import cdr = require('../cons/cdr');
-import list = require('./list');
+import cons from '../cons/cons';
+import car from '../cons/car';
+import cdr from '../cons/cdr';
+import list from './list';
 
 /**
  * Given a cons list and a value, returns a new cons list
@@ -13,7 +13,7 @@ import list = require('./list');
  * @param  {*} val
  * @return {cons}
  */
-export = function push(L : cons, val : any) : cons {
+export default function push(L : Cons, val : any) : Cons {
     if (L === null){
         return cons(val, null);
     } else if (cdr(L) === null){

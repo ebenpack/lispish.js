@@ -1,9 +1,9 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import cons = require('../cons/cons');
-import car = require('../cons/car');
-import cdr = require('../cons/cdr');
+import cons from '../cons/cons';
+import car from '../cons/car';
+import cdr from '../cons/cdr';
 
 /**
  * Given two cons lists, returns a new cons list composed of
@@ -14,7 +14,7 @@ import cdr = require('../cons/cdr');
  * @param  {cons} L2
  * @return {cons}
  */
-export = function zip(L1 : cons, L2 : cons) : cons {
+export default function zip(L1 : Cons, L2 : Cons) : Cons {
     if (L1 === null || L2 === null){
         return null;
     } else if (cdr(L1) === null || cdr(L2) === null){

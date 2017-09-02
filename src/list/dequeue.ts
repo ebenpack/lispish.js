@@ -1,9 +1,9 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import cons = require('../cons/cons');
-import car = require('../cons/car');
-import cdr = require('../cons/cdr');
+import cons from '../cons/cons';
+import car from '../cons/car';
+import cdr from '../cons/cdr';
 
 /**
  * Given a cons list, returns a new cons list
@@ -11,6 +11,6 @@ import cdr = require('../cons/cdr');
  * @param  {cons} L
  * @return {cons}
  */
-export = function dequeue(L : cons) : cons {
+export default function dequeue(L : Cons) : Cons {
     return cdr(L);
 }

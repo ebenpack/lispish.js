@@ -1,9 +1,9 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import cons = require('../cons/cons');
-import car = require('../cons/car');
-import cdr = require('../cons/cdr');
+import cons from '../cons/cons';
+import car from '../cons/car';
+import cdr from '../cons/cdr';
 
 /**
  * Returns a new cons list consisting of the values
@@ -14,7 +14,7 @@ import cdr = require('../cons/cdr');
  * @param  {Function} fn
  * @return {cons}
  */
-export = function filter(L: cons, fn: (currentValue: any)=>boolean) : cons {
+export default function filter(L: Cons, fn: (currentValue: any)=>boolean) : Cons {
     if (L === null){
         return L;
     } if (cdr(L) === null){

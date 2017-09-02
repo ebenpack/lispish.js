@@ -1,7 +1,7 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import cons = require('../cons/cons');
+import cons from '../cons/cons';
 
 /**
  * Returns a range list from n to m.
@@ -12,7 +12,7 @@ import cons = require('../cons/cons');
  * Defaults to 1.
  * @return {cons}   List from n to m.
  */
-export = function range(m : number, n? : number, step? : number){
+export default function range(m : number, n? : number, step? : number){
     function rangeHelper(m : number, n : number, step : number){
         if (m === n){
             return null;

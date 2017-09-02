@@ -1,8 +1,8 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import car = require('../cons/car');
-import cdr = require('../cons/cdr');
+import car from '../cons/car';
+import cdr from '../cons/cdr';
 
 /**
  * Call the given function with the list of arguments supplied.
@@ -10,7 +10,7 @@ import cdr = require('../cons/cdr');
  * @param  {cons}   args
  * @return {*}
  */
-export = function apply(fn : (a: any)=>any, args : cons) : any{
+export default function apply(fn : (a: any)=>any, args : Cons) : any{
     function helper(fn, args){
         if (cdr(args) === null){
             return fn(car(args));

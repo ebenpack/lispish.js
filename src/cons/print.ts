@@ -1,9 +1,9 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import pair = require('./pair');
-import cdr = require('./cdr');
-import car = require('./car');
+import pair from './pair';
+import cdr from './cdr';
+import car from './car';
 
 interface Options {
     prefix?: string;
@@ -21,13 +21,13 @@ interface Options {
  */
 // TODO: Make more functional
 
-export = function print(c: cons, options: Options): string {
+function print(c: Cons, options?: Options): string {
     var opts = options || {};
     var prefix = typeof opts.prefix !== 'undefined' ? opts.prefix : '(';
     var suffix = typeof opts.suffix !== 'undefined' ? opts.suffix : ')';
     var separator = typeof opts.separator !== 'undefined' ? opts.separator : ',';
 
-    function printHelper(c : cons, separator : string) : string {
+    function printHelper(c : Cons, separator : string) : string {
         var cdrResult = '';
         var carResult = '';
         if (pair(c)) {
@@ -52,3 +52,5 @@ export = function print(c: cons, options: Options): string {
     }
     return printHelper(c, separator);
 }
+
+export default print;

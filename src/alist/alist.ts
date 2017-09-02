@@ -1,8 +1,8 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import list = require('../list/list');
-import cons = require('../cons/cons');
+import list  from '../list/list';
+import cons from '../cons/cons';
 
 /**
  * Returns an association list with a single key-value pair.
@@ -10,6 +10,6 @@ import cons = require('../cons/cons');
  * @param {*} value
  * @return {cons}
  */
-export = function alist(key : any, value : any) : cons {
+export default function alist(key : any, value : any) : Cons {
     return list(cons(key, value));
 }

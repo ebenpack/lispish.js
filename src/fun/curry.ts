@@ -1,8 +1,8 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import cons = require('../cons/cons');
-import apply = require('./apply');
+import cons from '../cons/cons';
+import apply from './apply';
 
 /**
  * Curry the given function. If the number of expected parameters
@@ -12,19 +12,11 @@ import apply = require('./apply');
  * @param  {integer}   arity
  * @return {Function}
  */
-export = function curry(fn: (...a: any[]) => any, arity?: number) {
-    function helper(fn: (...a:any[])=>any, arity:number, args: cons) : any{
-        if (arity === 0){
-            return apply(fn, args);
-        } else {
-            return function(arg){
-                return helper(fn, arity - 1, cons(arg, args));
-            };
-        }
-    }
-    if (typeof arity === 'undefined'){
-        return helper(fn, fn.length, null);
-    } else {
-        return helper(fn, arity, null);
-    }
+export default (fn: (...a: any[]) => any, arity?: number) => {
+    const helper = (fn: (...a:any[])=>any, arity:number, args: Cons) : any =>
+        (arity === 0) ? apply(fn, args)
+        : (arg) => helper(fn, arity - 1, cons(arg, args));
+    return (typeof arity === 'undefined')
+        ? helper(fn, fn.length, null)
+        : helper(fn, arity, null);
 }

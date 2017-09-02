@@ -1,9 +1,9 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import cons = require('../cons/cons');
-import car = require('../cons/car');
-import cdr = require('../cons/cdr');
+import cons from '../cons/cons';
+import car from '../cons/car';
+import cdr from '../cons/cdr';
 
 /**
  * Map over an association list.
@@ -11,7 +11,7 @@ import cdr = require('../cons/cdr');
  * @param {Function} fn
  * @return {list}
  */
-export = function map(L : cons, fn : (key : any, val: any)=>any) : cons {
+export default function map(L : Cons, fn : (key : any, val: any)=>any) : Cons {
     if (L === null){
         return L;
     } else if (cdr(car(L)) === null){

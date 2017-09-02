@@ -4,10 +4,6 @@
  * @param  {Function} b Inner function
  * @return {Function}   Composed function
  */
-export = function compose(
-    a : (input : any)=>any,
-    b : (input : any)=>any) : (c: any)=>any {
-    return function(c) {
-        return a(b(c));
-    };
-}
+export default (
+    a: (input: any) => any,
+    b: (input: any) => any): (c: any) => any => (c) => a(b(c));

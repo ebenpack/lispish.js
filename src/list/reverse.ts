@@ -1,9 +1,9 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import cons = require('../cons/cons');
-import car = require('../cons/car');
-import cdr = require('../cons/cdr');
+import cons from '../cons/cons';
+import car from '../cons/car';
+import cdr from '../cons/cdr';
 
 /**
  * Returns a new list, which is a
@@ -11,8 +11,8 @@ import cdr = require('../cons/cdr');
  * @param  {cons} L
  * @return {cons}
  */
-export = function reverse(L : cons) : cons {
-    function helper(L : cons, rev : cons) : cons {
+export default function reverse(L : Cons) : Cons {
+    function helper(L : Cons, rev : Cons) : Cons {
         if (L === null){
             return rev;
         } else {

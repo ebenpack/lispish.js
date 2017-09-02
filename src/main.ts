@@ -1,98 +1,84 @@
-/// <reference path="./typings/node/node.d.ts" />
+import * as _cons from './cons/main';
+import car from './cons/car';
+import cdr from './cons/cdr';
+import print from './cons/print';
+import equal from './cons/equal';
+import pair from './cons/pair';
 
-import cons = require('./cons/cons');
-import car = require('./cons/car');
-import cdr = require('./cons/cdr');
-import print = require('./cons/print');
-import equal = require('./cons/equal');
-import pair = require('./cons/pair');
-
-exports.cons = Object.create(null);
-exports.cons.cons = cons;
-exports.cons.car = car;
-exports.cons.cdr = cdr;
-exports.cons.print = print;
-exports.cons.equal = equal;
-exports.cons.pair = pair;
-
-// compositions (caar caadr, etc.)
-import compositions = require('./cons/compositions');
-Object.keys(compositions).forEach(function(key) {
-    exports.cons[key] = compositions[key];
-});
-
+export const cons = _cons;
 
 // helpers
-import args = require('./helpers/args');
-exports.helpers = Object.create(null);
-exports.helpers.args = args;
+import args from './helpers/args';
+export const helpers = {args};
 
 // list
-import list = require('./list/list');
-import length = require('./list/length');
-import range = require('./list/range');
-import map = require('./list/map');
-import reduce = require('./list/reduce');
-import filter = require('./list/filter');
-import peek = require('./list/peek');
-import push = require('./list/push');
-import pop = require('./list/pop');
-import zip = require('./list/zip');
-import some = require('./list/some');
-import every = require('./list/every');
-import reverse = require('./list/reverse');
-import concat = require('./list/concat');
-import enqueue = require('./list/enqueue');
-import dequeue = require('./list/dequeue');
-import slice = require('./list/slice');
-import sort = require('./list/sort');
-import contains = require('./list/contains');
-import flatten = require('./list/flatten');
+import _list from './list/list';
+import length from './list/length';
+import range from './list/range';
+import map from './list/map';
+import reduce from './list/reduce';
+import filter from './list/filter';
+import peek from './list/peek';
+import push from './list/push';
+import pop from './list/pop';
+import zip from './list/zip';
+import some from './list/some';
+import every from './list/every';
+import reverse from './list/reverse';
+import concat from './list/concat';
+import enqueue from './list/enqueue';
+import dequeue from './list/dequeue';
+import slice from './list/slice';
+import sort from './list/sort';
+import contains from './list/contains';
+import flatten from './list/flatten';
 
-exports.list = Object.create(null);
-exports.list.list = list;
-exports.list.length = length;
-exports.list.range = range;
-exports.list.map = map;
-exports.list.reduce = reduce;
-exports.list.filter = filter;
-exports.list.peek = peek;
-exports.list.push = push;
-exports.list.pop = pop;
-exports.list.zip = zip;
-exports.list.some = some;
-exports.list.every = every;
-exports.list.reverse = reverse;
-exports.list.concat = concat;
-exports.list.enqueue = enqueue;
-exports.list.dequeue = dequeue;
-exports.list.slice = slice;
-exports.list.sort = sort;
-exports.list.contains = contains;
-exports.list.flatten = flatten;
-
+export const list = {
+	list: _list,
+	length,
+	range,
+	map,
+	reduce,
+	filter,
+	peek,
+	push,
+	pop,
+	zip,
+	some,
+	every,
+	reverse,
+	concat,
+	enqueue,
+	dequeue,
+	slice,
+	sort,
+	contains,
+	flatten,
+}
 // alist
-import alist = require('./alist/alist');
-import put = require('./alist/put');
-import get = require('./alist/get');
-import alistPrint = require('./alist/print');
-import alistMap = require('./alist/map');
+import _alist from './alist/alist';
+import put from './alist/put';
+import get from './alist/get';
+import alistPrint from './alist/print';
+import alistMap from './alist/map';
 
-exports.alist = Object.create(null);
-exports.alist.alist = alist;
-exports.alist.put = put;
-exports.alist.get = get;
-exports.alist.print = alistPrint;
-exports.alist.map = alistMap;
+export const alist = {
+	alist: _alist,
+	put,
+	get,
+	alistPrint,
+	alistMap,
+}
 
 // fun
-import compose = require('./fun/compose');
-import apply = require('./fun/apply');
-import curry = require('./fun/curry');
-import Y = require('./fun/Y');
+import compose from './fun/compose';
+import apply from './fun/apply';
+import curry from './fun/curry';
+import Y from './fun/Y';
 
-exports.fun = Object.create(null);
-exports.fun.compose = compose;
-exports.fun.apply = apply;
-exports.fun.curry = curry;
-exports.fun.Y = Y;
+export const fun = {
+	compose,
+	apply,
+	curry,
+	Y,
+}

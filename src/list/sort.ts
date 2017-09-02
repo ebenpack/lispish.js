@@ -1,10 +1,10 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import cons = require('../cons/cons');
-import car = require('../cons/car');
-import cdr = require('../cons/cdr');
-import length = require('./length');
+import cons from '../cons/cons';
+import car from '../cons/car';
+import cdr from '../cons/cdr';
+import length from './length';
 
 /**
  * Given a list, returns a new, sorted list.
@@ -14,8 +14,8 @@ import length = require('./length');
  * @param  {Function} fn
  * @return {cons}
  */
-export = function sort(L: cons, fn?: (a: any, b: any) => boolean): cons {
-    function merge(L1: cons, L2: cons, fn: (a: any, b: any) => boolean): cons {
+export default function sort(L: Cons, fn?: (a: any, b: any) => boolean): Cons {
+    function merge(L1: Cons, L2: Cons, fn: (a: any, b: any) => boolean): Cons {
         if (L1 === null) {
             return L2;
         } else if (L2 === null) {
@@ -26,8 +26,8 @@ export = function sort(L: cons, fn?: (a: any, b: any) => boolean): cons {
             return cons(car(L2), merge(L1, cdr(L2), fn));
         }
     }
-    function split(L: cons, lo: number, hi: number): cons {
-        function splitHelper(L: cons, lo: number, hi: number, curr: number): cons {
+    function split(L: Cons, lo: number, hi: number): Cons {
+        function splitHelper(L: Cons, lo: number, hi: number, curr: number): Cons {
             if (curr < lo) {
                 return splitHelper(cdr(L), lo, hi, curr + 1);
             } else if (curr === hi) {
@@ -42,7 +42,7 @@ export = function sort(L: cons, fn?: (a: any, b: any) => boolean): cons {
             return null;
         }
     }
-    function msort(L: cons, fn: (a: any, b: any) => boolean, len: number) : cons {
+    function msort(L: Cons, fn: (a: any, b: any) => boolean, len: number) : Cons {
         if (L === null || cdr(L) === null) {
             return L;
         } else {

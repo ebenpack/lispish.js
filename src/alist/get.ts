@@ -1,9 +1,9 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import car = require('../cons/car');
-import cdr = require('../cons/cdr');
-import equal = require('../cons/equal');
+import car from '../cons/car';
+import cdr from '../cons/cdr';
+import equal from '../cons/equal';
 
 /**
  * Finds and returns the first key-value pair
@@ -13,7 +13,7 @@ import equal = require('../cons/equal');
  * @param  {*} key
  * @return {cons}
  */
-export = function get(L : cons, key : any) : cons {
+export default function get(L : Cons, key : any) : Cons {
     if (L === null){
         return null;
     } else {

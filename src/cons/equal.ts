@@ -1,9 +1,9 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import pair = require('./pair');
-import cdr = require('./cdr');
-import car = require('./car');
+import pair from './pair';
+import cdr from './cdr';
+import car from './car';
 
 /**
  * Returns a boolean indicating whether to two given parameters
@@ -13,7 +13,7 @@ import car = require('./car');
  * @param  {*} b
  * @return {boolean}
  */
-export = function equal(a: any, b: any) : boolean {
+const equal = (a: any, b: any) : boolean => {
     // If a is a pair and b is not (or vice versa),
     // these cannot be equal.
     if (pair(a) !== pair(b)){
@@ -37,4 +37,6 @@ export = function equal(a: any, b: any) : boolean {
     } else {
         return a === b;
     }
-}
+};
+
+export default equal;

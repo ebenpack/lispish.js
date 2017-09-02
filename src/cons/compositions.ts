@@ -1,10 +1,10 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import car = require('./car');
-import cdr = require('./cdr');
-import range = require('../list/range');
-import compose = require('../fun/compose');
+import car from './car';
+import cdr from './cdr';
+import range from '../list/range';
+import compose from '../fun/compose';
 
 function permute(S) {
 
@@ -70,4 +70,4 @@ for (var i = 0; i < 5; i++) {
     }
 }
 
-export = exportObj;
+export default exportObj;

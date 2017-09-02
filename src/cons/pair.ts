@@ -1,4 +1,6 @@
-/// <reference path="../typings/node/node.d.ts" />
+
+
+import ConsType from './ConsType';
 
 /**
  * Returns a boolean indicating whether the given parameter is a cons pair.
@@ -6,6 +8,4 @@
  * @return {boolean}
  */
 
-export = function pair(c: any) : boolean {
-    return c !== null && typeof c === 'object' && 'car' in c && 'cdr' in c;
-}
+export default (c: any) : boolean => typeof c === 'function' && c(3) === ConsType;

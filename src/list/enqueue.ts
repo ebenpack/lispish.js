@@ -1,7 +1,7 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import cons = require('../cons/cons');
+import cons from '../cons/cons';
 
 /**
  * Given a cons list and a value, returns a new cons list
@@ -10,6 +10,6 @@ import cons = require('../cons/cons');
  * @param  {*} val
  * @return {cons}
  */
-export = function enqueue (L : cons, val : any) : cons {
+export default function enqueue (L : Cons, val : any) : Cons {
     return cons(val, L);
 }

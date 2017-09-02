@@ -1,8 +1,8 @@
 /// <reference path="../cons.d.ts" />
 
-import cons = require('../cons/cons');
-import car = require('../cons/car');
-import cdr = require('../cons/cdr');
+import cons from '../cons/cons';
+import car from '../cons/car';
+import cdr from '../cons/cdr';
 
 /**
  * Returns a new list that is the result
@@ -11,7 +11,7 @@ import cdr = require('../cons/cdr');
  * @param  {cons} L2
  * @return {cons}
  */
-export = function concat(L1 : cons, L2 : cons) : cons {
+export default function concat(L1 : Cons, L2 : Cons) : Cons {
     if (L1 === null){
         return L2;
     } else {

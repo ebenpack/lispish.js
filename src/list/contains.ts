@@ -1,9 +1,9 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import equal = require('../cons/equal');
-import car = require('../cons/car');
-import cdr = require('../cons/cdr');
+import equal from '../cons/equal';
+import car from '../cons/car';
+import cdr from '../cons/cdr';
 
 /**
  * Returns true if the specified value is equal to at least one element of the given list.
@@ -11,7 +11,7 @@ import cdr = require('../cons/cdr');
  * @param  {*} a
  * @return {Boolean}
  */
-export = function contains(L : cons, a : any) : boolean{
+export default function contains(L : Cons, a : any) : boolean{
     if (L === null){
         return false;
     } else {

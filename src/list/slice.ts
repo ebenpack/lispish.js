@@ -1,10 +1,10 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import cons = require('../cons/cons');
-import car = require('../cons/car');
-import cdr = require('../cons/cdr');
-import length = require('./length');
+import cons from '../cons/cons';
+import car from '../cons/car';
+import cdr from '../cons/cdr';
+import length from './length';
 
 /**
  * Given a list, returns a new list 'slice'.
@@ -17,8 +17,8 @@ import length = require('./length');
  * @param  {(integer|undefined)} n
  * @return {cons}
  */
-export = function slice(L : cons, m : number, n? : number) : cons {
-    function sliceHelper(L : cons, m : number, n : number, current : number){
+export default function slice(L : Cons, m : number, n? : number) : Cons {
+    function sliceHelper(L : Cons, m : number, n : number, current : number){
         if (current === n || m >= n){
             return null;
         } else if (current >= m){

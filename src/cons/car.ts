@@ -1,4 +1,3 @@
-/// <reference path="../typings/node/node.d.ts" />
 /// <reference path="../cons.d.ts" />
 
 /**
@@ -6,7 +5,4 @@
  * @param  {cons} cons cons to be car'd
  * @return {*}      car value of the given cons
  */
-
-export = function car(cons: cons) : any {
-    return cons.car;
-}
+export default (c: Cons) : any => c(0);

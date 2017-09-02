@@ -1,9 +1,9 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import car = require('../cons/car');
-import cdr = require('../cons/cdr');
-import pair = require('../cons/pair');
+import car from '../cons/car';
+import cdr from '../cons/cdr';
+import pair from '../cons/pair';
 
 /**
  * Returns a string representation of the
@@ -14,14 +14,14 @@ import pair = require('../cons/pair');
  * @param  {cons} L
  * @return {string}
  */
-export = function print(L : cons) : string {
+export default function print(L : Cons) : string {
     function getIndent(n : number) : string {
         return Array(n * 4).join(' ');
     }
-    function helperOne(L : cons, indent : number) : string{
+    function helperOne(L : Cons, indent : number) : string{
         return '{\n' + helper(L, '', indent + 1) + '\n' + getIndent(indent) + '}';
     }
-    function helper(L : cons, spacer : string, indent : number) : string{
+    function helper(L : Cons, spacer : string, indent : number) : string{
         if (L === null){
             return '';
         } else {

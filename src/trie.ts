@@ -1,20 +1,19 @@
-/// <reference path="./typings/node/node.d.ts" />
 /// <reference path="./cons.d.ts" />
 
-import print = require('./cons/print');
-import concat = require('./list/concat');
-import list = require('./list/list');
-import push = require('./list/push');
-import cdr = require('./cons/cdr');
-import alist = require('./alist/alist');
-import car = require('./cons/car');
-import get = require('./alist/get');
-import put = require('./alist/put');
-import flatten = require('./list/flatten');
-import map = require('./alist/map');
+import print from './cons/print';
+import concat from './list/concat';
+import list from './list/list';
+import push from './list/push';
+import cdr from './cons/cdr';
+import alist from './alist/alist';
+import car from './cons/car';
+import get from './alist/get';
+import put from './alist/put';
+import flatten from './list/flatten';
+import map from './alist/map';
 
-function addTrieDogfood(T: cons, name: cons, namespace: cons) {
-    function stringifyName(name: cons, namespace: cons): string {
+function addTrieDogfood(T: Cons, name: Cons, namespace: Cons) {
+    function stringifyName(name: Cons, namespace: Cons): string {
         return print(
             concat(
                 concat(
@@ -25,7 +24,7 @@ function addTrieDogfood(T: cons, name: cons, namespace: cons) {
             { prefix: '', suffix: '', separator: '' }
         );
     }
-    function helper(T: cons, name: cons, namespace: cons, fullName: cons): cons {
+    function helper(T: Cons, name: Cons, namespace: Cons, fullName: Cons): Cons {
         if (cdr(name) === null) {
             if (T === null) {
                 return alist(
@@ -125,8 +124,8 @@ function addTrieDogfood(T: cons, name: cons, namespace: cons) {
     }
     return helper(T, name, namespace, name);
 }
-function getTrieDogfood(T:cons, str:cons) : cons {
-    function getLeaves(T:cons, list:cons) : cons {
+function getTrieDogfood(T:Cons, str:Cons) : Cons {
+    function getLeaves(T:Cons, list:Cons) : Cons {
         if (T === null) {
             return list;
         } else {
@@ -139,7 +138,7 @@ function getTrieDogfood(T:cons, str:cons) : cons {
             });
         }
     }
-    function descendToNode(T : cons, word : cons) {
+    function descendToNode(T : Cons, word : Cons) {
         if (T === null) {
             return null;
         } else if (cdr(word) === null) {

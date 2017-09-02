@@ -1,9 +1,9 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import cons = require('../cons/cons');
-import car = require('../cons/car');
-import cdr = require('../cons/cdr');
+import cons from '../cons/cons';
+import car from '../cons/car';
+import cdr from '../cons/cdr';
 
 /**
  * Returns true if every element in the list passes the
@@ -14,8 +14,8 @@ import cdr = require('../cons/cdr');
  * @param  {Function} fn
  * @return {boolean}
  */
-export = function every(L: cons, fn: (currentValue: any, idx: number)=>boolean) : boolean {
-    function helper(L : cons, fn: (currentValue: any, idx: number) => boolean, idx : number) {
+export default function every(L: Cons, fn: (currentValue: any, idx: number)=>boolean) : boolean {
+    function helper(L : Cons, fn: (currentValue: any, idx: number) => boolean, idx : number) {
         if (L === null){
             return true;
         } else {

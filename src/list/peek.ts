@@ -1,16 +1,16 @@
-/// <reference path="../typings/node/node.d.ts" />
+
 /// <reference path="../cons.d.ts" />
 
-import cons = require('../cons/cons');
-import car = require('../cons/car');
-import cdr = require('../cons/cdr');
+import cons from '../cons/cons';
+import car from '../cons/car';
+import cdr from '../cons/cdr';
 
 /**
  * Returns the value of the last item in a cons list.
  * @param  {cons} L
  * @return {*}
  */
-export = function peek(L : cons) : any{
+export default function peek(L : Cons) : any{
     if (L === null){
         return L;
     } if (cdr(L) === null){
