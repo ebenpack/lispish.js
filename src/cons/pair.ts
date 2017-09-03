@@ -1,6 +1,4 @@
-
-
-import ConsType from './ConsType';
+import ConsType from "./ConsType";
 
 /**
  * Returns a boolean indicating whether the given parameter is a cons pair.
@@ -8,4 +6,5 @@ import ConsType from './ConsType';
  * @return {boolean}
  */
 
-export default (c: any) : boolean => typeof c === 'function' && c(3) === ConsType;
+export default (c: any): boolean =>
+  typeof c === "function" && c(3) === ConsType;

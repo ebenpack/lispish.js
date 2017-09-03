@@ -1,9 +1,8 @@
-
 /// <reference path="../cons.d.ts" />
 
-import car from '../cons/car';
-import cdr from '../cons/cdr';
-import equal from '../cons/equal';
+import car from "../cons/car";
+import cdr from "../cons/cdr";
+import equal from "../cons/equal";
 
 /**
  * Finds and returns the first key-value pair
@@ -13,14 +12,7 @@ import equal from '../cons/equal';
  * @param  {*} key
  * @return {cons}
  */
-export default function get(L : Cons, key : any) : Cons {
-    if (L === null){
-        return null;
-    } else {
-        if (equal(car(car(L)), key)){
-            return cdr(car(L));
-        } else {
-            return get(cdr(L), key);
-        }
-    }
-}
+const get = (L: Cons, key: any): Cons =>
+  L === null ? null : equal(car(car(L)), key) ? cdr(car(L)) : get(cdr(L), key);
+
+export default get;

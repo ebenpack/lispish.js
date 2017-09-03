@@ -1,8 +1,7 @@
-
 /// <reference path="../cons.d.ts" />
 
-import list  from '../list/list';
-import cons from '../cons/cons';
+import list from "../list/list";
+import cons from "../cons/cons";
 
 /**
  * Returns an association list with a single key-value pair.
@@ -10,6 +9,4 @@ import cons from '../cons/cons';
  * @param {*} value
  * @return {cons}
  */
-export default function alist(key : any, value : any) : Cons {
-    return list(cons(key, value));
-}
+export default (key: any, value: any): Cons => list(cons(key, value));

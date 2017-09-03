@@ -1,8 +1,7 @@
-
 /// <reference path="../cons.d.ts" />
 
-import car from '../cons/car';
-import cdr from '../cons/cdr';
+import car from "../cons/car";
+import cdr from "../cons/cdr";
 
 /**
  * Call the given function with the list of arguments supplied.
@@ -10,13 +9,13 @@ import cdr from '../cons/cdr';
  * @param  {cons}   args
  * @return {*}
  */
-export default function apply(fn : (a: any)=>any, args : Cons) : any{
-    function helper(fn, args){
-        if (cdr(args) === null){
-            return fn(car(args));
-        } else {
-            return apply(fn.bind(null, car(args)), cdr(args));
-        }
-    }
-    return helper(fn, args);
-}
+// TODO: Remove bind?
+const apply = (fn: (a: any) => any, args: Cons): any => {
+  const helper = (fn, args) =>
+    cdr(args) === null
+      ? fn(car(args))
+      : apply(fn.bind(null, car(args)), cdr(args));
+  return helper(fn, args);
+};
+
+export default apply;

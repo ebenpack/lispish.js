@@ -1,8 +1,8 @@
 /// <reference path="../cons.d.ts" />
 
-import cons from '../cons/cons';
-import car from '../cons/car';
-import cdr from '../cons/cdr';
+import cons from "../cons/cons";
+import car from "../cons/car";
+import cdr from "../cons/cdr";
 
 /**
  * Returns a new list that is the result
@@ -11,10 +11,7 @@ import cdr from '../cons/cdr';
  * @param  {cons} L2
  * @return {cons}
  */
-export default function concat(L1 : Cons, L2 : Cons) : Cons {
-    if (L1 === null){
-        return L2;
-    } else {
-        return cons(car(L1), concat(cdr(L1), L2));
-    }
-}
+const concat = (L1: Cons, L2: Cons): Cons =>
+  L1 === null ? L2 : cons(car(L1), concat(cdr(L1), L2));
+
+export default concat;

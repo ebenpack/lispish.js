@@ -1,11 +1,9 @@
-
 /// <reference path="../cons.d.ts" />
 
-import cons from '../cons/cons';
-import car from '../cons/car';
-import cdr from '../cons/cdr';
-import get from './get';
-
+import cons from "../cons/cons";
+import car from "../cons/car";
+import cdr from "../cons/cdr";
+import get from "./get";
 
 /**
  * Returns a new alist. If the given key
@@ -17,17 +15,12 @@ import get from './get';
  * @param  {*} value
  * @return {cons}
  */
-export default function put(L : Cons, key : any, value : any) : Cons{
-    function helper(L: Cons, key: any, value: any) : Cons {
-        if (car(car(L)) === key){
-            return cons(cons(key, value), cdr(L));
-        } else {
-            return cons(car(L), helper(cdr(L), key, value));
-        }
-    }
-    if (get(L, key) === null){
-        return cons(cons(key, value), L);
-    } else {
-        return helper(L, key, value);
-    }
-}
+export default (L: Cons, key: any, value: any): Cons => {
+  const helper = (L: Cons, key: any, value: any): Cons =>
+    car(car(L)) === key
+      ? cons(cons(key, value), cdr(L))
+      : cons(car(L), helper(cdr(L), key, value));
+  return get(L, key) === null
+    ? cons(cons(key, value), L)
+    : helper(L, key, value);
+};

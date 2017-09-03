@@ -1,9 +1,8 @@
-
 /// <reference path="../cons.d.ts" />
 
-import cons from '../cons/cons';
-import car from '../cons/car';
-import cdr from '../cons/cdr';
+import cons from "../cons/cons";
+import car from "../cons/car";
+import cdr from "../cons/cdr";
 
 /**
  * Map over an association list.
@@ -11,12 +10,11 @@ import cdr from '../cons/cdr';
  * @param {Function} fn
  * @return {list}
  */
-export default function map(L : Cons, fn : (key : any, val: any)=>any) : Cons {
-    if (L === null){
-        return L;
-    } else if (cdr(car(L)) === null){
-        return cons(fn(car(car(L)), null), null);
-    } else {
-        return cons(fn(car(car(L)), cdr(car(L))), map(cdr(L), fn));
-    }
-}
+const map = (L: Cons, fn: (key: any, val: any) => any): Cons =>
+  L === null
+    ? L
+    : cdr(car(L)) === null
+      ? cons(fn(car(car(L)), null), null)
+      : cons(fn(car(car(L)), cdr(car(L))), map(cdr(L), fn));
+
+export default map;

@@ -1,6 +1,5 @@
-
 /// <reference path="../cons.d.ts" />
-import ConsType from './ConsType';
+import ConsType from "./ConsType";
 
 /**
  * Returns an immutable cons pair consisting
@@ -9,8 +8,5 @@ import ConsType from './ConsType';
  * @param  {*} cdr
  * @return {cons}
  */
-export default (car: any, cdr: any) : Cons => 
-    (pick: number) =>
-        pick === 0 ? car :
-        pick === 1 ? cdr : 
-        ConsType;
+export default (car: any, cdr: any): Cons => (pick: number) =>
+  pick === 0 ? car : pick === 1 ? cdr : ConsType;

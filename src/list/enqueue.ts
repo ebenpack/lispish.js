@@ -1,7 +1,6 @@
-
 /// <reference path="../cons.d.ts" />
 
-import cons from '../cons/cons';
+import cons from "../cons/cons";
 
 /**
  * Given a cons list and a value, returns a new cons list
@@ -10,6 +9,4 @@ import cons from '../cons/cons';
  * @param  {*} val
  * @return {cons}
  */
-export default function enqueue (L : Cons, val : any) : Cons {
-    return cons(val, L);
-}
+export default (L: Cons, val: any): Cons => cons(val, L);

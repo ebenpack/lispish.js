@@ -1,1 +1,1 @@
-export default Symbol('Cons');
+export default Symbol("Cons");

@@ -1,9 +1,9 @@
-
 /// <reference path="../cons.d.ts" />
 
-import cons from '../cons/cons';
-import car from '../cons/car';
-import cdr from '../cons/cdr';
+import cons from "../cons/cons";
+import car from "../cons/car";
+import cdr from "../cons/cdr";
+import list from "../list/list";
 
 /**
  * Given two cons lists, returns a new cons list composed of
@@ -14,12 +14,11 @@ import cdr from '../cons/cdr';
  * @param  {cons} L2
  * @return {cons}
  */
-export default function zip(L1 : Cons, L2 : Cons) : Cons {
-    if (L1 === null || L2 === null){
-        return null;
-    } else if (cdr(L1) === null || cdr(L2) === null){
-        return null;
-    } else {
-        return cons(cons(car(L1), car(L2)), zip(cdr(L1), cdr(L2)));
-    }
-}
+const zip = (L1: Cons, L2: Cons): Cons =>
+  L1 === null || L2 === null
+    ? null
+    : cdr(L1) === null || cdr(L2) === null
+      ? cons(cons(car(L1), car(L2)), null)
+      : cons(cons(car(L1), car(L2)), zip(cdr(L1), cdr(L2)));
+
+export default zip;

@@ -1,14 +1,13 @@
-
 /// <reference path="../cons.d.ts" />
 
-import pair from './pair';
-import cdr from './cdr';
-import car from './car';
+import pair from "./pair";
+import cdr from "./cdr";
+import car from "./car";
 
 interface Options {
-    prefix?: string;
-    suffix?: string;
-    separator?: string;
+  prefix?: string;
+  suffix?: string;
+  separator?: string;
 }
 
 /**
@@ -19,38 +18,34 @@ interface Options {
  * @param  {(Object|undefined)} options Optional options object
  * @return {string}      String representation of the given cons
  */
-// TODO: Make more functional
 
-function print(c: Cons, options?: Options): string {
-    var opts = options || {};
-    var prefix = typeof opts.prefix !== 'undefined' ? opts.prefix : '(';
-    var suffix = typeof opts.suffix !== 'undefined' ? opts.suffix : ')';
-    var separator = typeof opts.separator !== 'undefined' ? opts.separator : ',';
+const print = (c: Cons, options?: Options): string => {
+  const opts = options || {};
 
-    function printHelper(c : Cons, separator : string) : string {
-        var cdrResult = '';
-        var carResult = '';
-        if (pair(c)) {
-            var cdrL = cdr(c);
-            var carL = car(c);
-
-            if (pair(carL)) {
-                carResult = printHelper(carL, separator);
-            } else if (carL !== null) {
-                carResult = carL.toString();
-            }
-            if (pair(cdrL)) {
-                cdrResult = printHelper(cdrL, separator);
-            } else if (cdrL !== null) {
-                cdrResult = cdrL.toString();
-            }
-            if (carResult === '' || cdrResult === '') {
-                separator = '';
-            }
-        }
-        return prefix + carResult + separator + cdrResult + suffix;
-    }
-    return printHelper(c, separator);
-}
+  const printHelper = (c: Cons, separator: string): string => {
+    const carResult = pair(c)
+      ? pair(car(c))
+        ? printHelper(car(c), separator)
+        : car(c) !== null ? car(c).toString() : ""
+      : "";
+    const cdrResult = pair(c)
+      ? pair(cdr(c))
+        ? printHelper(cdr(c), separator)
+        : cdr(c) !== null ? cdr(c).toString() : ""
+      : "";
+    const newSeparator = carResult === "" || cdrResult === "" ? "" : separator;
+    return (
+      (typeof opts.prefix !== "undefined" ? opts.prefix : "(") +
+      carResult +
+      newSeparator +
+      cdrResult +
+      (typeof opts.suffix !== "undefined" ? opts.suffix : ")")
+    );
+  };
+  return printHelper(
+    c,
+    typeof opts.separator !== "undefined" ? opts.separator : ","
+  );
+};
 
 export default print;

@@ -1,11 +1,10 @@
-
-import _cons from './cons';
-import _car from './car';
-import _cdr from './cdr';
-import _print from './print';
-import _equal from './equal';
-import _pair from './pair';
-import compose from '../fun/compose';
+import _cons from "./cons";
+import _car from "./car";
+import _cdr from "./cdr";
+import _print from "./print";
+import _equal from "./equal";
+import _pair from "./pair";
+import compose from "../fun/compose";
 
 export const cons = _cons;
 export const car = _car;
@@ -34,7 +33,7 @@ export const cdaaar = compose(car, compose(car, compose(car, cdr)));
 export const cdaadr = compose(cdr, compose(car, compose(car, cdr)));
 export const cdadar = compose(car, compose(cdr, compose(car, cdr)));
 export const cdaddr = compose(cdr, compose(cdr, compose(car, cdr)));
-export const cddaar = compose(car, compose(car, compose(cdr, cdr)));
+export const cdßdaar = compose(car, compose(car, compose(cdr, cdr)));
 export const cddadr = compose(cdr, compose(car, compose(cdr, cdr)));
 export const cdddar = compose(car, compose(cdr, compose(cdr, cdr)));
 export const cddddr = compose(cdr, compose(cdr, compose(cdr, cdr)));

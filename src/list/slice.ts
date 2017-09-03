@@ -1,10 +1,9 @@
-
 /// <reference path="../cons.d.ts" />
 
-import cons from '../cons/cons';
-import car from '../cons/car';
-import cdr from '../cons/cdr';
-import length from './length';
+import cons from "../cons/cons";
+import car from "../cons/car";
+import cdr from "../cons/cdr";
+import length from "./length";
 
 /**
  * Given a list, returns a new list 'slice'.
@@ -17,19 +16,17 @@ import length from './length';
  * @param  {(integer|undefined)} n
  * @return {cons}
  */
-export default function slice(L : Cons, m : number, n? : number) : Cons {
-    function sliceHelper(L : Cons, m : number, n : number, current : number){
-        if (current === n || m >= n){
-            return null;
-        } else if (current >= m){
-            return cons(car(L), sliceHelper(cdr(L), m, n, current + 1));
-        } else {
-            return sliceHelper(cdr(L), m, n, current + 1);
-        }
-    }
-    if (typeof n === 'undefined'){
-        return sliceHelper(L, m, length(L), 0);
-    } else {
-        return sliceHelper(L, m, n, 0);
-    }
-}
+export default (L: Cons, m: number, n?: number): Cons => {
+  const sliceHelper = (L: Cons, m: number, n: number, current: number) =>
+    current === n || m >= n
+      ? null
+      : L === null
+        ? null
+        : current >= m
+          ? cons(car(L), sliceHelper(cdr(L), m, n, current + 1))
+          : sliceHelper(cdr(L), m, n, current + 1);
+
+  return typeof n === "undefined"
+    ? sliceHelper(L, m, length(L), 0)
+    : sliceHelper(L, m, n, 0);
+};

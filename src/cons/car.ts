@@ -5,4 +5,4 @@
  * @param  {cons} cons cons to be car'd
  * @return {*}      car value of the given cons
  */
-export default (c: Cons) : any => c(0);
+export default (cons: Cons): any => cons(0);
