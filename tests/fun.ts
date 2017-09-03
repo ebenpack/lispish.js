@@ -5,7 +5,7 @@ import print from "../src/cons/print";
 import equal from "../src/cons/equal";
 import list from "../src/list/list";
 import range from "../src/list/range";
-import reduce from "../src/list/reduce";
+import foldl from "../src/list/foldl";
 import compose from "../src/fun/compose";
 import apply from "../src/fun/apply";
 import curry from "../src/fun/curry";
@@ -21,7 +21,7 @@ suite("fun", () => {
   var sixAdd, fourMul, sixMin, variadicAdd, fact, fib;
   setup(() => {
     variadicAdd = (...args) => {
-      return reduce(list(argsHelper(args)), (a, b) => a + b, 0);
+      return foldl(list(argsHelper(args)), (acc, val) => acc + val, 0);
     };
     fact = Y(fac => n => (n <= 2 ? n : n * fac(n - 1)));
     fib = Y(fibo => n => (n <= 1 ? n : fibo(n - 1) + fibo(n - 2)));

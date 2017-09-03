@@ -74,9 +74,11 @@ suite("cons", () => {
       assert.ok(!pair(car(simpleCons)));
     });
   });
-  test("equal", () => {
-    assert.ok(equal(simpleCons, cons(1, 2)));
-    assert.ok(equal(doubleCons, cons(cons(1, 2), cons(3, 4))));
+  suite("equal", () => {
+    test("equal", () => {
+      assert.ok(equal(simpleCons, cons(1, 2)));
+      assert.ok(equal(doubleCons, cons(cons(1, 2), cons(3, 4))));
+    });
   });
   suite("car/cdr", () => {
     test("car/cdr", () => {

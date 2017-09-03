@@ -7,7 +7,7 @@ import list from "../src/list/list";
 import length from "../src/list/length";
 import range from "../src/list/range";
 import map from "../src/list/map";
-import reduce from "../src/list/reduce";
+import foldl from "../src/list/foldl";
 import filter from "../src/list/filter";
 import peek from "../src/list/peek";
 import push from "../src/list/push";
@@ -120,8 +120,8 @@ suite("list", () => {
     });
     addMapped = map(linkedList, n => n + 10);
     mulMapped = map(linkedList, n => n * 10);
-    reduceAdd = reduce(linkedList, (a, b) => a + b, 0);
-    reduceMul = reduce(linkedList, (a, b) => a * b, 1);
+    reduceAdd = foldl(linkedList, (a, b) => a + b, 0);
+    reduceMul = foldl(linkedList, (a, b) => a * b, 1);
     consList = cons(1, cons(2, cons(3, cons(4, cons(5, null)))));
     addMappedCons = cons(11, cons(12, cons(13, cons(14, cons(15, null)))));
     mulMappedCons = cons(10, cons(20, cons(30, cons(40, cons(50, null)))));
@@ -306,15 +306,15 @@ suite("list", () => {
         list(arr.filter(a => a % 2 === 0))
       );
     });
-    test("reduce", () => {
+    test("foldl", () => {
       assert.equal(reduceAdd, 15);
       assert.equal(reduceMul, 120);
-      assert.equal(reduce(list(), (prev, curr) => prev + curr, 0), 0);
+      assert.equal(foldl(list(), (a, b) => a + b, 0), 0);
     });
     jsc.property("reduce", "array nat", arr => {
       return (
-        reduce(list(arr), (curr, acc) => acc + curr, 0) ===
-        arr.reduce((curr, acc) => acc + curr, 0)
+        foldl(list(arr), (acc, curr) => acc + curr, 0) ===
+        arr.reduce((acc, curr) => acc + curr, 0)
       );
     });
     test("peek", () => {
