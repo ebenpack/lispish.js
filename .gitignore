@@ -3,3 +3,5 @@ build/
 *.js
 *.js.map
 .DS_Store
+.nyc_output/
+coverage/
