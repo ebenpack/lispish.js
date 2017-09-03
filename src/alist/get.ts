@@ -12,7 +12,7 @@ import equal from "../cons/equal";
  * @param  {*} key
  * @return {cons}
  */
-const get = (L: Cons, key: any): Cons =>
+const get = (L: Cons, key: any): any =>
   L === null ? null : equal(car(car(L)), key) ? cdr(car(L)) : get(cdr(L), key);
 
 export default get;

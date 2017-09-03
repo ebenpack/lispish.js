@@ -3,6 +3,7 @@
 import cons from "../cons/cons";
 import car from "../cons/car";
 import cdr from "../cons/cdr";
+import listMap from "../list/map";
 
 /**
  * Map over an association list.
@@ -11,10 +12,6 @@ import cdr from "../cons/cdr";
  * @return {list}
  */
 const map = (L: Cons, fn: (key: any, val: any) => any): Cons =>
-  L === null
-    ? L
-    : cdr(car(L)) === null
-      ? cons(fn(car(car(L)), null), null)
-      : cons(fn(car(car(L)), cdr(car(L))), map(cdr(L), fn));
+  listMap(L, v => cons(car(v), fn(car(v), cdr(v))));
 
 export default map;

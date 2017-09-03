@@ -23,7 +23,7 @@ Lists are just nested cons pairs with the constraint that every cons's car eleme
 * `pop(L)` - Returns a new list with the last item removed.
 * `push(L, val)` - Returns a new cons list with the value appended to the end.
 * `range(m, n, step)` - Returns a range list from m to n, with each item incremented by step.
-* `reduce(L, fn, acc)` - Applies the given callback function against an accumulator and each value of the list (from left-to-right) in order to reduce it to a single value.
+* `foldl(L, fn, acc)` - Applies the given callback function against an accumulator and each value of the list (from left-to-right) in order to reduce it to a single value.
 * `reverse(L)` - Returns a reversed list.
 * `slice(L, m, n)` - Returns a new list 'slice' from m to n.
 * `some(L, fn)` - Returns `true` if the callback function return `true` for any item in the list.

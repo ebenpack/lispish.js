@@ -16,7 +16,7 @@ import _list from "./list/list";
 import length from "./list/length";
 import range from "./list/range";
 import map from "./list/map";
-import reduce from "./list/reduce";
+import foldl from "./list/foldl";
 import filter from "./list/filter";
 import peek from "./list/peek";
 import push from "./list/push";
@@ -38,7 +38,7 @@ export const list = {
   length,
   range,
   map,
-  reduce,
+  foldl,
   filter,
   peek,
   push,
