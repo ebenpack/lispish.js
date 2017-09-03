@@ -1,6 +1,6 @@
 # lisp-ish.js
 
-lisp-ish is a pure-JS implementation of a number of concepts I think I once heard someone say were associated with lisp, maybe, as well as some other concepts that might not even have anything to with lisp, perhaps. The only compound type in lisp-ish (at least currently), is the immutable cons pair, and these are used as the foundation to build other, more complex data structures. The intention is that all functions in lisp-ish will be 100% pure. The primary method of name binding will be via argument passing, but this constraint may not be rigorously enforced for the sake of simplicity, especially w/r/t recursion and helper functions.
+lisp-ish is a pure-JS implementation of a number of concepts I think I once heard someone say were associated with lisp, maybe, as well as some other concepts that might not even have anything to do with lisp, perhaps. The only compound type in lisp-ish (at least currently), is the immutable cons pair, and these are used as the foundation to build other, more complex data structures. The intention is that all functions in lisp-ish will be 100% pure. The primary method of name binding will be via argument passing, but this constraint may not be rigorously enforced for the sake of simplicity, especially w/r/t recursion and helper functions.
 
 ## *warning!*
 
@@ -15,7 +15,7 @@ Lists are just nested cons pairs with the constraint that every cons's car eleme
 * `dequeue(L)` - Returns a new cons list with the first item removed.
 * `enqueue(L, val)` - Returns a new cons list with the given value appended to the front of the list.
 * `every(L, fn)` - Returns `true` if the given function evaluates to `true` for every item in the list.
-* `filter(L, fn)` - Returns a new list composed only of the list items
+* `filter(L, fn)` - Returns a new list composed only of the list items for which the predicate function returns `true`
 * `length(L)` - Returns the length of a given list.
 * `list(args...)` - Returns a list based on the arguments array, or an explicitly passed array.
 * `map(L, fn)` - Returns a new cons list with the results of calling the provided function on every element.
