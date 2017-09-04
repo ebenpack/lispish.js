@@ -3,6 +3,7 @@
 import cons from "../cons/cons";
 import car from "../cons/car";
 import cdr from "../cons/cdr";
+import isEmpty from "../cons/isEmpty";
 
 /**
  * Given a cons list, returns a new cons list
@@ -10,4 +11,4 @@ import cdr from "../cons/cdr";
  * @param  {Cons} L
  * @return {Cons}
  */
-export default (L: Cons): Cons => (L === null ? null : cdr(L));
+export default (L: Cons): Cons => (isEmpty(L) ? L : cdr(L));

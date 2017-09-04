@@ -2,6 +2,7 @@
 
 import cons from "../cons/cons";
 import apply from "./apply";
+import nil from "../cons/nil";
 
 /**
  * Curry the given function. If the number of expected parameters
@@ -17,6 +18,6 @@ export default (fn: (...a: any[]) => any, arity?: number) => {
             ? apply(fn, args)
             : arg => helper(fn, arity - 1, cons(arg, args));
     return typeof arity === "undefined"
-        ? helper(fn, fn.length, null)
-        : helper(fn, arity, null);
+        ? helper(fn, fn.length, nil)
+        : helper(fn, arity, nil);
 };

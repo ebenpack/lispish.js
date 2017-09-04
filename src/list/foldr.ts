@@ -3,6 +3,7 @@
 import cons from "../cons/cons";
 import car from "../cons/car";
 import cdr from "../cons/cdr";
+import isEmpty from "../cons/isEmpty";
 
 /**
  * Applies the given callback function against an accumulator
@@ -15,9 +16,9 @@ import cdr from "../cons/cdr";
  */
 // TODO: make foldl and folr
 const foldr = (fn: (val: any, acc: any) => any, acc: any, L: Cons) =>
-    L === null
+    isEmpty(L)
         ? acc
-        : cdr(L) === null
+        : isEmpty(cdr(L))
           ? fn(car(L), acc)
           : fn(car(L), foldr(fn, acc, cdr(L)));
 

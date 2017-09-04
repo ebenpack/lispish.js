@@ -3,6 +3,7 @@
 import cons from "../cons/cons";
 import car from "../cons/car";
 import cdr from "../cons/cdr";
+import isEmpty from "../cons/isEmpty";
 import get from "./get";
 
 /**
@@ -20,7 +21,7 @@ export default (key: any, value: any, L: Cons): Cons => {
         car(car(L)) === key
             ? cons(cons(key, value), cdr(L))
             : cons(car(L), helper(cdr(L), key, value));
-    return get(key, L) === null
+    return isEmpty(get(key, L))
         ? cons(cons(key, value), L)
         : helper(L, key, value);
 };

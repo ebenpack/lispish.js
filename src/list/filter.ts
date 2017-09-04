@@ -3,6 +3,8 @@
 import cons from "../cons/cons";
 import car from "../cons/car";
 import cdr from "../cons/cdr";
+import isEmpty from "../cons/isEmpty";
+import nil from "../cons/nil";
 
 /**
  * Returns a new cons list consisting of the values
@@ -14,10 +16,10 @@ import cdr from "../cons/cdr";
  * @return {Cons}
  */
 const filter = (fn: (currentValue: any) => boolean, L: Cons): Cons =>
-    L === null
+    isEmpty(L)
         ? L
-        : cdr(L) === null
-          ? fn(car(L)) ? cons(car(L), null) : null
+        : isEmpty(cdr(L))
+          ? fn(car(L)) ? cons(car(L), nil) : nil
           : fn(car(L)) ? cons(car(L), filter(fn, cdr(L))) : filter(fn, cdr(L));
 
 export default filter;

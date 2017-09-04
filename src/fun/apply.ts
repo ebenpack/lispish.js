@@ -2,6 +2,7 @@
 
 import car from "../cons/car";
 import cdr from "../cons/cdr";
+import isEmpty from "../cons/isEmpty";
 
 /**
  * Call the given function with the list of arguments supplied.
@@ -12,7 +13,7 @@ import cdr from "../cons/cdr";
 // TODO: Remove bind?
 const apply = (fn: (a: any) => any, args: Cons): any => {
     const helper = (fn, args) =>
-        cdr(args) === null
+        isEmpty(cdr(args))
             ? fn(car(args))
             : apply(fn.bind(null, car(args)), cdr(args));
     return helper(fn, args);

@@ -1,1 +1,1 @@
-type Cons = ((pick: number) => any) | null;
+type Cons = ((pick: number) => any);

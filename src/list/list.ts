@@ -2,6 +2,7 @@
 
 import cons from "../cons/cons";
 import args from "../helpers/args";
+import nil from "../cons/nil";
 
 /**
  * Returns a cons list constructed from the given parameters.
@@ -10,7 +11,7 @@ import args from "../helpers/args";
 export default (...outerArgs: any[]): Cons => {
     const helper = (args: any[]): Cons =>
         args.length === 0
-            ? null
+            ? nil
             : Array.isArray(args[0])
               ? cons(helper(args[0]), helper(args.slice(1)))
               : cons(args[0], helper(args.slice(1)));

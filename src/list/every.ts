@@ -3,6 +3,7 @@
 import cons from "../cons/cons";
 import car from "../cons/car";
 import cdr from "../cons/cdr";
+import isEmpty from "../cons/isEmpty";
 
 /**
  * Returns true if every element in the list passes the
@@ -22,7 +23,7 @@ export default (
         idx: number,
         L: Cons
     ): boolean =>
-        L === null
+        isEmpty(L)
             ? true
             : !fn(car(L), idx) ? false : helper(fn, idx + 1, cdr(L));
     return helper(fn, 0, L);

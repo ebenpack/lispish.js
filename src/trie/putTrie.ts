@@ -9,6 +9,8 @@ import car from "../cons/car";
 import get from "../alist/get";
 import put from "../alist/put";
 import push from "../list/push";
+import isEmpty from "../cons/isEmpty";
+import nil from "../cons/nil";
 
 export default (T: Cons, name: Cons, namespace: Cons) => {
     const stringifyName = (name: Cons, namespace: Cons): string =>
@@ -23,13 +25,13 @@ export default (T: Cons, name: Cons, namespace: Cons) => {
         namespace: Cons,
         fullName: Cons
     ): Cons =>
-        cdr(name) === null
-            ? T === null
+        isEmpty(cdr(name))
+            ? isEmpty(T)
               ? alist(
                     car(name),
                     alist("_value", list(stringifyName(fullName, namespace)))
                 )
-              : get(car(name), T) === null
+              : isEmpty(get(car(name), T))
                 ? put(
                       car(name),
                       alist("_value", list(stringifyName(fullName, namespace))),
@@ -47,18 +49,14 @@ export default (T: Cons, name: Cons, namespace: Cons) => {
                       ),
                       T
                   )
-            : T === null
-              ? alist(car(name), helper(null, cdr(name), namespace, fullName))
-              : get(car(name), T) === null
-                ? put(
-                      car(name),
-                      helper(null, cdr(name), namespace, fullName),
-                      T
-                  )
+            : isEmpty(T)
+              ? alist(car(name), helper(nil, cdr(name), namespace, fullName))
+              : isEmpty(get(car(name), T))
+                ? put(car(name), helper(nil, cdr(name), namespace, fullName), T)
                 : put(
                       car(name),
                       helper(get(car(name), T), cdr(name), namespace, fullName),
                       T
                   );
-    return name === null ? T : helper(T, name, namespace, name);
+    return isEmpty(name) ? T : helper(T, name, namespace, name);
 };

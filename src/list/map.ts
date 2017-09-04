@@ -3,6 +3,8 @@
 import cons from "../cons/cons";
 import car from "../cons/car";
 import cdr from "../cons/cdr";
+import isEmpty from "../cons/isEmpty";
+import nil from "../cons/nil";
 
 /**
  * Returns a new cons list with the results of calling the provided
@@ -12,10 +14,10 @@ import cdr from "../cons/cdr";
  * @return {Cons}
  */
 const map = (fn: (currentValue: any) => any, L: Cons): Cons =>
-    L === null
+    isEmpty(L)
         ? L
-        : cdr(L) === null
-          ? cons(fn(car(L)), null)
+        : isEmpty(cdr(L))
+          ? cons(fn(car(L)), nil)
           : cons(fn(car(L)), map(fn, cdr(L)));
 
 export default map;

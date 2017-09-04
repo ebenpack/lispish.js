@@ -13,6 +13,3 @@ trampoline
 find
 some
 all/every
-
-remove null
-empty? / nil? function

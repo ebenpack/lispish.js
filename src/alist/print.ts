@@ -3,6 +3,7 @@
 import car from "../cons/car";
 import cdr from "../cons/cdr";
 import pair from "../cons/pair";
+import isEmpty from "../cons/isEmpty";
 
 /**
  * Returns a string representation of the
@@ -20,7 +21,7 @@ export default (L: Cons): string => {
         "{\n" + helper(L, "", indent + 1) + "\n" + getIndent(indent) + "}";
 
     const helper = (L: Cons, spacer: string, indent: number): string =>
-        L === null
+        isEmpty(L)
             ? ""
             : pair(cdr(car(L)))
               ? spacer +

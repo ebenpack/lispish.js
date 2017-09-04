@@ -5,10 +5,12 @@ import cdr from "../cons/cdr";
 import flatten from "../list/flatten";
 import get from "../alist/get";
 import map from "../alist/map";
+import isEmpty from "../cons/isEmpty";
+import nil from "../cons/nil";
 
 export default (T: Cons, str: Cons): Cons => {
     const getLeaves = (T: Cons, list: Cons): Cons =>
-        T === null
+        isEmpty(T)
             ? list
             : map(
                   (key, val) => (key === "_value" ? val : getLeaves(val, list)),
@@ -16,13 +18,13 @@ export default (T: Cons, str: Cons): Cons => {
               );
 
     const descendToNode = (T: Cons, word: Cons) =>
-        T === null
-            ? null
-            : word === null
-              ? null
-              : cdr(word) === null
+        isEmpty(T)
+            ? nil
+            : isEmpty(word)
+              ? nil
+              : isEmpty(cdr(word))
                 ? get(car(word), T)
                 : descendToNode(get(car(word), T), cdr(word));
 
-    return flatten(getLeaves(descendToNode(T, str), null));
+    return flatten(getLeaves(descendToNode(T, str), nil));
 };

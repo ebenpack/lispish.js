@@ -3,6 +3,7 @@
 import cons from "../cons/cons";
 import car from "../cons/car";
 import cdr from "../cons/cdr";
+import isEmpty from "../cons/isEmpty";
 
 /**
  * Returns the value of the last item in a cons list.
@@ -10,6 +11,6 @@ import cdr from "../cons/cdr";
  * @return {*}
  */
 const peek = (L: Cons): any =>
-    L === null ? L : cdr(L) === null ? car(L) : peek(cdr(L));
+    isEmpty(L) ? L : isEmpty(cdr(L)) ? car(L) : peek(cdr(L));
 
 export default peek;

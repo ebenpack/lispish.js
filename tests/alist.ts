@@ -7,6 +7,7 @@ import cons from "../src/cons/cons";
 import consEqual from "../src/cons/equal";
 import equal from "../src/alist/equal";
 import consPrint from "../src/cons/print";
+import isEmpty from "../src//cons/isEmpty";
 import { assert } from "chai";
 import * as jsc from "jsverify";
 
@@ -44,7 +45,7 @@ suite("alist", () => {
                 get("baz", put("baz", "qux", alist("foo", "bar"))) === "qux"
             );
             assert.ok(
-                get("quux", put("baz", "qux", alist("foo", "bar"))) === null
+                isEmpty(get("quux", put("baz", "qux", alist("foo", "bar"))))
             );
         });
     });

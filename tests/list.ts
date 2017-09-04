@@ -24,6 +24,8 @@ import dequeue from "../src/list/dequeue";
 import sort from "../src/list/sort";
 import flatten from "../src/list/flatten";
 import contains from "../src/list/contains";
+import nil from "../src/cons/nil";
+import isEmpty from "../src/cons/isEmpty";
 import { assert } from "chai";
 import * as jsc from "jsverify";
 
@@ -123,11 +125,11 @@ suite("list", () => {
         mulMapped = map(n => n * 10, linkedList);
         reduceAdd = foldl((a, b) => a + b, 0, linkedList);
         reduceMul = foldl((a, b) => a * b, 1, linkedList);
-        consList = cons(1, cons(2, cons(3, cons(4, cons(5, null)))));
-        addMappedCons = cons(11, cons(12, cons(13, cons(14, cons(15, null)))));
-        mulMappedCons = cons(10, cons(20, cons(30, cons(40, cons(50, null)))));
-        filteredCons = cons(2, cons(4, null));
-        emptyFilteredCons = cons(null, null);
+        consList = cons(1, cons(2, cons(3, cons(4, cons(5, nil)))));
+        addMappedCons = cons(11, cons(12, cons(13, cons(14, cons(15, nil)))));
+        mulMappedCons = cons(10, cons(20, cons(30, cons(40, cons(50, nil)))));
+        filteredCons = cons(2, cons(4, nil));
+        emptyFilteredCons = cons(nil, nil);
         sortFn = (a, b) => a <= b;
     });
     suite("list", () => {
@@ -137,8 +139,8 @@ suite("list", () => {
                 equal(
                     list([[1], [2], [3]]),
                     cons(
-                        cons(1, null),
-                        cons(cons(2, null), cons(cons(3, null), null))
+                        cons(1, nil),
+                        cons(cons(2, nil), cons(cons(3, nil), nil))
                     )
                 )
             );
@@ -174,7 +176,7 @@ suite("list", () => {
             assert.ok(equal(range3, linkedListP2));
             assert.ok(equal(steprange, linkedList5));
 
-            assert.equal(badrange, null);
+            assert.equal(badrange, nil);
             assert.equal(length(range1), 5);
             assert.equal(length(range2), 9);
             assert.equal(length(range3), 7);
@@ -247,7 +249,7 @@ suite("list", () => {
             );
         });
         test("get", () => {
-            assert.equal(get(10, null), null);
+            assert.equal(get(10, nil), nil);
             assert.equal(get(2, list(0, 1, 2, 3, 4, 5)), 2);
         });
         jsc.property("reverse", "array nat", arr => {
@@ -258,7 +260,7 @@ suite("list", () => {
             assert.ok(equal(slice(linkedList3, 6), list(12, 13, 14)));
             assert.ok(equal(slice(zipped1, 2, 3), list(cons(8, 33))));
             assert.ok(equal(slice(steprange, 8), list(99)));
-            assert.ok(equal(slice(linkedList3, 3, 2), null));
+            assert.ok(equal(slice(linkedList3, 3, 2), nil));
         });
         jsc.property("slice", "array nat", arr => {
             const [n1, n2] = [
@@ -280,8 +282,8 @@ suite("list", () => {
         test("concat", () => {
             assert.ok(equal(concat(range(1, 3), range(3, 6)), linkedList));
             assert.ok(equal(concat(range(6, 10), range(10, 15)), linkedList3));
-            assert.ok(equal(concat(range(11, 56, 11), null), linkedList4));
-            assert.ok(equal(concat(null, range(11, 100, 11)), linkedList5));
+            assert.ok(equal(concat(range(11, 56, 11), nil), linkedList4));
+            assert.ok(equal(concat(nil, range(11, 100, 11)), linkedList5));
         });
         jsc.property("concat", "array nat & array nat", args => {
             const [a1, a2] = args;
@@ -289,7 +291,7 @@ suite("list", () => {
         });
         test("some", () => {
             assert.ok(some((curr, idx) => curr % 2 === 0, linkedList4));
-            assert.ok(!some((curr, idx) => curr % 2 === 0, null));
+            assert.ok(!some((curr, idx) => curr % 2 === 0, nil));
             assert.ok(some((curr, idx) => curr % 2 !== 0, range(1, 12, 2)));
             assert.ok(!some((curr, idx) => curr >= 0, range(-20, 0)));
             assert.ok(some((curr, idx) => curr >= 0, range(-20, 1)));
@@ -302,7 +304,7 @@ suite("list", () => {
         });
         test("every", () => {
             assert.ok(every((curr, idx) => curr % 2 === 0, range(2, 20, 2)));
-            assert.ok(every((curr, idx) => curr % 2 === 0, null));
+            assert.ok(every((curr, idx) => curr % 2 === 0, nil));
             assert.ok(every((curr, idx) => curr < 0, range(-20, 0)));
             assert.ok(!every((curr, idx) => curr < 0, range(-20, 1)));
         });
@@ -315,14 +317,14 @@ suite("list", () => {
         test("map", () => {
             assert.ok(equal(addMapped, addMappedCons));
             assert.ok(equal(mulMapped, mulMappedCons));
-            assert.equal(map(curr => curr * 2, list()), null);
+            assert.equal(map(curr => curr * 2, list()), nil);
         });
         jsc.property("map", "array nat", arr => {
             return equal(map(a => a * 2, list(arr)), list(arr.map(a => a * 2)));
         });
         test("filter", () => {
             assert.ok(equal(filtered, filteredCons));
-            assert.equal(emptyFiltered, null);
+            assert.equal(emptyFiltered, nil);
         });
         jsc.property("filter", "array nat", arr => {
             return equal(
@@ -350,7 +352,7 @@ suite("list", () => {
             const L = list(arr);
             return length(L) > 0
                 ? peek(L) == arr[arr.length - 1]
-                : peek(L) === null;
+                : isEmpty(peek(L));
         });
         test("push", () => {
             assert.ok(equal(linkedListP1, pushed1));
@@ -399,7 +401,7 @@ suite("list", () => {
                     range(9, 2, -1)
                 )
             );
-            assert.ok(equal(sort(sortFn, list()), null));
+            assert.ok(equal(sort(sortFn, list()), nil));
         });
         jsc.property("sort", "array nat", arr => {
             return equal(

@@ -3,6 +3,7 @@
 import equal from "../cons/equal";
 import car from "../cons/car";
 import cdr from "../cons/cdr";
+import isEmpty from "../cons/isEmpty";
 
 /**
  * Returns true if the specified value is equal to at least one element of the given list.
@@ -11,6 +12,6 @@ import cdr from "../cons/cdr";
  * @return {Boolean}
  */
 const contains = (a: any, L: Cons): boolean =>
-    L === null ? false : equal(car(L), a) ? true : contains(a, cdr(L));
+    isEmpty(L) ? false : equal(car(L), a) ? true : contains(a, cdr(L));
 
 export default contains;

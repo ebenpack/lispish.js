@@ -4,6 +4,8 @@ import _cdr from "./cdr";
 import _print from "./print";
 import _equal from "./equal";
 import _pair from "./pair";
+import _isEmpty from "./isEmpty";
+import _nil from "./nil";
 import compose from "../fun/compose";
 
 export const cons = _cons;
@@ -40,3 +42,5 @@ export const cddddr = compose(cdr, compose(cdr, compose(cdr, cdr)));
 export const print = _print;
 export const equal = _equal;
 export const pair = _pair;
+export const isEmpty = _isEmpty;
+export const nil = _nil;

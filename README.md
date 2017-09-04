@@ -10,7 +10,7 @@ If you are seriously considering using this library for anything even remotely i
 The basis of lisp-ish is the cons pair, which here is completely immutable. The `cons(a,b)` function returns a new cons pair composed of the `a` and `b` arguments in the car and cdr positions, respectively. car and cdr elements can be accessed with the `car(cons)` and `cdr(cons)` functions, and nested cons can be deeply accessed via a number of convenience functions (e.g. `caaar(cons)`, `cadadr(cons)`, etc.). conses can be deeply compared with the `equals(cons1, cons2)` function, and they can be converted to a formatted string with the `print(cons)` function. Also, the `pair(cons)` function can be used to determine if a given argument is a cons pair.
 
 ## list
-Lists are just nested cons pairs with the constraint that every cons's car element is a value (which can itself be a cons pair), and its cdr element is either a cons, or null (for the final element of the list). In other words, this is a simple linked list. Lists have a number of helper functions, namely:
+Lists are just nested cons pairs with the constraint that every cons's car element is a value (which can itself be a cons pair), and its cdr element is either a cons, or nil (for the final element of the list). In other words, this is a simple linked list. Lists have a number of helper functions, namely:
 * `concat(L1, L2)` - Returns a new list composed of the concatenation of L1 and L2.
 * `dequeue(L)` - Returns a new cons list with the first item removed.
 * `enqueue(val, L)` - Returns a new cons list with the given value appended to the front of the list.

@@ -4,6 +4,8 @@ import cons from "../cons/cons";
 import car from "../cons/car";
 import cdr from "../cons/cdr";
 import list from "../list/list";
+import isEmpty from "../cons/isEmpty";
+import nil from "../cons/nil";
 
 /**
  * Given two cons lists, returns a new cons list composed of
@@ -15,10 +17,10 @@ import list from "../list/list";
  * @return {Cons}
  */
 const zip = (L1: Cons, L2: Cons): Cons =>
-    L1 === null || L2 === null
-        ? null
-        : cdr(L1) === null || cdr(L2) === null
-          ? cons(cons(car(L1), car(L2)), null)
+    isEmpty(L1) || isEmpty(L2)
+        ? nil
+        : isEmpty(cdr(L1)) || isEmpty(cdr(L2))
+          ? cons(cons(car(L1), car(L2)), nil)
           : cons(cons(car(L1), car(L2)), zip(cdr(L1), cdr(L2)));
 
 export default zip;

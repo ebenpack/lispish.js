@@ -1,6 +1,7 @@
 /// <reference path="../cons.d.ts" />
 
 import cons from "../cons/cons";
+import nil from "../cons/nil";
 
 /**
  * Returns a range list from n to m.
@@ -15,18 +16,18 @@ export default (m: number, n?: number, step?: number) => {
     const abs = (n: number): number => (n < 0 ? -n : n);
     const rangeHelper = (m: number, n: number, step: number) =>
         m === n
-            ? null
+            ? nil
             : goodStep(m, n, step)
               ? cons(m, rangeHelper(m + step, n, step))
-              : cons(m, null);
+              : cons(m, nil);
 
     const goodStep = (start: number, stop: number, step: number) =>
         abs(stop - start) > abs(stop - (start + step));
 
     const stepHelper = (m: number, step: number, n?: number) =>
         typeof n === "undefined"
-            ? goodStep(0, m, step) ? rangeHelper(0, m, step) : null
-            : goodStep(m, n, step) ? rangeHelper(m, n, step) : null;
+            ? goodStep(0, m, step) ? rangeHelper(0, m, step) : nil
+            : goodStep(m, n, step) ? rangeHelper(m, n, step) : nil;
 
     return typeof step === "undefined"
         ? stepHelper(m, 1, n)

@@ -3,6 +3,8 @@
 import cons from "../cons/cons";
 import car from "../cons/car";
 import cdr from "../cons/cdr";
+import isEmpty from "../cons/isEmpty";
+import nil from "../cons/nil";
 
 /**
  * Returns a new list, which is a
@@ -12,7 +14,7 @@ import cdr from "../cons/cdr";
  */
 export default (L: Cons): Cons => {
     const helper = (L: Cons, rev: Cons): Cons =>
-        L === null ? rev : helper(cdr(L), cons(car(L), rev));
+        isEmpty(L) ? rev : helper(cdr(L), cons(car(L), rev));
 
-    return helper(L, null);
+    return helper(L, nil);
 };

@@ -4,6 +4,8 @@ import cons from "../cons/cons";
 import car from "../cons/car";
 import cdr from "../cons/cdr";
 import list from "./list";
+import isEmpty from "../cons/isEmpty";
+import nil from "../cons/nil";
 
 /**
  * Given a cons list, returns a new list with the last item removed.
@@ -11,6 +13,6 @@ import list from "./list";
  * @return {Cons}
  */
 const pop = (L: Cons): Cons =>
-    L === null || cdr(L) === null ? null : cons(car(L), pop(cdr(L)));
+    isEmpty(L) || isEmpty(cdr(L)) ? nil : cons(car(L), pop(cdr(L)));
 
 export default pop;

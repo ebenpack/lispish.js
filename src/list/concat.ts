@@ -3,6 +3,7 @@
 import cons from "../cons/cons";
 import car from "../cons/car";
 import cdr from "../cons/cdr";
+import isEmpty from "../cons/isEmpty";
 
 /**
  * Returns a new list that is the result
@@ -12,6 +13,6 @@ import cdr from "../cons/cdr";
  * @return {Cons}
  */
 const concat = (L1: Cons, L2: Cons): Cons =>
-    L1 === null ? L2 : cons(car(L1), concat(cdr(L1), L2));
+    isEmpty(L1) ? L2 : cons(car(L1), concat(cdr(L1), L2));
 
 export default concat;

@@ -3,6 +3,7 @@
 import pair from "./pair";
 import cdr from "./cdr";
 import car from "./car";
+import isEmpty from "./isEmpty";
 
 interface Options {
     prefix?: string;
@@ -27,12 +28,12 @@ const print = (c: Cons, options?: Options): string => {
         const carResult = pair(c)
             ? pair(car(c))
               ? printHelper(car(c), separator, nil)
-              : car(c) !== null ? car(c).toString() : nil
+              : !isEmpty(car(c)) ? car(c).toString() : nil
             : "";
         const cdrResult = pair(c)
             ? pair(cdr(c))
               ? printHelper(cdr(c), separator, nil)
-              : cdr(c) !== null ? cdr(c).toString() : nil
+              : !isEmpty(cdr(c)) ? cdr(c).toString() : nil
             : "";
         const newSeparator =
             carResult === "" || cdrResult === "" ? "" : separator;

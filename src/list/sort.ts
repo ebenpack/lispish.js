@@ -4,6 +4,8 @@ import cons from "../cons/cons";
 import car from "../cons/car";
 import cdr from "../cons/cdr";
 import length from "./length";
+import isEmpty from "../cons/isEmpty";
+import nil from "../cons/nil";
 
 /**
  * Given a list, returns a new, sorted list.
@@ -15,9 +17,9 @@ import length from "./length";
  */
 export default (fn: (a: any, b: any) => boolean, L: Cons): Cons => {
     const merge = (L1: Cons, L2: Cons, fn: (a: any, b: any) => boolean): Cons =>
-        L1 === null
+        isEmpty(L1)
             ? L2
-            : L2 === null
+            : isEmpty(L2)
               ? L1
               : fn(car(L1), car(L2))
                 ? cons(car(L1), merge(cdr(L1), L2, fn))
@@ -33,7 +35,7 @@ export default (fn: (a: any, b: any) => boolean, L: Cons): Cons => {
             curr < lo
                 ? splitHelper(cdr(L), lo, hi, curr + 1)
                 : curr === hi
-                  ? null
+                  ? nil
                   : cons(car(L), splitHelper(cdr(L), lo, hi, curr + 1));
         return splitHelper(L, lo, hi, 0);
     };
@@ -42,7 +44,7 @@ export default (fn: (a: any, b: any) => boolean, L: Cons): Cons => {
         fn: (a: any, b: any) => boolean,
         len: number
     ): Cons =>
-        L === null || cdr(L) === null
+        isEmpty(L) || isEmpty(cdr(L))
             ? L
             : merge(
                   msort(

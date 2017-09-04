@@ -4,6 +4,8 @@ import cons from "../cons/cons";
 import car from "../cons/car";
 import cdr from "../cons/cdr";
 import length from "./length";
+import isEmpty from "../cons/isEmpty";
+import nil from "../cons/nil";
 
 /**
  * Given a list, returns a new list 'slice'.
@@ -19,9 +21,9 @@ import length from "./length";
 export default (L: Cons, m: number, n?: number): Cons => {
     const sliceHelper = (L: Cons, m: number, n: number, current: number) =>
         current === n || m >= n
-            ? null
-            : L === null
-              ? null
+            ? nil
+            : isEmpty(L)
+              ? L
               : current >= m
                 ? cons(car(L), sliceHelper(cdr(L), m, n, current + 1))
                 : sliceHelper(cdr(L), m, n, current + 1);
