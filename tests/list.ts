@@ -231,6 +231,10 @@ suite("list", () => {
         )
       );
     });
+    test("get", () => {
+      assert.equal(get(10, null), null);
+      assert.equal(get(2, list(0, 1, 2, 3, 4, 5)), 2);
+    });
     jsc.property("reverse", "array nat", arr => {
       return equal(reverse(list(arr)), list(arr.reverse()));
     });

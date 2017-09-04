@@ -1,16 +1,19 @@
 {
   "name": "lispish.js",
   "version": "0.0.1",
-  "description": "Some lisp-like noodlings in JS, by someone who doesn't really know lisp.",
+  "description":
+    "Some lisp-like noodlings in JS, by someone who doesn't really know lisp.",
   "author": "ebenpack",
   "main": "src/main.js",
   "scripts": {
     "pretest": "tsc --lib ES6 --module commonjs tests/*.ts",
-    "test": "nyc --reporter=html mocha --ui tdd --reporter min tests",
+    "test":
+      "nyc --reporter=html --exclude=tests mocha --ui tdd --reporter min tests",
     "test:watch": "npm run test -- --watch",
     "start": "webpack --config webpack.config.js",
     "compile": "tsc --lib ES6 --module commonjs src/main.ts",
-    "clean": "find ./src -name \\*.js -delete && find ./tests -name \\*.js -delete"
+    "clean":
+      "find ./src -name \\*.js -delete && find ./tests -name \\*.js -delete"
   },
   "repository": {
     "type": "git",

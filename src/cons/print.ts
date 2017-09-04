@@ -8,6 +8,7 @@ interface Options {
   prefix?: string;
   suffix?: string;
   separator?: string;
+  nil?: string;
 }
 
 /**
@@ -22,16 +23,16 @@ interface Options {
 const print = (c: Cons, options?: Options): string => {
   const opts = options || {};
 
-  const printHelper = (c: Cons, separator: string): string => {
+  const printHelper = (c: Cons, separator: string, nil: string): string => {
     const carResult = pair(c)
       ? pair(car(c))
-        ? printHelper(car(c), separator)
-        : car(c) !== null ? car(c).toString() : ""
+        ? printHelper(car(c), separator, nil)
+        : car(c) !== null ? car(c).toString() : nil
       : "";
     const cdrResult = pair(c)
       ? pair(cdr(c))
-        ? printHelper(cdr(c), separator)
-        : cdr(c) !== null ? cdr(c).toString() : ""
+        ? printHelper(cdr(c), separator, nil)
+        : cdr(c) !== null ? cdr(c).toString() : nil
       : "";
     const newSeparator = carResult === "" || cdrResult === "" ? "" : separator;
     return (
@@ -44,7 +45,8 @@ const print = (c: Cons, options?: Options): string => {
   };
   return printHelper(
     c,
-    typeof opts.separator !== "undefined" ? opts.separator : ","
+    typeof opts.separator !== "undefined" ? opts.separator : " . ",
+    typeof opts.nil !== "undefined" ? opts.nil : "()"
   );
 };
 

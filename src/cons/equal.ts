@@ -19,11 +19,11 @@ const equal = (a: any, b: any): boolean =>
     ? false
     : // If car(a) is a pair and car(b) is not (or vice versa),
       // these cannot be equal.
-      pair(a) && pair(car(a)) !== pair(b) && pair(car(b))
+      (pair(a) && pair(car(a))) !== (pair(b) && pair(car(b)))
       ? false
       : // If cdr(a) is a pair and cdr(b) is not (or vice versa),
         // these cannot be equal.
-        pair(a) && pair(cdr(a)) !== pair(b) && pair(cdr(b))
+        (pair(a) && pair(cdr(a))) !== (pair(b) && pair(cdr(b)))
         ? false
         : // If a is a pair (which, if we have reached this point,
           // means that b must also be a pair), recurse.

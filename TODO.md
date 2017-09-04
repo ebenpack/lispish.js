@@ -14,4 +14,5 @@ find
 some
 all/every
 
-change signatures - data last
+remove null
+empty? / nil? function

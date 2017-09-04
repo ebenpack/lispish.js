@@ -78,6 +78,9 @@ suite("cons", () => {
     test("equal", () => {
       assert.ok(equal(simpleCons, cons(1, 2)));
       assert.ok(equal(doubleCons, cons(cons(1, 2), cons(3, 4))));
+      assert.ok(!equal(simpleCons, 2));
+      assert.ok(!equal(cons(cons(1, 2), cons(1, 2)), cons(1, 2)));
+      assert.ok(!equal(cons(1, cons(1, 2)), cons(1, 2)));
     });
   });
   suite("car/cdr", () => {
@@ -103,18 +106,34 @@ suite("cons", () => {
     test("print", () => {
       assert.equal(
         "<1!2>",
-        print(simpleCons, { separator: "!", prefix: "<", suffix: ">" })
+        print(simpleCons, {
+          separator: "!",
+          prefix: "<",
+          suffix: ">",
+          nil: ""
+        })
       );
       assert.equal(
         "[[1~2]~[3~4]]",
-        print(doubleCons, { separator: "~", prefix: "[", suffix: "]" })
+        print(doubleCons, {
+          separator: "~",
+          prefix: "[",
+          suffix: "]",
+          nil: ""
+        })
       );
       assert.equal(
         "1.2.3.4.5",
-        print(linkedList, { separator: ".", prefix: "", suffix: "" })
+        print(linkedList, { separator: ".", prefix: "", suffix: "", nil: "" })
       );
-      assert.equal("(1,(2,(3,(4,(5)))))", print(linkedList));
-      assert.equal("(((1),(2)),((3),(4)))", print(tree));
+      assert.equal("(1 . (2 . (3 . (4 . (5 . ())))))", print(linkedList));
+      assert.equal(
+        "(((1 . ()) . (2 . ())) . ((3 . ()) . (4 . ())))",
+        print(tree)
+      );
+      assert.equal("(1 . ())", print(cons(1, null)));
+      assert.equal("(() . 1)", print(cons(null, 1)));
+      assert.equal("()", print(null));
     });
   });
 });

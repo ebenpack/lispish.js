@@ -30,9 +30,7 @@ export default (fn: (a: any, b: any) => boolean, L: Cons): Cons => {
         : curr === hi
           ? null
           : cons(car(L), splitHelper(cdr(L), lo, hi, curr + 1));
-    return lo < hi && lo >= 0 && hi <= length(L)
-      ? splitHelper(L, lo, hi, 0)
-      : null;
+    return splitHelper(L, lo, hi, 0);
   };
   const msort = (L: Cons, fn: (a: any, b: any) => boolean, len: number): Cons =>
     L === null || cdr(L) === null

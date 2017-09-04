@@ -53,14 +53,7 @@ export default (T: Cons, name: Cons, namespace: Cons) => {
       }
     } else {
       if (T === null) {
-        if (get(car(name), T) === null) {
-          return alist(car(name), helper(null, cdr(name), namespace, fullName));
-        } else {
-          return alist(
-            car(name),
-            helper(get(car(name), T), cdr(name), namespace, fullName)
-          );
-        }
+        return alist(car(name), helper(null, cdr(name), namespace, fullName));
       } else {
         if (get(car(name), T) === null) {
           return put(
