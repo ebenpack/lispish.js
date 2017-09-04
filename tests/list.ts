@@ -79,7 +79,7 @@ suite("list", () => {
         range1 = range(1, 6);
         range2 = range(6, 15);
         range3 = range(1, 8);
-        range4 = range(30);
+        range4 = range(0, 30);
         steprange = range(11, 100, 11);
         badrange = range(0, 10, -1);
         zipped1 = list(
@@ -184,7 +184,7 @@ suite("list", () => {
             assert.equal(length(steprange), 9);
         });
         jsc.property("range", "nat", n => {
-            let r = range(n);
+            let r = range(0, n);
             return length(r) === n;
         });
         jsc.property("range", "nat & nat", n => {

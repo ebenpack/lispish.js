@@ -47,7 +47,7 @@ suite("fun", () => {
             assert.equal(c(4), 9);
         });
         test("apply", () => {
-            assert.equal(apply(variadicAdd, range(6)), 15);
+            assert.equal(apply(variadicAdd, range(0, 6)), 15);
             assert.equal(apply(variadicAdd, range(-10, 11)), 0);
             assert.equal(apply(variadicAdd, range(0, 21, 2)), 110);
         });
