@@ -32,7 +32,9 @@ import {
     cddddr,
     print,
     equal,
-    pair
+    pair,
+    isEmpty,
+    nil
 } from "../src/cons/main";
 import { assert } from "chai";
 
@@ -41,10 +43,10 @@ suite("cons", () => {
     setup(() => {
         simpleCons = cons(1, 2);
         doubleCons = cons(cons(1, 2), cons(3, 4));
-        linkedList = cons(1, cons(2, cons(3, cons(4, cons(5, null)))));
+        linkedList = cons(1, cons(2, cons(3, cons(4, cons(5, nil)))));
         tree = cons(
-            cons(cons(1, null), cons(2, null)),
-            cons(cons(3, null), cons(4, null))
+            cons(cons(1, nil), cons(2, nil)),
+            cons(cons(3, nil), cons(4, nil))
         );
     });
     suite("cons", () => {
@@ -136,9 +138,9 @@ suite("cons", () => {
                 "(((1 . ()) . (2 . ())) . ((3 . ()) . (4 . ())))",
                 print(tree)
             );
-            assert.equal("(1 . ())", print(cons(1, null)));
-            assert.equal("(() . 1)", print(cons(null, 1)));
-            assert.equal("()", print(null));
+            assert.equal("(1 . ())", print(cons(1, nil)));
+            assert.equal("(() . 1)", print(cons(nil, 1)));
+            assert.equal("()", print(nil));
         });
     });
 });

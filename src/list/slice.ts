@@ -12,7 +12,7 @@ import nil from "../cons/nil";
  * If n is not passed in, the slice will be from m to
  * the end of the original list. If n is passed in,
  * then the slice will be from m to n. Invalid slices 
- * (e.g. where m is larger than n) will return null.
+ * (e.g. where m is larger than n) will return nil.
  * @param  {Cons} L
  * @param  {integer} m
  * @param  {(integer|undefined)} n
