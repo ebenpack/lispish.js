@@ -8,7 +8,7 @@ import apply from "./apply";
  * is passed explicitly, this will be used. Otherwise, the arity of the
  * function passed in will be used.
  * @param  {Function} fn
- * @param  {integer}   arity
+ * @param  {integer}  arity
  * @return {Function}
  */
 export default (fn: (...a: any[]) => any, arity?: number) => {

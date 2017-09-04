@@ -7,8 +7,8 @@ import listMap from "../list/map";
 
 /**
  * Map over an association list.
- * @param {Function} fn
- * @param {alist} L
+ * @param  {Function} fn
+ * @param  {alist} L
  * @return {list}
  */
 const map = (fn: (key: any, val: any) => any, L: Cons): Cons =>

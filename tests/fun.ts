@@ -40,9 +40,6 @@ suite("fun", () => {
       assert.equal(c52(14), 20);
       assert.equal(c52(29), 35);
     });
-    // jsc.property("reverse", "array nat", (arr) => {
-    //     return equal(reverse(list(arr)), list(arr.reverse()));
-    // });
     test("compose", () => {
       var c = compose(addOne, mulTwo);
       assert.equal(c(2), 5);

@@ -9,8 +9,8 @@ import get from "./get";
 
 /**
  * Returns an association list with a single key-value pair.
- * @param {Cons} L1
- * @param {Cons} L2
+ * @param  {Cons} L1
+ * @param  {Cons} L2
  * @return {Cons}
  */
 export default (L1: Cons, L2: Cons): boolean =>
