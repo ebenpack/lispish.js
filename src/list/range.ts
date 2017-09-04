@@ -23,7 +23,7 @@ export default (m: number, n?: number, step?: number): Cons => {
     const goodStep = (start: number, stop: number, step: number): boolean =>
         abs(stop - start) > abs(stop - (start + step));
 
-    const stepHelper = (m: number, step: number, n: number): Cons =>
+    const stepHelper = (m: number, step: number, n?: number): Cons =>
         typeof n === "undefined"
             ? goodStep(0, m, step) ? rangeHelper(0, m, step) : nil
             : goodStep(m, n, step) ? rangeHelper(m, n, step) : nil;
