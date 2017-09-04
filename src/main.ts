@@ -31,28 +31,28 @@ import sort from "./list/sort";
 import zip from "./list/zip";
 
 export const list = {
-  concat,
-  contains,
-  dequeue,
-  enqueue,
-  every,
-  filter,
-  flatten,
-  foldl,
-  foldr,
-  get,
-  length,
-  list: _list,
-  map,
-  peek,
-  pop,
-  push,
-  range,
-  reverse,
-  slice,
-  some,
-  sort,
-  zip
+    concat,
+    contains,
+    dequeue,
+    enqueue,
+    every,
+    filter,
+    flatten,
+    foldl,
+    foldr,
+    get,
+    length,
+    list: _list,
+    map,
+    peek,
+    pop,
+    push,
+    range,
+    reverse,
+    slice,
+    some,
+    sort,
+    zip
 };
 // alist
 import _alist from "./alist/alist";
@@ -63,12 +63,12 @@ import alistPrint from "./alist/print";
 import put from "./alist/put";
 
 export const alist = {
-  alist: _alist,
-  alistMap,
-  alistPrint,
-  equal: alistEqual,
-  get: alistGet,
-  put
+    alist: _alist,
+    alistMap,
+    alistPrint,
+    equal: alistEqual,
+    get: alistGet,
+    put
 };
 
 // fun
@@ -78,16 +78,16 @@ import curry from "./fun/curry";
 import Y from "./fun/Y";
 
 export const fun = {
-  apply,
-  compose,
-  curry,
-  Y
+    apply,
+    compose,
+    curry,
+    Y
 };
 
 import getTrie from "./trie/getTrie";
 import putTrie from "./trie/putTrie";
 
 export const trie = {
-  getTrie,
-  putTrie
+    getTrie,
+    putTrie
 };

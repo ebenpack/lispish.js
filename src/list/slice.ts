@@ -17,16 +17,16 @@ import length from "./length";
  * @return {Cons}
  */
 export default (L: Cons, m: number, n?: number): Cons => {
-  const sliceHelper = (L: Cons, m: number, n: number, current: number) =>
-    current === n || m >= n
-      ? null
-      : L === null
-        ? null
-        : current >= m
-          ? cons(car(L), sliceHelper(cdr(L), m, n, current + 1))
-          : sliceHelper(cdr(L), m, n, current + 1);
+    const sliceHelper = (L: Cons, m: number, n: number, current: number) =>
+        current === n || m >= n
+            ? null
+            : L === null
+              ? null
+              : current >= m
+                ? cons(car(L), sliceHelper(cdr(L), m, n, current + 1))
+                : sliceHelper(cdr(L), m, n, current + 1);
 
-  return typeof n === "undefined"
-    ? sliceHelper(L, m, length(L), 0)
-    : sliceHelper(L, m, n, 0);
+    return typeof n === "undefined"
+        ? sliceHelper(L, m, length(L), 0)
+        : sliceHelper(L, m, n, 0);
 };

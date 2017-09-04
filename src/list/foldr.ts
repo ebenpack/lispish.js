@@ -15,8 +15,10 @@ import cdr from "../cons/cdr";
  */
 // TODO: make foldl and folr
 const foldr = (fn: (val: any, acc: any) => any, acc: any, L: Cons) =>
-  L === null
-    ? acc
-    : cdr(L) === null ? fn(car(L), acc) : fn(car(L), foldr(fn, acc, cdr(L)));
+    L === null
+        ? acc
+        : cdr(L) === null
+          ? fn(car(L), acc)
+          : fn(car(L), foldr(fn, acc, cdr(L)));
 
 export default foldr;

@@ -11,8 +11,8 @@ import cdr from "../cons/cdr";
  * @return {Cons}
  */
 export default (L: Cons): Cons => {
-  const helper = (L: Cons, rev: Cons): Cons =>
-    L === null ? rev : helper(cdr(L), cons(car(L), rev));
+    const helper = (L: Cons, rev: Cons): Cons =>
+        L === null ? rev : helper(cdr(L), cons(car(L), rev));
 
-  return helper(L, null);
+    return helper(L, null);
 };

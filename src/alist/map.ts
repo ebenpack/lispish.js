@@ -12,6 +12,6 @@ import listMap from "../list/map";
  * @return {list}
  */
 const map = (fn: (key: any, val: any) => any, L: Cons): Cons =>
-  listMap(v => cons(car(v), fn(car(v), cdr(v))), L);
+    listMap(v => cons(car(v), fn(car(v), cdr(v))), L);
 
 export default map;

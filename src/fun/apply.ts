@@ -11,11 +11,11 @@ import cdr from "../cons/cdr";
  */
 // TODO: Remove bind?
 const apply = (fn: (a: any) => any, args: Cons): any => {
-  const helper = (fn, args) =>
-    cdr(args) === null
-      ? fn(car(args))
-      : apply(fn.bind(null, car(args)), cdr(args));
-  return helper(fn, args);
+    const helper = (fn, args) =>
+        cdr(args) === null
+            ? fn(car(args))
+            : apply(fn.bind(null, car(args)), cdr(args));
+    return helper(fn, args);
 };
 
 export default apply;

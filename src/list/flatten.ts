@@ -11,10 +11,10 @@ import concat from "./concat";
  * @return {Cons}
  */
 const flatten = (L: Cons): Cons =>
-  L === null
-    ? null
-    : !pair(car(L))
-      ? cons(car(L), flatten(cdr(L)))
-      : concat(flatten(car(L)), flatten(cdr(L)));
+    L === null
+        ? null
+        : !pair(car(L))
+          ? cons(car(L), flatten(cdr(L)))
+          : concat(flatten(car(L)), flatten(cdr(L)));
 
 export default flatten;

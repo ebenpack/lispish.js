@@ -9,4 +9,4 @@ import ConsType from "./ConsType";
  * @return {Cons}
  */
 export default (car: any, cdr: any): Cons => (pick: number) =>
-  pick === 0 ? car : pick === 1 ? cdr : ConsType;
+    pick === 0 ? car : pick === 1 ? cdr : ConsType;

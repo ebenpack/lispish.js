@@ -14,14 +14,16 @@ import cdr from "../cons/cdr";
  * @return {boolean}
  */
 export default (
-  fn: (currentValue: any, idx?: number) => boolean,
-  L: Cons
-): boolean => {
-  const helper = (
     fn: (currentValue: any, idx?: number) => boolean,
-    idx: number,
     L: Cons
-  ): boolean =>
-    L === null ? true : !fn(car(L), idx) ? false : helper(fn, idx + 1, cdr(L));
-  return helper(fn, 0, L);
+): boolean => {
+    const helper = (
+        fn: (currentValue: any, idx?: number) => boolean,
+        idx: number,
+        L: Cons
+    ): boolean =>
+        L === null
+            ? true
+            : !fn(car(L), idx) ? false : helper(fn, idx + 1, cdr(L));
+    return helper(fn, 0, L);
 };

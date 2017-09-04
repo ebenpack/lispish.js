@@ -14,27 +14,27 @@ import pair from "../cons/pair";
  * @return {string}
  */
 export default (L: Cons): string => {
-  const getIndent = (n: number): string => Array(n * 4).join(" ");
+    const getIndent = (n: number): string => Array(n * 4).join(" ");
 
-  const helperOne = (L: Cons, indent: number): string =>
-    "{\n" + helper(L, "", indent + 1) + "\n" + getIndent(indent) + "}";
+    const outerWrap = (L: Cons, indent: number): string =>
+        "{\n" + helper(L, "", indent + 1) + "\n" + getIndent(indent) + "}";
 
-  const helper = (L: Cons, spacer: string, indent: number): string =>
-    L === null
-      ? ""
-      : pair(cdr(car(L)))
-        ? spacer +
-          getIndent(indent) +
-          car(car(L)) +
-          ": " +
-          helperOne(cdr(car(L)), indent) +
-          helper(cdr(L), ",\n", indent)
-        : spacer +
-          getIndent(indent) +
-          car(car(L)) +
-          ": " +
-          cdr(car(L)) +
-          helper(cdr(L), ",\n", indent);
+    const helper = (L: Cons, spacer: string, indent: number): string =>
+        L === null
+            ? ""
+            : pair(cdr(car(L)))
+              ? spacer +
+                getIndent(indent) +
+                car(car(L)) +
+                ": " +
+                outerWrap(cdr(car(L)), indent) +
+                helper(cdr(L), ",\n", indent)
+              : spacer +
+                getIndent(indent) +
+                car(car(L)) +
+                ": " +
+                cdr(car(L)) +
+                helper(cdr(L), ",\n", indent);
 
-  return helperOne(L, 0);
+    return outerWrap(L, 0);
 };

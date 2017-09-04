@@ -10,6 +10,6 @@ import cdr from "../cons/cdr";
  * @return {*}
  */
 const peek = (L: Cons): any =>
-  L === null ? L : cdr(L) === null ? car(L) : peek(cdr(L));
+    L === null ? L : cdr(L) === null ? car(L) : peek(cdr(L));
 
 export default peek;

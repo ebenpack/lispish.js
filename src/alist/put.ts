@@ -16,11 +16,11 @@ import get from "./get";
  * @return {Cons}
  */
 export default (key: any, value: any, L: Cons): Cons => {
-  const helper = (L: Cons, key: any, value: any): Cons =>
-    car(car(L)) === key
-      ? cons(cons(key, value), cdr(L))
-      : cons(car(L), helper(cdr(L), key, value));
-  return get(key, L) === null
-    ? cons(cons(key, value), L)
-    : helper(L, key, value);
+    const helper = (L: Cons, key: any, value: any): Cons =>
+        car(car(L)) === key
+            ? cons(cons(key, value), cdr(L))
+            : cons(car(L), helper(cdr(L), key, value));
+    return get(key, L) === null
+        ? cons(cons(key, value), L)
+        : helper(L, key, value);
 };

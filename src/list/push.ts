@@ -13,10 +13,10 @@ import list from "./list";
  * @return {Cons}
  */
 const push = (val: any, L: Cons): Cons =>
-  L === null
-    ? cons(val, null)
-    : cdr(L) === null
-      ? cons(car(L), cons(val, null))
-      : cons(car(L), push(val, cdr(L)));
+    L === null
+        ? cons(val, null)
+        : cdr(L) === null
+          ? cons(car(L), cons(val, null))
+          : cons(car(L), push(val, cdr(L)));
 
 export default push;

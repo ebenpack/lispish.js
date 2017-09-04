@@ -11,6 +11,6 @@ import cdr from "../cons/cdr";
  * @return {Boolean}
  */
 const contains = (a: any, L: Cons): boolean =>
-  L === null ? false : equal(car(L), a) ? true : contains(a, cdr(L));
+    L === null ? false : equal(car(L), a) ? true : contains(a, cdr(L));
 
 export default contains;

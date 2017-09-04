@@ -12,6 +12,6 @@ import cdr from "../cons/cdr";
  * @return {Cons}
  */
 const concat = (L1: Cons, L2: Cons): Cons =>
-  L1 === null ? L2 : cons(car(L1), concat(cdr(L1), L2));
+    L1 === null ? L2 : cons(car(L1), concat(cdr(L1), L2));
 
 export default concat;

@@ -15,10 +15,10 @@ import list from "../list/list";
  * @return {Cons}
  */
 const zip = (L1: Cons, L2: Cons): Cons =>
-  L1 === null || L2 === null
-    ? null
-    : cdr(L1) === null || cdr(L2) === null
-      ? cons(cons(car(L1), car(L2)), null)
-      : cons(cons(car(L1), car(L2)), zip(cdr(L1), cdr(L2)));
+    L1 === null || L2 === null
+        ? null
+        : cdr(L1) === null || cdr(L2) === null
+          ? cons(cons(car(L1), car(L2)), null)
+          : cons(cons(car(L1), car(L2)), zip(cdr(L1), cdr(L2)));
 
 export default zip;

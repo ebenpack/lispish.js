@@ -12,10 +12,10 @@ import cdr from "../cons/cdr";
  * @return {Cons}
  */
 const map = (fn: (currentValue: any) => any, L: Cons): Cons =>
-  L === null
-    ? L
-    : cdr(L) === null
-      ? cons(fn(car(L)), null)
-      : cons(fn(car(L)), map(fn, cdr(L)));
+    L === null
+        ? L
+        : cdr(L) === null
+          ? cons(fn(car(L)), null)
+          : cons(fn(car(L)), map(fn, cdr(L)));
 
 export default map;

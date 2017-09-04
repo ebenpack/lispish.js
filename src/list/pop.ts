@@ -11,6 +11,6 @@ import list from "./list";
  * @return {Cons}
  */
 const pop = (L: Cons): Cons =>
-  L === null || cdr(L) === null ? null : cons(car(L), pop(cdr(L)));
+    L === null || cdr(L) === null ? null : cons(car(L), pop(cdr(L)));
 
 export default pop;

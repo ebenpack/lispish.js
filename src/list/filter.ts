@@ -14,10 +14,10 @@ import cdr from "../cons/cdr";
  * @return {Cons}
  */
 const filter = (fn: (currentValue: any) => boolean, L: Cons): Cons =>
-  L === null
-    ? L
-    : cdr(L) === null
-      ? fn(car(L)) ? cons(car(L), null) : null
-      : fn(car(L)) ? cons(car(L), filter(fn, cdr(L))) : filter(fn, cdr(L));
+    L === null
+        ? L
+        : cdr(L) === null
+          ? fn(car(L)) ? cons(car(L), null) : null
+          : fn(car(L)) ? cons(car(L), filter(fn, cdr(L))) : filter(fn, cdr(L));
 
 export default filter;

@@ -11,6 +11,6 @@ import cdr from "../cons/cdr";
  * @return {boolean}
  */
 const get = (idx: number, L: Cons): any =>
-  L === null ? null : idx === 0 ? car(L) : get(idx - 1, cdr(L));
+    L === null ? null : idx === 0 ? car(L) : get(idx - 1, cdr(L));
 
 export default get;

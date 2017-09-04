@@ -12,11 +12,11 @@ import apply from "./apply";
  * @return {Function}
  */
 export default (fn: (...a: any[]) => any, arity?: number) => {
-  const helper = (fn: (...a: any[]) => any, arity: number, args: Cons): any =>
-    arity === 0
-      ? apply(fn, args)
-      : arg => helper(fn, arity - 1, cons(arg, args));
-  return typeof arity === "undefined"
-    ? helper(fn, fn.length, null)
-    : helper(fn, arity, null);
+    const helper = (fn: (...a: any[]) => any, arity: number, args: Cons): any =>
+        arity === 0
+            ? apply(fn, args)
+            : arg => helper(fn, arity - 1, cons(arg, args));
+    return typeof arity === "undefined"
+        ? helper(fn, fn.length, null)
+        : helper(fn, arity, null);
 };

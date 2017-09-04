@@ -7,4 +7,4 @@ import ConsType from "./ConsType";
  */
 
 export default (c: any): boolean =>
-  typeof c === "function" && c(3) === ConsType;
+    typeof c === "function" && c(3) === ConsType;

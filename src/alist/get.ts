@@ -13,6 +13,8 @@ import equal from "../cons/equal";
  * @return {Cons}
  */
 const get = (key: any, L: Cons): any =>
-  L === null ? null : equal(car(car(L)), key) ? cdr(car(L)) : get(key, cdr(L));
+    L === null
+        ? null
+        : equal(car(car(L)), key) ? cdr(car(L)) : get(key, cdr(L));
 
 export default get;
