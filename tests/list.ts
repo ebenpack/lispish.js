@@ -184,8 +184,9 @@ suite("list", () => {
             assert.equal(length(steprange), 9);
         });
         jsc.property("range", "nat", n => {
-            let r = range(0, n);
-            return length(r) === n;
+            const r1 = range(0, n);
+            const r2 = range(n);
+            return length(r1) === n && length(r2) === n && equal(r1, r2);
         });
         jsc.property("range", "nat & nat", n => {
             let [n1, n2] = n;
