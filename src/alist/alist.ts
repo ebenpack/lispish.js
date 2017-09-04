@@ -7,6 +7,6 @@ import cons from "../cons/cons";
  * Returns an association list with a single key-value pair.
  * @param {*} key
  * @param {*} value
- * @return {cons}
+ * @return {Cons}
  */
 export default (key: any, value: any): Cons => list(cons(key, value));

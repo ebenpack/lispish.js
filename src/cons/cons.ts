@@ -6,7 +6,7 @@ import ConsType from "./ConsType";
  * of a and b
  * @param  {*} car
  * @param  {*} cdr
- * @return {cons}
+ * @return {Cons}
  */
 export default (car: any, cdr: any): Cons => (pick: number) =>
   pick === 0 ? car : pick === 1 ? cdr : ConsType;

@@ -10,7 +10,7 @@ import cdr from "../cons/cdr";
  * The callback function is passed the current value
  * and the current index in the list.
  * @param  {Function} fn
- * @param  {cons} L
+ * @param  {Cons} L
  * @return {boolean}
  */
 export default (

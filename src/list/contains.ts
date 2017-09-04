@@ -7,7 +7,7 @@ import cdr from "../cons/cdr";
 /**
  * Returns true if the specified value is equal to at least one element of the given list.
  * @param  {*} a
- * @param  {cons} L
+ * @param  {Cons} L
  * @return {Boolean}
  */
 const contains = (a: any, L: Cons): boolean =>

@@ -7,8 +7,8 @@ import list from "./list";
 
 /**
  * Given a cons list, returns a new list with the last item removed.
- * @param  {cons} L
- * @return {cons}
+ * @param  {Cons} L
+ * @return {Cons}
  */
 const pop = (L: Cons): Cons =>
   L === null || cdr(L) === null ? null : cons(car(L), pop(cdr(L)));

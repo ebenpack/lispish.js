@@ -7,9 +7,9 @@ import cdr from "../cons/cdr";
 /**
  * Returns a new list that is the result
  * of concatenating L2 onto the end of L1;
- * @param  {cons} L1
- * @param  {cons} L2
- * @return {cons}
+ * @param  {Cons} L1
+ * @param  {Cons} L2
+ * @return {Cons}
  */
 const concat = (L1: Cons, L2: Cons): Cons =>
   L1 === null ? L2 : cons(car(L1), concat(cdr(L1), L2));

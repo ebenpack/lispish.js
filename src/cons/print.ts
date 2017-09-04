@@ -15,7 +15,7 @@ interface Options {
  * Returns a string representation of a cons.
  * cons prefix, suffix, and separator can all
  * optionally be defined by the user.
- * @param  {cons} c    cons to be printed
+ * @param  {Cons} c    cons to be printed
  * @param  {(Object|undefined)} options Optional options object
  * @return {string}      String representation of the given cons
  */

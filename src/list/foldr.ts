@@ -10,8 +10,8 @@ import cdr from "../cons/cdr";
  * to reduce it to a single value.
  * @param  {Function} fn
  * @param  {*}   acc
- * @param  {cons} L
- * @return {cons}
+ * @param  {Cons} L
+ * @return {Cons}
  */
 // TODO: make foldl and folr
 const foldr = (fn: (val: any, acc: any) => any, acc: any, L: Cons) =>

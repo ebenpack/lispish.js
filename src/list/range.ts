@@ -9,7 +9,7 @@ import cons from "../cons/cons";
  * @param  {(integer|undefined)} m If passed, the end of the range (exlusive).
  * @param {(integer|undefined)} step steps to take between each item in the range.
  * Defaults to 1.
- * @return {cons} List from n to m.
+ * @return {Cons} List from n to m.
  */
 export default (m: number, n?: number, step?: number) => {
   const abs = (n: number): number => (n < 0 ? -n : n);

@@ -8,7 +8,7 @@ import concat from "./concat";
 
 /**
  * Flatten a list.
- * @return {cons}
+ * @return {Cons}
  */
 const flatten = (L: Cons): Cons =>
   L === null

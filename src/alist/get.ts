@@ -9,8 +9,8 @@ import equal from "../cons/equal";
  * which has a key matching that passed in.
  * Returns false if no match is found.
  * @param  {*} key
- * @param  {cons} L
- * @return {cons}
+ * @param  {Cons} L
+ * @return {Cons}
  */
 const get = (key: any, L: Cons): any =>
   L === null ? null : equal(car(car(L)), key) ? cdr(car(L)) : get(key, cdr(L));

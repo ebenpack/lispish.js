@@ -12,8 +12,8 @@ import get from "./get";
  * the key-value pair will be added.
  * @param  {*} key
  * @param  {*} value
- * @param  {cons} L
- * @return {cons}
+ * @param  {Cons} L
+ * @return {Cons}
  */
 export default (key: any, value: any, L: Cons): Cons => {
   const helper = (L: Cons, key: any, value: any): Cons =>

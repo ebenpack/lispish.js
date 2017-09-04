@@ -11,7 +11,7 @@ import get from "./get";
  * Returns an association list with a single key-value pair.
  * @param {Cons} L1
  * @param {Cons} L2
- * @return {cons}
+ * @return {Cons}
  */
 export default (L1: Cons, L2: Cons): boolean =>
   every(val => pair(val) && consEqual(get(car(val), L2), cdr(val)), L1) &&

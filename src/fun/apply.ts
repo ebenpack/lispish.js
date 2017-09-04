@@ -6,7 +6,7 @@ import cdr from "../cons/cdr";
 /**
  * Call the given function with the list of arguments supplied.
  * @param  {Function} fn
- * @param  {cons}   args
+ * @param  {Cons}   args
  * @return {*}
  */
 // TODO: Remove bind?

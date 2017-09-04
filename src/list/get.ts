@@ -7,7 +7,7 @@ import cdr from "../cons/cdr";
  * Returns the value at the given index, or null if the index exceeds the
  * length of the list.
  * @param  {number} idx
- * @param  {cons} L
+ * @param  {Cons} L
  * @return {boolean}
  */
 const get = (idx: number, L: Cons): any =>

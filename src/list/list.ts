@@ -5,7 +5,7 @@ import args from "../helpers/args";
 
 /**
  * Returns a cons list constructed from the given parameters.
- * @return {cons}
+ * @return {Cons}
  */
 export default (...outerArgs: any[]): Cons => {
   const helper = (args: any[]): Cons =>

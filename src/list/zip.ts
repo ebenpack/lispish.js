@@ -10,9 +10,9 @@ import list from "../list/list";
  * cons pairs consisting of positionally determined elements
  * from each of the given lists. The resulting list will only contain
  * as many elements as contained in the shorter of the two lists.
- * @param  {cons} L1
- * @param  {cons} L2
- * @return {cons}
+ * @param  {Cons} L1
+ * @param  {Cons} L2
+ * @return {Cons}
  */
 const zip = (L1: Cons, L2: Cons): Cons =>
   L1 === null || L2 === null

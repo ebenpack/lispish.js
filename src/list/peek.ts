@@ -6,7 +6,7 @@ import cdr from "../cons/cdr";
 
 /**
  * Returns the value of the last item in a cons list.
- * @param  {cons} L
+ * @param  {Cons} L
  * @return {*}
  */
 const peek = (L: Cons): any =>

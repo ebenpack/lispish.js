@@ -10,7 +10,7 @@ import pair from "../cons/pair";
  * assumptions are made about the given list.
  * Namely, that the values are either primitives or
  * nested association lists.
- * @param  {cons} L
+ * @param  {Cons} L
  * @return {string}
  */
 export default (L: Cons): string => {

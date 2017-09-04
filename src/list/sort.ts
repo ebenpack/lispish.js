@@ -10,8 +10,8 @@ import length from "./length";
  * Optionally, a custom comparison function can be passed.
  * By default, ascending sort if performed.
  * @param  {Function} fn
- * @param  {cons} L
- * @return {cons}
+ * @param  {Cons} L
+ * @return {Cons}
  */
 export default (fn: (a: any, b: any) => boolean, L: Cons): Cons => {
   const merge = (L1: Cons, L2: Cons, fn: (a: any, b: any) => boolean): Cons =>

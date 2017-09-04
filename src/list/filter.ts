@@ -10,8 +10,8 @@ import cdr from "../cons/cdr";
  * called passing the value of each item in the list in turn,
  * evaluated to true.
  * @param  {Function} fn
- * @param  {cons} L
- * @return {cons}
+ * @param  {Cons} L
+ * @return {Cons}
  */
 const filter = (fn: (currentValue: any) => boolean, L: Cons): Cons =>
   L === null

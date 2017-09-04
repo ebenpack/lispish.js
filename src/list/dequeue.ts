@@ -7,7 +7,7 @@ import cdr from "../cons/cdr";
 /**
  * Given a cons list, returns a new cons list
  * with the first item removed
- * @param  {cons} L
- * @return {cons}
+ * @param  {Cons} L
+ * @return {Cons}
  */
-export default (L: Cons): Cons => L === null ? null : cdr(L);
+export default (L: Cons): Cons => (L === null ? null : cdr(L));

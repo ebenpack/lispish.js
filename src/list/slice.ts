@@ -11,10 +11,10 @@ import length from "./length";
  * the end of the original list. If n is passed in,
  * then the slice will be from m to n. Invalid slices 
  * (e.g. where m is larger than n) will return null.
- * @param  {cons} L
+ * @param  {Cons} L
  * @param  {integer} m
  * @param  {(integer|undefined)} n
- * @return {cons}
+ * @return {Cons}
  */
 export default (L: Cons, m: number, n?: number): Cons => {
   const sliceHelper = (L: Cons, m: number, n: number, current: number) =>
