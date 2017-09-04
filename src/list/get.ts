@@ -6,11 +6,11 @@ import cdr from "../cons/cdr";
 /**
  * Returns the value at the given index, or null if the index exceeds the
  * length of the list.
- * @param  {cons} L
  * @param  {number} idx
+ * @param  {cons} L
  * @return {boolean}
  */
-const get = (L: Cons, idx: number): any =>
-  L === null ? null : idx === 0 ? car(L) : get(cdr(L), idx - 1);
+const get = (idx: number, L: Cons): any =>
+  L === null ? null : idx === 0 ? car(L) : get(idx - 1, cdr(L));
 
 export default get;

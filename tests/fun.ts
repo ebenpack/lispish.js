@@ -20,9 +20,8 @@ suite("fun", () => {
   let fiveAdd = (a, b, c, d, e) => a + b + c + d + e;
   var sixAdd, fourMul, sixMin, variadicAdd, fact, fib;
   setup(() => {
-    variadicAdd = (...args) => {
-      return foldl(list(argsHelper(args)), (acc, val) => acc + val, 0);
-    };
+    variadicAdd = (...args) =>
+      foldl((acc, val) => acc + val, 0, list(argsHelper(args)));
     fact = Y(fac => n => (n <= 2 ? n : n * fac(n - 1)));
     fib = Y(fibo => n => (n <= 1 ? n : fibo(n - 1) + fibo(n - 2)));
   });

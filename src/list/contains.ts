@@ -6,11 +6,11 @@ import cdr from "../cons/cdr";
 
 /**
  * Returns true if the specified value is equal to at least one element of the given list.
- * @param  {cons} L
  * @param  {*} a
+ * @param  {cons} L
  * @return {Boolean}
  */
-const contains = (L: Cons, a: any): boolean =>
-  L === null ? false : equal(car(L), a) ? true : contains(cdr(L), a);
+const contains = (a: any, L: Cons): boolean =>
+  L === null ? false : equal(car(L), a) ? true : contains(a, cdr(L));
 
 export default contains;

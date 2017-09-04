@@ -7,11 +7,11 @@ import listMap from "../list/map";
 
 /**
  * Map over an association list.
- * @param {alist} L
  * @param {Function} fn
+ * @param {alist} L
  * @return {list}
  */
-const map = (L: Cons, fn: (key: any, val: any) => any): Cons =>
-  listMap(L, v => cons(car(v), fn(car(v), cdr(v))));
+const map = (fn: (key: any, val: any) => any, L: Cons): Cons =>
+  listMap(v => cons(car(v), fn(car(v), cdr(v))), L);
 
 export default map;

@@ -14,5 +14,5 @@ import get from "./get";
  * @return {cons}
  */
 export default (L1: Cons, L2: Cons): boolean =>
-  every(L1, val => pair(val) && consEqual(get(L2, car(val)), cdr(val))) &&
-  every(L2, val => pair(val) && consEqual(get(L1, car(val)), cdr(val)));
+  every(val => pair(val) && consEqual(get(car(val), L2), cdr(val)), L1) &&
+  every(val => pair(val) && consEqual(get(car(val), L1), cdr(val)), L2);

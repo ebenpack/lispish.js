@@ -7,15 +7,15 @@ import cdr from "../cons/cdr";
 /**
  * Returns a new cons list with the results of calling the provided
  * function on every element.
- * @param  {cons} L  cons list to be mapped
  * @param  {Function} fn callback function
+ * @param  {cons} L  cons list to be mapped
  * @return {cons}
  */
-const map = (L: Cons, fn: (currentValue: any) => any): Cons =>
+const map = (fn: (currentValue: any) => any, L: Cons): Cons =>
   L === null
     ? L
     : cdr(L) === null
       ? cons(fn(car(L)), null)
-      : cons(fn(car(L)), map(cdr(L), fn));
+      : cons(fn(car(L)), map(fn, cdr(L)));
 
 export default map;

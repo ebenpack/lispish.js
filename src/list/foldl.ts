@@ -8,14 +8,14 @@ import cdr from "../cons/cdr";
  * Applies the given callback function against an accumulator
  * and each value of the cons list (from left-to-right) in order
  * to reduce it to a single value.
- * @param  {cons} L
  * @param  {Function} fn
  * @param  {*}   acc
+ * @param  {cons} L
  * @return {cons}
  */
-const foldl = (L: Cons, fn: (acc: any, val: any) => any, acc: any) =>
+const foldl = (fn: (acc: any, val: any) => any, acc: any, L: Cons) =>
   L === null
     ? acc
-    : cdr(L) === null ? fn(acc, car(L)) : foldl(cdr(L), fn, fn(acc, car(L)));
+    : cdr(L) === null ? fn(acc, car(L)) : foldl(fn, fn(acc, car(L)), cdr(L));
 
 export default foldl;

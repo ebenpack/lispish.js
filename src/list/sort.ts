@@ -9,11 +9,11 @@ import length from "./length";
  * Given a list, returns a new, sorted list.
  * Optionally, a custom comparison function can be passed.
  * By default, ascending sort if performed.
- * @param  {cons} L
  * @param  {Function} fn
+ * @param  {cons} L
  * @return {cons}
  */
-export default (L: Cons, fn?: (a: any, b: any) => boolean): Cons => {
+export default (fn: (a: any, b: any) => boolean, L: Cons): Cons => {
   const merge = (L1: Cons, L2: Cons, fn: (a: any, b: any) => boolean): Cons =>
     L1 === null
       ? L2
@@ -46,7 +46,5 @@ export default (L: Cons, fn?: (a: any, b: any) => boolean): Cons => {
           ),
           fn
         );
-  return typeof fn === "undefined"
-    ? msort(L, (a, b) => a < b, length(L))
-    : msort(L, fn, length(L));
+  return msort(L, fn, length(L));
 };

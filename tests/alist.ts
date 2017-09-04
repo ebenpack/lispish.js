@@ -23,37 +23,37 @@ suite("alist", () => {
       ["ping", "pong"]
     ];
     testAList = KVPs.reduce(
-      (acc, val) => put(acc, val[0], val[1]),
+      (acc, val) => put(val[0], val[1], acc),
       alist("thunk", "thud")
     );
     testAListUpper = KVPs.reduce(
-      (acc, val) => put(acc, val[0], val[1].toUpperCase()),
+      (acc, val) => put(val[0], val[1].toUpperCase(), acc),
       alist("thunk", "THUD")
     );
   });
   suite("get", () => {
     test("get", () => {
-      assert.ok(get(alist("foo", "bar"), "foo") === "bar");
-      assert.ok(get(put(alist("foo", "bar"), "foo", "baz"), "foo") === "baz");
-      assert.ok(get(put(alist("foo", "bar"), "baz", "qux"), "foo") === "bar");
-      assert.ok(get(put(alist("foo", "bar"), "baz", "qux"), "baz") === "qux");
-      assert.ok(get(put(alist("foo", "bar"), "baz", "qux"), "quux") === null);
+      assert.ok(get("foo", alist("foo", "bar")) === "bar");
+      assert.ok(get("foo", put("foo", "baz", alist("foo", "bar"))) === "baz");
+      assert.ok(get("foo", put("baz", "qux", alist("foo", "bar"))) === "bar");
+      assert.ok(get("baz", put("baz", "qux", alist("foo", "bar"))) === "qux");
+      assert.ok(get("quux", put("baz", "qux", alist("foo", "bar"))) === null);
     });
   });
   suite("put", () => {
     test("put", () => {
       assert.ok(
-        get(put(testAList, "waldo", "jeffries"), "waldo") === "jeffries"
+        get("waldo", put("waldo", "jeffries", testAList)) === "jeffries"
       );
     });
   });
   suite("map", () => {
     test("map", () => {
       assert.ok(
-        consEqual(map(testAList, (k, v) => v.toUpperCase()), testAListUpper)
+        consEqual(map((k, v) => v.toUpperCase(), testAList), testAListUpper)
       );
       assert.ok(
-        equal(map(testAList, (k, v) => v.toUpperCase()), testAListUpper)
+        equal(map((k, v) => v.toUpperCase(), testAList), testAListUpper)
       );
     });
   });

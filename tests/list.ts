@@ -66,7 +66,8 @@ suite("list", () => {
     range3,
     range4,
     badrange,
-    steprange;
+    steprange,
+    sortFn;
   setup(() => {
     linkedList = list(1, 2, 3, 4, 5);
     linkedList2 = list(6, 7, 8, 9, 10);
@@ -101,12 +102,12 @@ suite("list", () => {
     linkedListP2 = list(1, 2, 3, 4, 5, 6, 7);
     linkedListE1 = list(8, 1, 2, 3, 4, 5);
     linkedListE2 = list(9, 8, 1, 2, 3, 4, 5);
-    pushed1 = push(linkedList, 6);
-    pushed2 = push(pushed1, 7);
+    pushed1 = push(6, linkedList);
+    pushed2 = push(7, pushed1);
     popped1 = pop(pushed2);
     popped2 = pop(popped1);
-    enqueue1 = enqueue(linkedList, 8);
-    enqueue2 = enqueue(enqueue1, 9);
+    enqueue1 = enqueue(8, linkedList);
+    enqueue2 = enqueue(9, enqueue1);
     dequeue1 = dequeue(enqueue2);
     dequeue2 = dequeue(dequeue1);
     zip1 = zip(linkedList2, linkedList5);
@@ -114,19 +115,20 @@ suite("list", () => {
     zip3 = zip(linkedList5, linkedList3);
     popped1 = pop(pushed2);
     popped2 = pop(popped1);
-    filtered = filter(linkedList, n => n % 2 === 0);
-    emptyFiltered = filter(linkedList, () => {
+    filtered = filter(n => n % 2 === 0, linkedList);
+    emptyFiltered = filter(() => {
       return false;
-    });
-    addMapped = map(linkedList, n => n + 10);
-    mulMapped = map(linkedList, n => n * 10);
-    reduceAdd = foldl(linkedList, (a, b) => a + b, 0);
-    reduceMul = foldl(linkedList, (a, b) => a * b, 1);
+    }, linkedList);
+    addMapped = map(n => n + 10, linkedList);
+    mulMapped = map(n => n * 10, linkedList);
+    reduceAdd = foldl((a, b) => a + b, 0, linkedList);
+    reduceMul = foldl((a, b) => a * b, 1, linkedList);
     consList = cons(1, cons(2, cons(3, cons(4, cons(5, null)))));
     addMappedCons = cons(11, cons(12, cons(13, cons(14, cons(15, null)))));
     mulMappedCons = cons(10, cons(20, cons(30, cons(40, cons(50, null)))));
     filteredCons = cons(2, cons(4, null));
     emptyFilteredCons = cons(null, null);
+    sortFn = (a, b) => a <= b;
   });
   suite("list", () => {
     test("list", () => {
@@ -188,7 +190,7 @@ suite("list", () => {
     jsc.property("range", "nat & nat & nat", n => {
       let [n1, n2, n3] = n;
       let r = range(n1, n2, n3);
-      return every(r, v => (v - n1) % n3 === 0);
+      return every(v => (v - n1) % n3 === 0, r);
     });
     test("reverse", () => {
       assert.ok(equal(reverse(linkedList), range(5, 0, -1)));
@@ -263,57 +265,56 @@ suite("list", () => {
       return equal(concat(list(a1), list(a2)), list(a1.concat(a2)));
     });
     test("some", () => {
-      assert.ok(some(linkedList4, (curr, idx) => curr % 2 === 0));
-      assert.ok(!some(null, (curr, idx) => curr % 2 === 0));
-      assert.ok(some(range(1, 12, 2), (curr, idx) => curr % 2 !== 0));
-      assert.ok(!some(range(-20, 0), (curr, idx) => curr >= 0));
-      assert.ok(some(range(-20, 1), (curr, idx) => curr >= 0));
+      assert.ok(some((curr, idx) => curr % 2 === 0, linkedList4));
+      assert.ok(!some((curr, idx) => curr % 2 === 0, null));
+      assert.ok(some((curr, idx) => curr % 2 !== 0, range(1, 12, 2)));
+      assert.ok(!some((curr, idx) => curr >= 0, range(-20, 0)));
+      assert.ok(some((curr, idx) => curr >= 0, range(-20, 1)));
     });
     jsc.property("some", "array nat", arr => {
       return (
-        some(list(arr), a => a >= 30) === arr.some(a => a >= 30) &&
-        some(list(arr), a => a < 30) === arr.some(a => a < 30)
+        some(a => a >= 30, list(arr)) === arr.some(a => a >= 30) &&
+        some(a => a < 30, list(arr)) === arr.some(a => a < 30)
       );
     });
     test("every", () => {
-      assert.ok(every(range(2, 20, 2), (curr, idx) => curr % 2 === 0));
-      assert.ok(every(null, (curr, idx) => curr % 2 === 0));
-      assert.ok(every(range(-20, 0), (curr, idx) => curr < 0));
-      assert.ok(!every(range(-20, 1), (curr, idx) => curr < 0));
+      assert.ok(every((curr, idx) => curr % 2 === 0, range(2, 20, 2)));
+      assert.ok(every((curr, idx) => curr % 2 === 0, null));
+      assert.ok(every((curr, idx) => curr < 0, range(-20, 0)));
+      assert.ok(!every((curr, idx) => curr < 0, range(-20, 1)));
     });
     jsc.property("every", "array nat", arr => {
       return (
-        every(list(arr), a => a <= 40) === arr.every(a => a <= 40) &&
-        every(list(arr), a => a > 40) === arr.every(a => a > 40)
+        every(a => a <= 40, list(arr)) === arr.every(a => a <= 40) &&
+        every(a => a > 40, list(arr)) === arr.every(a => a > 40)
       );
     });
     test("map", () => {
       assert.ok(equal(addMapped, addMappedCons));
       assert.ok(equal(mulMapped, mulMappedCons));
-      assert.equal(map(list(), curr => curr * 2), null);
+      assert.equal(map(curr => curr * 2, list()), null);
     });
     jsc.property("map", "array nat", arr => {
-      return equal(map(list(arr), a => a * 2), list(arr.map(a => a * 2)));
+      return equal(map(a => a * 2, list(arr)), list(arr.map(a => a * 2)));
     });
     test("filter", () => {
       assert.ok(equal(filtered, filteredCons));
       assert.equal(emptyFiltered, null);
-      assert.equal(map(list(), curr => curr % 2 === 0), null);
     });
     jsc.property("filter", "array nat", arr => {
       return equal(
-        filter(list(arr), a => a % 2 === 0),
+        filter(a => a % 2 === 0, list(arr)),
         list(arr.filter(a => a % 2 === 0))
       );
     });
     test("foldl", () => {
       assert.equal(reduceAdd, 15);
       assert.equal(reduceMul, 120);
-      assert.equal(foldl(list(), (a, b) => a + b, 0), 0);
+      assert.equal(foldl((a, b) => a + b, 0, list()), 0);
     });
     jsc.property("reduce", "array nat", arr => {
       return (
-        foldl(list(arr), (acc, curr) => acc + curr, 0) ===
+        foldl((acc, curr) => acc + curr, 0, list(arr)) ===
         arr.reduce((acc, curr) => acc + curr, 0)
       );
     });
@@ -333,7 +334,7 @@ suite("list", () => {
     jsc.property("push", "array nat & nat", args => {
       const [arr, n] = args;
       const L = list(arr);
-      return peek(push(L, n)) === n;
+      return peek(push(n, L)) === n;
     });
     test("pop", () => {
       assert.ok(equal(linkedListP1, popped1));
@@ -348,7 +349,7 @@ suite("list", () => {
     });
     jsc.property("enqueue", "array nat & nat", args => {
       const [arr, n] = args;
-      return equal(enqueue(list(arr), n), list([n].concat(arr)));
+      return equal(enqueue(n, list(arr)), list([n].concat(arr)));
     });
     test("dequeue", () => {
       assert.ok(equal(linkedListE1, dequeue1));
@@ -359,36 +360,42 @@ suite("list", () => {
     });
     test("sort", () => {
       assert.ok(
-        equal(sort(list(9, 8, 7, 6, 5, 4, 3)), sort(list(6, 8, 4, 7, 5, 9, 3)))
+        equal(
+          sort(sortFn, list(9, 8, 7, 6, 5, 4, 3)),
+          sort(sortFn, list(6, 8, 4, 7, 5, 9, 3))
+        )
       );
-      assert.ok(equal(sort(list(9, 8, 7, 6, 5, 4, 3)), range(3, 10)));
+      assert.ok(equal(sort(sortFn, list(9, 8, 7, 6, 5, 4, 3)), range(3, 10)));
       assert.ok(
-        equal(sort(list(3, 4, 5, 6, 7, 8, 9), (a, b) => a > b), range(9, 2, -1))
+        equal(
+          sort((a, b) => a >= b, list(3, 4, 5, 6, 7, 8, 9)),
+          range(9, 2, -1)
+        )
       );
-      assert.ok(equal(sort(list()), null));
+      assert.ok(equal(sort(sortFn, list()), null));
     });
     jsc.property("sort", "array nat", arr => {
       return equal(
-        sort(list(arr)),
+        sort((a, b) => a <= b, list(arr)),
         list(arr.sort((a, b) => (a < b ? -1 : a === b ? 0 : 1)))
       );
     });
     test("contains", () => {
-      assert.ok(contains(linkedList, 5));
-      assert.ok(!contains(linkedList, 6));
-      assert.ok(contains(zipped1, cons(10, 55)));
+      assert.ok(contains(5, linkedList));
+      assert.ok(!contains(6, linkedList));
+      assert.ok(contains(cons(10, 55), zipped1));
       assert.ok(
-        contains(list(1, 2, 3, list(list(1, 2), 5), 4), list(list(1, 2), 5))
+        contains(list(list(1, 2), 5), list(1, 2, 3, list(list(1, 2), 5), 4))
       );
       assert.ok(
-        !contains(list(1, 2, 3, list(list(1, 2), 5), 4), list(list(1, 3), 5))
+        !contains(list(list(1, 3), 5), list(1, 2, 3, list(list(1, 2), 5), 4))
       );
     });
     jsc.property("contains", "array nat", arr => {
       const val = arr[jsc.random(0, arr.length)];
       return (
-        contains(list(arr), "f") === (arr.indexOf("f") !== -1) &&
-        contains(list(arr), val) === (arr.indexOf(val) !== -1)
+        contains("f", list(arr)) === (arr.indexOf("f") !== -1) &&
+        contains(val, list(arr)) === (arr.indexOf(val) !== -1)
       );
     });
     jsc.property("zip", "array nat & array nat", args => {
@@ -397,8 +404,9 @@ suite("list", () => {
       const zipped = zip(L1, L2);
       return (
         length(zipped) === Math.min(length(L1), length(L2)) &&
-        every(zipped, (val, idx) =>
-          equal(val, cons(get(L1, idx), get(L2, idx)))
+        every(
+          (val, idx) => equal(val, cons(get(idx, L1), get(idx, L2))),
+          zipped
         )
       );
     });

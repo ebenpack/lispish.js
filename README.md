@@ -13,21 +13,21 @@ The basis of lisp-ish is the cons pair, which here is completely immutable. The 
 Lists are just nested cons pairs with the constraint that every cons's car element is a value (which can itself be a cons pair), and its cdr element is either a cons, or null (for the final element of the list). In other words, this is a simple linked list. Lists have a number of helper functions, namely:
 * `concat(L1, L2)` - Returns a new list composed of the concatenation of L1 and L2.
 * `dequeue(L)` - Returns a new cons list with the first item removed.
-* `enqueue(L, val)` - Returns a new cons list with the given value appended to the front of the list.
-* `every(L, fn)` - Returns `true` if the given function evaluates to `true` for every item in the list.
-* `filter(L, fn)` - Returns a new list composed only of the list items for which the predicate function returns `true`
+* `enqueue(val, L)` - Returns a new cons list with the given value appended to the front of the list.
+* `every(fn, L)` - Returns `true` if the given function evaluates to `true` for every item in the list.
+* `filter(fn, L)` - Returns a new list composed only of the list items for which the predicate function returns `true`
 * `length(L)` - Returns the length of a given list.
 * `list(args...)` - Returns a list based on the arguments array, or an explicitly passed array.
-* `map(L, fn)` - Returns a new cons list with the results of calling the provided function on every element.
+* `map(fn, L)` - Returns a new cons list with the results of calling the provided function on every element.
 * `peek(L)` - Returns the value of the last item in a list.
 * `pop(L)` - Returns a new list with the last item removed.
-* `push(L, val)` - Returns a new cons list with the value appended to the end.
+* `push(val, L)` - Returns a new cons list with the value appended to the end.
 * `range(m, n, step)` - Returns a range list from m to n, with each item incremented by step.
-* `foldl(L, fn, acc)` - Applies the given callback function against an accumulator and each value of the list (from left-to-right) in order to reduce it to a single value.
+* `foldl(fn, acc, L)` - Applies the given callback function against an accumulator and each value of the list (from left-to-right) in order to reduce it to a single value.
 * `reverse(L)` - Returns a reversed list.
-* `slice(L, m, n)` - Returns a new list 'slice' from m to n.
-* `some(L, fn)` - Returns `true` if the callback function return `true` for any item in the list.
-* `sort(L, fn)` - Returns a sorted list. A custom comparison function can be passed.
+* `slice(m, n, L)` - Returns a new list 'slice' from m to n.
+* `some(fn, L)` - Returns `true` if the callback function return `true` for any item in the list.
+* `sort(fn, L)` - Returns a sorted list. A custom comparison function can be passed.
 * `zip(L1, L2)` - Returns a list where each element at a given index is a cons pair composed of the elements from each list at that index. The list returned will be the length of the shorted of the two lists passed in.
 
 ## fun

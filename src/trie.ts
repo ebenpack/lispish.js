@@ -29,49 +29,49 @@ function addTrieDogfood(T: Cons, name: Cons, namespace: Cons) {
           alist("_value", list(stringifyName(fullName, namespace)))
         );
       } else {
-        if (get(T, car(name)) === null) {
+        if (get(car(name), T) === null) {
           return put(
-            T,
             car(name),
-            alist("_value", list(stringifyName(fullName, namespace)))
+            alist("_value", list(stringifyName(fullName, namespace))),
+            T
           );
         } else {
           return put(
-            T,
             car(name),
             put(
-              get(T, car(name)),
               "_value",
               push(
-                get(get(T, car(name)), "_value"),
-                stringifyName(fullName, namespace)
-              )
-            )
+                stringifyName(fullName, namespace),
+                get("_value", get(car(name), T))
+              ),
+              get(car(name), T)
+            ),
+            T
           );
         }
       }
     } else {
       if (T === null) {
-        if (get(T, car(name)) === null) {
+        if (get(car(name), T) === null) {
           return alist(car(name), helper(null, cdr(name), namespace, fullName));
         } else {
           return alist(
             car(name),
-            helper(get(T, car(name)), cdr(name), namespace, fullName)
+            helper(get(car(name), T), cdr(name), namespace, fullName)
           );
         }
       } else {
-        if (get(T, car(name)) === null) {
+        if (get(car(name), T) === null) {
           return put(
-            T,
             car(name),
-            helper(null, cdr(name), namespace, fullName)
+            helper(null, cdr(name), namespace, fullName),
+            T
           );
         } else {
           return put(
-            T,
             car(name),
-            helper(get(T, car(name)), cdr(name), namespace, fullName)
+            helper(get(car(name), T), cdr(name), namespace, fullName),
+            T
           );
         }
       }
@@ -84,13 +84,13 @@ function getTrieDogfood(T: Cons, str: Cons): Cons {
     if (T === null) {
       return list;
     } else {
-      return map(T, function(key, val) {
+      return map(function(key, val) {
         if (key === "_value") {
           return val;
         } else {
           return getLeaves(val, list);
         }
-      });
+      }, T);
     }
   }
   function descendToNode(T: Cons, word: Cons) {

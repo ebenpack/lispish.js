@@ -9,22 +9,22 @@ import cdr from "../cons/cdr";
  * test implemented by the provided callback function.
  * The callback function is passed the current value
  * and the current index in the list.
- * @param  {cons} L
  * @param  {Function} fn
+ * @param  {cons} L
  * @return {boolean}
  */
 export default (
-  L: Cons,
-  fn: (currentValue: any, idx: number) => boolean
+  fn: (currentValue: any, idx: number) => boolean,
+  L: Cons
 ): boolean => {
   const someHelper = (
-    L: Cons,
     fn: (currentValue: any, idx: number) => boolean,
-    idx: number
+    idx: number,
+    L: Cons
   ): boolean =>
     L === null
       ? false
-      : fn(car(L), idx) ? true : someHelper(cdr(L), fn, idx + 1);
+      : fn(car(L), idx) ? true : someHelper(fn, idx + 1, cdr(L));
 
-  return someHelper(L, fn, 0);
+  return someHelper(fn, 0, L);
 };

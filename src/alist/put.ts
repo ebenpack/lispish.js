@@ -10,17 +10,17 @@ import get from "./get";
  * pair existed in the original list, the
  * value will be replaced with the one privded. Otherwise
  * the key-value pair will be added.
- * @param  {cons} L
  * @param  {*} key
  * @param  {*} value
+ * @param  {cons} L
  * @return {cons}
  */
-export default (L: Cons, key: any, value: any): Cons => {
+export default (key: any, value: any, L: Cons): Cons => {
   const helper = (L: Cons, key: any, value: any): Cons =>
     car(car(L)) === key
       ? cons(cons(key, value), cdr(L))
       : cons(car(L), helper(cdr(L), key, value));
-  return get(L, key) === null
+  return get(key, L) === null
     ? cons(cons(key, value), L)
     : helper(L, key, value);
 };

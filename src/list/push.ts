@@ -8,15 +8,15 @@ import list from "./list";
 /**
  * Given a cons list and a value, returns a new cons list
  * with the value appended to the end.
- * @param  {cons} L
  * @param  {*} val
+ * @param  {cons} L
  * @return {cons}
  */
-const push = (L: Cons, val: any): Cons =>
+const push = (val: any, L: Cons): Cons =>
   L === null
     ? cons(val, null)
     : cdr(L) === null
       ? cons(car(L), cons(val, null))
-      : cons(car(L), push(cdr(L), val));
+      : cons(car(L), push(val, cdr(L)));
 
 export default push;
