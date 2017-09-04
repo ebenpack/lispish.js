@@ -17,59 +17,39 @@ export default (T: Cons, name: Cons, namespace: Cons) => {
       suffix: "",
       separator: ""
     });
-  const helper = (
-    T: Cons,
-    name: Cons,
-    namespace: Cons,
-    fullName: Cons
-  ): Cons => {
-    if (cdr(name) === null) {
-      if (T === null) {
-        return alist(
-          car(name),
-          alist("_value", list(stringifyName(fullName, namespace)))
-        );
-      } else {
-        if (get(car(name), T) === null) {
-          return put(
+  const helper = (T: Cons, name: Cons, namespace: Cons, fullName: Cons): Cons =>
+    cdr(name) === null
+      ? T === null
+        ? alist(
             car(name),
-            alist("_value", list(stringifyName(fullName, namespace))),
-            T
-          );
-        } else {
-          return put(
-            car(name),
-            put(
-              "_value",
-              push(
-                stringifyName(fullName, namespace),
-                get("_value", get(car(name), T))
+            alist("_value", list(stringifyName(fullName, namespace)))
+          )
+        : get(car(name), T) === null
+          ? put(
+              car(name),
+              alist("_value", list(stringifyName(fullName, namespace))),
+              T
+            )
+          : put(
+              car(name),
+              put(
+                "_value",
+                push(
+                  stringifyName(fullName, namespace),
+                  get("_value", get(car(name), T))
+                ),
+                get(car(name), T)
               ),
-              get(car(name), T)
-            ),
-            T
-          );
-        }
-      }
-    } else {
-      if (T === null) {
-        return alist(car(name), helper(null, cdr(name), namespace, fullName));
-      } else {
-        if (get(car(name), T) === null) {
-          return put(
-            car(name),
-            helper(null, cdr(name), namespace, fullName),
-            T
-          );
-        } else {
-          return put(
-            car(name),
-            helper(get(car(name), T), cdr(name), namespace, fullName),
-            T
-          );
-        }
-      }
-    }
-  };
+              T
+            )
+      : T === null
+        ? alist(car(name), helper(null, cdr(name), namespace, fullName))
+        : get(car(name), T) === null
+          ? put(car(name), helper(null, cdr(name), namespace, fullName), T)
+          : put(
+              car(name),
+              helper(get(car(name), T), cdr(name), namespace, fullName),
+              T
+            );
   return name === null ? T : helper(T, name, namespace, name);
 };
