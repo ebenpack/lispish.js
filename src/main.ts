@@ -1,9 +1,4 @@
 import * as _cons from "./cons/main";
-import car from "./cons/car";
-import cdr from "./cons/cdr";
-import print from "./cons/print";
-import equal from "./cons/equal";
-import pair from "./cons/pair";
 
 export const cons = _cons;
 
@@ -13,72 +8,86 @@ export const helpers = { args };
 
 // list
 import _list from "./list/list";
-import length from "./list/length";
-import range from "./list/range";
-import map from "./list/map";
-import foldl from "./list/foldl";
-import filter from "./list/filter";
-import peek from "./list/peek";
-import push from "./list/push";
-import pop from "./list/pop";
-import zip from "./list/zip";
-import some from "./list/some";
-import every from "./list/every";
-import reverse from "./list/reverse";
 import concat from "./list/concat";
-import enqueue from "./list/enqueue";
-import dequeue from "./list/dequeue";
-import slice from "./list/slice";
-import sort from "./list/sort";
 import contains from "./list/contains";
+import dequeue from "./list/dequeue";
+import enqueue from "./list/enqueue";
+import every from "./list/every";
+import filter from "./list/filter";
 import flatten from "./list/flatten";
+import foldl from "./list/foldl";
+import foldr from "./list/foldr";
+import get from "./list/get";
+import length from "./list/length";
+import map from "./list/map";
+import peek from "./list/peek";
+import pop from "./list/pop";
+import push from "./list/push";
+import range from "./list/range";
+import reverse from "./list/reverse";
+import slice from "./list/slice";
+import some from "./list/some";
+import sort from "./list/sort";
+import zip from "./list/zip";
 
 export const list = {
-  list: _list,
-  length,
-  range,
-  map,
-  foldl,
-  filter,
-  peek,
-  push,
-  pop,
-  zip,
-  some,
-  every,
-  reverse,
   concat,
-  enqueue,
-  dequeue,
-  slice,
-  sort,
   contains,
-  flatten
+  dequeue,
+  enqueue,
+  every,
+  filter,
+  flatten,
+  foldl,
+  foldr,
+  get,
+  length,
+  list: _list,
+  map,
+  peek,
+  pop,
+  push,
+  range,
+  reverse,
+  slice,
+  some,
+  sort,
+  zip
 };
 // alist
 import _alist from "./alist/alist";
-import put from "./alist/put";
-import get from "./alist/get";
-import alistPrint from "./alist/print";
+import alistEqual from "./alist/equal";
+import alistGet from "./alist/get";
 import alistMap from "./alist/map";
+import alistPrint from "./alist/print";
+import put from "./alist/put";
 
 export const alist = {
   alist: _alist,
-  put,
-  get,
+  alistMap,
   alistPrint,
-  alistMap
+  equal: alistEqual,
+  get: alistGet,
+  put
 };
 
 // fun
-import compose from "./fun/compose";
 import apply from "./fun/apply";
+import compose from "./fun/compose";
 import curry from "./fun/curry";
 import Y from "./fun/Y";
 
 export const fun = {
-  compose,
   apply,
+  compose,
   curry,
   Y
+};
+
+import getTrie from "./trie/getTrie";
+import putTrie from "./trie/putTrie";
+
+export const trie = {
+  getTrie,
+  putTrie
 };
