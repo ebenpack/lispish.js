@@ -9,7 +9,7 @@ import car from "../cons/car";
 import get from "../alist/get";
 import put from "../alist/put";
 import push from "../list/push";
-import isEmpty from "../cons/isEmpty";
+import isEmpty from "../cons/isempty";
 import nil from "../cons/nil";
 
 export default (T: Cons, name: Cons, namespace: Cons) => {

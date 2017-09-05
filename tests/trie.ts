@@ -2,7 +2,7 @@ import getTrie from "../src/trie/getTrie";
 import putTrie from "../src/trie/putTrie";
 import list from "../src/list/list";
 import contains from "../src/list/contains";
-import isEmpty from "../src/cons/isEmpty";
+import isEmpty from "../src/cons/isempty";
 import nil from "../src/cons/nil";
 import { assert } from "chai";
 import * as jsc from "jsverify";

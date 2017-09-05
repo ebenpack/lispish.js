@@ -3,7 +3,7 @@
 import equal from "../cons/equal";
 import car from "../cons/car";
 import cdr from "../cons/cdr";
-import isEmpty from "../cons/isEmpty";
+import isEmpty from "../cons/isempty";
 
 /**
  * Returns true if the specified value is equal to at least one element of the given list.

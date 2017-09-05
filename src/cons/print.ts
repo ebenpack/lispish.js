@@ -3,7 +3,7 @@
 import pair from "./pair";
 import cdr from "./cdr";
 import car from "./car";
-import isEmpty from "./isEmpty";
+import isEmpty from "./isempty";
 
 interface Options {
     prefix?: string;

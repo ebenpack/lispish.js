@@ -4,7 +4,7 @@ import _cdr from "./cdr";
 import _print from "./print";
 import _equal from "./equal";
 import _pair from "./pair";
-import _isEmpty from "./isEmpty";
+import _isEmpty from "./isempty";
 import _nil from "./nil";
 import compose from "../fun/compose";
 

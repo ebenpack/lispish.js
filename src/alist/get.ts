@@ -3,7 +3,7 @@
 import car from "../cons/car";
 import cdr from "../cons/cdr";
 import equal from "../cons/equal";
-import isEmpty from "../cons/isEmpty";
+import isEmpty from "../cons/isempty";
 
 /**
  * Finds and returns the first key-value pair

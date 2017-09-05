@@ -5,7 +5,7 @@ import cdr from "../cons/cdr";
 import flatten from "../list/flatten";
 import get from "../alist/get";
 import map from "../alist/map";
-import isEmpty from "../cons/isEmpty";
+import isEmpty from "../cons/isempty";
 import nil from "../cons/nil";
 
 export default (T: Cons, str: Cons): Cons => {

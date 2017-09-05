@@ -3,7 +3,7 @@
 import cons from "../cons/cons";
 import car from "../cons/car";
 import cdr from "../cons/cdr";
-import isEmpty from "../cons/isEmpty";
+import isEmpty from "../cons/isempty";
 
 /**
  * Returns a new list that is the result

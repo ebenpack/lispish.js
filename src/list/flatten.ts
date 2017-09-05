@@ -5,7 +5,7 @@ import car from "../cons/car";
 import cdr from "../cons/cdr";
 import pair from "../cons/pair";
 import concat from "./concat";
-import isEmpty from "../cons/isEmpty";
+import isEmpty from "../cons/isempty";
 
 /**
  * Flatten a list.

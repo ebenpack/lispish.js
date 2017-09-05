@@ -7,7 +7,7 @@ import cons from "../src/cons/cons";
 import consEqual from "../src/cons/equal";
 import equal from "../src/alist/equal";
 import consPrint from "../src/cons/print";
-import isEmpty from "../src//cons/isEmpty";
+import isEmpty from "../src/cons/isempty";
 import { assert } from "chai";
 import * as jsc from "jsverify";
 

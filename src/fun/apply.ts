@@ -2,7 +2,7 @@
 
 import car from "../cons/car";
 import cdr from "../cons/cdr";
-import isEmpty from "../cons/isEmpty";
+import isEmpty from "../cons/isempty";
 
 /**
  * Call the given function with the list of arguments supplied.

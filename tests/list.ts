@@ -25,7 +25,7 @@ import sort from "../src/list/sort";
 import flatten from "../src/list/flatten";
 import contains from "../src/list/contains";
 import nil from "../src/cons/nil";
-import isEmpty from "../src/cons/isEmpty";
+import isEmpty from "../src/cons/isempty";
 import { assert } from "chai";
 import * as jsc from "jsverify";
 
