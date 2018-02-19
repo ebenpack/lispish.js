@@ -3,5 +3,6 @@
         "lib": ["es6"],
         "module": "es6",
         "sourceMap": true
-    }
+    },
+    "exclude": ["**/*.test.ts"]
 }
