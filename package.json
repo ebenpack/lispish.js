@@ -13,8 +13,7 @@
     "start": "webpack --config webpack.config.js",
     "compile": "tsc --lib ES6 --module commonjs src/main.ts",
     "clean":
-      "find ./src -name \\*.js -delete && find ./tests -name \\*.js -delete",
-    "install": "tsc --lib ES6 --module commonjs src/main.ts"
+      "find ./src -name \\*.js -delete && find ./tests -name \\*.js -delete"
   },
   "repository": {
     "type": "git",
