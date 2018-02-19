@@ -4,7 +4,7 @@
     "description":
         "Some lisp-like noodlings in JS, by someone who doesn't really know lisp.",
     "author": "ebenpack",
-    "main": "dist/bundle.js",
+    "main": "dist/main.js",
     "scripts": {
         "pretest": "tsc --lib ES6 --module commonjs tests/*.ts",
         "test":
@@ -12,7 +12,7 @@
         "test:watch": "npm run test -- --watch",
         "start": "webpack --config webpack.config.js",
         "compile": "tsc --lib ES6 --module commonjs src/main.ts",
-        "build": "webpack",
+        "build": "tsc --lib ES6 --module commonjs src/main.ts --outDir dist",
         "clean":
             "find ./src -name \\*.js -delete && find ./tests -name \\*.js -delete"
     },
