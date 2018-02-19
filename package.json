@@ -12,7 +12,7 @@
         "test:watch": "npm run test -- --watch",
         "start": "webpack --config webpack.config.js",
         "compile": "tsc --lib ES6 --module commonjs src/main.ts",
-        "install": "webpack",
+        "build": "webpack",
         "clean":
             "find ./src -name \\*.js -delete && find ./tests -name \\*.js -delete"
     },
