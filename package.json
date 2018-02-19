@@ -14,7 +14,7 @@
     "compile": "tsc --lib ES6 --module commonjs src/main.ts",
     "clean":
       "find ./src -name \\*.js -delete && find ./tests -name \\*.js -delete",
-    "install": "npm run compile"
+    "install": "tsc --lib ES6 --module commonjs src/main.ts"
   },
   "repository": {
     "type": "git",
