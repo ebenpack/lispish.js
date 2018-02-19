@@ -26,13 +26,13 @@
         "chai": "^4.1.2",
         "jsverify": "^0.8.2",
         "mocha": "^3.5.0",
-        "nyc": "^11.1.0",
-        "ts-loader": "^2.3.7",
-        "typescript": "^2.5.2",
-        "webpack": "^3.11.0"
+        "nyc": "^11.1.0"
     },
     "license": "MIT",
     "dependencies": {
-        "@types/node": "^8.0.26"
+        "@types/node": "^8.0.26",
+        "webpack": "^3.11.0",
+        "ts-loader": "^2.3.7",
+        "typescript": "^2.5.2"
     }
 }
