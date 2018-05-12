@@ -1,4 +1,4 @@
-# lisp-ish.js
+# lisp-ish.ts
 
 lisp-ish is a pure-TS implementation of a number of concepts I think I once heard someone say were associated with lisp, maybe, as well as some other concepts that might not even have anything to do with lisp, perhaps. The only compound type in lisp-ish (at least currently), is the immutable cons pair, and these are used as the foundation to build other, more complex data structures. The intention is that all functions in lisp-ish will be 100% pure. The primary method of name binding will be via argument passing, but this constraint may not be rigorously enforced for the sake of simplicity, especially w/r/t recursion and helper functions.
 
